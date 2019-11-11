@@ -23,27 +23,6 @@ tokemon :-
 	lebarpeta(X),
 	tinggipeta(Y),
 	forall(between(1, 6, P), (random(1,X,C), random(1,Y,D), asserta(tokemon(C,D)))).
-	
-
-peta :-
-	%retractall(lebarpeta(X)),
-	%retractall(tinggipeta(X)),
-	%mulai,
-	tinggipeta(T),
-	lebarpeta(L),
-	X is 0,
-	Xmax is L+1,
-	Y is 0,
-	Ymax is T+1,
-	forall(between(Y, Ymax, J), (
-		forall(between(X, Xmax, I), (
-			printpeta(I,J)
-		)),
-		nl
-	)),
-	write('oke ini peta yey'), nl,
-	!.
-
 
 borderatas(_,Y) :-
 	Y =:= 0,!.
@@ -78,25 +57,6 @@ printpeta(X,Y) :-
 printpeta(_,_) :-
 	write('-').
 
-w :- 
-	retract(player(X,Y)),
-	NewY is Y - 1,
-	asserta(player(X, NewY)), !.
-
-a :- 
-	retract(player(X,Y)),
-	NewX is X - 1,
-	asserta(player(NewX, Y)), !.
-
-s :- 
-	retract(player(X,Y)),
-	NewY is Y + 1,
-	asserta(player(X, NewY)), !.
-
-d :- 
-	retract(player(X,Y)),
-	NewX is X + 1,
-	asserta(player(NewX, Y)), !.
 
 
 
