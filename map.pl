@@ -3,6 +3,7 @@
 :- dynamic(player/2).
 :- dynamic(gym/2).
 :- dynamic(tokemon/2).
+:- dynamic(postokemon/3).
 
 lebarpeta(15).
 tinggipeta(15).
@@ -18,13 +19,11 @@ mulai :-
     random(2,T,Q),
     asserta(player(A,B)),
 	asserta(gym(P,Q)),
-	tokemon,
+    tokemon(Z),
+    random(2,R,C),
+    random(2,T,D),
+    asserta(postokemon(Z, C, D)),
 	!.
-
-tokemon :-
-	lebarpeta(X),
-	tinggipeta(Y),
-	forall(between(1, 6, _), (random(1,X,C), random(1,Y,D), asserta(tokemon(C,D)))).
 
 borderatas(_,Y) :-
 	Y =:= 0,!.
@@ -52,8 +51,6 @@ printpeta(X,Y) :-
 	borderkanan(X,Y), !, write('X').
 printpeta(X,Y) :-
 	player(X,Y), !, write('P').
-printpeta(X,Y) :-
-	tokemon(X,Y), !, write('-').
 printpeta(X,Y) :-
 	gym(X,Y), !, write('G').
 printpeta(_,_) :-
