@@ -5,6 +5,7 @@
 :- include('mapcoba.pl').
 
 :- dynamic(playing/1).
+:- dynamic(inventory/1).
 
 start:-
 	playing(_),
@@ -23,6 +24,7 @@ start:-
 	help,
 	mulai,
 	asserta(playing(1)),
+	asserta(inventory(10)),
 	nl.
 
 narasi:- 
@@ -42,20 +44,6 @@ help :-
 	write('    load(Filename). -- load previously saved game').
 
 quit:- halt.
-
-status:- 
-	nl,
-	write('Your Tokemon:'), nl,
-	write('Bulsabaur'), nl,
-	write('Health:100'), nl,
-	write('Tipe: water'), nl, nl,
-	write('Your Enemy:'), nl,
-	write('Icanmon'), nl,
-	write('Health:999'), nl,
-	write('Type: water'), nl,nl,
-	write('Sangemon'), nl,
-	write('Health:13517101'), nl,
-	write('Type: grass'), nl.
 
 map:-
 	\+playing(_),
@@ -85,8 +73,13 @@ w :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
+w :-
+	player(_,Y),
+	Y =:= 1,
+	write('mentok cuy'),nl,!.
 w :- 
 	retract(player(X,Y)),
+	Y > 1,
 	NewY is Y - 1,
 	asserta(player(X, NewY)), !.
 
@@ -94,6 +87,10 @@ a :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
+a :-
+	player(X,_),
+	X =:= 1,
+	write('mentok cuy'),nl,!.
 a :- 
 	retract(player(X,Y)),
 	NewX is X - 1,
@@ -103,6 +100,11 @@ s :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
+s :-
+	player(_,Y),
+	tinggipeta(P),
+	Y =:= P,
+	write('mentok cuy'),nl,!.
 s :- 
 	retract(player(X,Y)),
 	NewY is Y + 1,
@@ -112,9 +114,19 @@ d :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
+d :-
+	player(X,_),
+	lebarpeta(Q),
+	X =:= Q,
+	write('mentok cuy'),nl,!.
 d :- 
 	retract(player(X,Y)),
 	NewX is X + 1,
 	asserta(player(NewX, Y)), !.
 	
 
+%status
+status :-
+	\+playing(_),
+	write('this command can only be used after the game starts.'), nl,
+	write('use "start." to start the Tokemon Game!'), nl, !.

@@ -24,7 +24,7 @@ mulai :-
 tokemon :-
 	lebarpeta(X),
 	tinggipeta(Y),
-	forall(between(1, 6, P), (random(1,X,C), random(1,Y,D), asserta(tokemon(C,D)))).
+	forall(between(1, 6, _), (random(1,X,C), random(1,Y,D), asserta(tokemon(C,D)))).
 
 borderatas(_,Y) :-
 	Y =:= 0,!.
@@ -53,7 +53,7 @@ printpeta(X,Y) :-
 printpeta(X,Y) :-
 	player(X,Y), !, write('P').
 printpeta(X,Y) :-
-	tokemon(X,Y), !, write('-').
+	tokemon(X,Y), !, write('T').
 printpeta(X,Y) :-
 	gym(X,Y), !, write('G').
 printpeta(_,_) :-
