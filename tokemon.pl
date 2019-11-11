@@ -90,5 +90,22 @@ skill(tokejan, 92).
 skill(tokeham, 109).
 skill(tokenna, 97).
 
+/*kepemilikan*/
+milik(tokeyub, 0).
+milik(tokedon, 1).
+milik(tokecha, 0).
+milik(tokego, 0).
+milik(tokedo, 0).
+milik(tokefab, 0).
+milik(tokegun, 0).
+milik(tokepan, 0).
+milik(tokendra, 0).
+milik(tokejon, 0).
+
+milik(tokegill, 0).
+milik(tokejan, 0).
+milik(tokeham, 0).
+milik(tokenna, 0).
+
 
 

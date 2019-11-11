@@ -3,6 +3,7 @@
 % Felicia Gillian T. Tuerah 13518070
 % Muhammad Rizki Fonna 		13516001
 :- include('mapcoba.pl').
+:- include('tokemon.pl').
 
 :- dynamic(playing/1).
 :- dynamic(inventory/1).
@@ -11,20 +12,20 @@ start:-
 	playing(_),
 	write('You can only start the game once'),nl,!.
 start:-
-	%write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
-	%write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
-	%write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
-	%write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
-	%write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
-	%write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
-	%write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
-	%write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
-	%write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
+	write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
+	write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
+	write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
+	write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
+	write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
+	write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
+	write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
+	write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
+	write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
 	narasi, 
 	help,
 	mulai,
 	asserta(playing(1)),
-	asserta(inventory(10)),
+	asserta(inventory(6)),
 	nl.
 
 narasi:- 
@@ -130,3 +131,21 @@ status :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
+
+status :-
+	write('Your Tokemon : '), nl,
+	tokemon(K),
+	milik(K, J),
+	J =:= 1,
+	write(K), nl,
+	write('health : '), health(K, X), write(X), nl,
+	write('type : '), type(K, Y), write(Y), nl, nl.
+
+status :-
+	write('Your Enemy : '), nl,
+	tokemon(K),
+	milik(K, J),
+	J =:= 0,
+	write(K), nl,
+	write('health : '), health(K, X), write(X), nl,
+	write('type : '), type(K, Y), write(Y), nl, nl.

@@ -53,7 +53,7 @@ printpeta(X,Y) :-
 printpeta(X,Y) :-
 	player(X,Y), !, write('P').
 printpeta(X,Y) :-
-	tokemon(X,Y), !, write('T').
+	tokemon(X,Y), !, write('-').
 printpeta(X,Y) :-
 	gym(X,Y), !, write('G').
 printpeta(_,_) :-
