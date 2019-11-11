@@ -4,16 +4,18 @@
 :- dynamic(gym/2).
 :- dynamic(tokemon/2).
 
+lebarpeta(15).
+tinggipeta(15).
 
 mulai :-
-    random(10,20,X),
-    random(10,20,Y),
-    random(1,X,A),
-    random(1,Y,B),
-    random(1,X,P),
-    random(1,Y,Q),
-	asserta(lebarpeta(X)),
-	asserta(tinggipeta(Y)),
+	lebarpeta(X),
+	tinggipeta(Y),
+	R is X - 1,
+	T is Y - 1,
+    random(2,R,A),
+    random(2,T,B),
+    random(2,R,P),
+    random(2,T,Q),
     asserta(player(A,B)),
 	asserta(gym(P,Q)),
 	tokemon,
@@ -51,7 +53,7 @@ printpeta(X,Y) :-
 printpeta(X,Y) :-
 	player(X,Y), !, write('P').
 printpeta(X,Y) :-
-	tokemon(X,Y), !, write('T').
+	tokemon(X,Y), !, write('-').
 printpeta(X,Y) :-
 	gym(X,Y), !, write('G').
 printpeta(_,_) :-
