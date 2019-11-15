@@ -1,3 +1,7 @@
+:- include('map.pl').
+:- include('main.pl').
+
+
 countElmt([],0).
 countElmt([_|T],X) :- countElmt(T,N), X is N+1.
 
@@ -11,30 +15,33 @@ delete_one(Elmt, [Elmt|Tail], Tail).
 delete_one(Elmt, [Head|Tail], [Head|Result]) :-
   delete_one(Elmt, Tail, Result).
 
+% message_location:- player_position(I,J), area(I,J,Name), write(' You are in the '), write(Name), write(' area.'),nl.
+
+
 /*---------- N, S, W, E ----------*/
-n :- retract(player_position(I,J)), 
+n :- retract(player(I,J)), 
 	X is I-1, 
-	asserta(player_position(X,J)),
-	message_location.
+	asserta(player(X,J)),
+	% message_location.
 
-s :- retract(player_position(I,J)), 
+s :- retract(player(I,J)), 
 	X is I+1, 
-	asserta(player_position(X,J)),
-	message_location.
+	asserta(player(X,J)),
+	% message_location.
 
-w :- retract(player_position(I,J)),
+w :- retract(player(I,J)),
 	 X is J-1, 
-	asserta(player_position(I,X)),
-	message_location.
+	asserta(player(I,X)),
+	% message_location.
 
-e :- retract(player_position(I,J)),
+e :- retract(player(I,J)),
 	 X is J+1, 
-	asserta(player_position(I,X)),
-	message_location.	
+	asserta(player(I,X)),
+	% message_location.	
 
 /*---------- TAKE ----------*/
 take(Name) :- supply(Name,I,J),
-			 player_position(I,J),
+			 player(I,J),
 			 player_inventory(L,Max), 
 			 countElmt(L,X),
 			 X <Max, 
@@ -45,7 +52,7 @@ take(Name) :- supply(Name,I,J),
 			 message_take_succeed(Name), !.
 
 take(Name) :- supply(Name,I,J),
-			player_position(I,J), 
+			player(I,J), 
 			player_inventory(L,Max), 
 			countElmt(L,X), 
 			X == Max,
@@ -62,7 +69,7 @@ drop(Name) :- player_inventory(L,Max),
 			delete_one(Name,L,X), 
 			retract(player_inventory(L,Max)),
 			asserta(player_inventory(X,Max)),
-			player_position(I,J),
+			player(I,J),
 			asserta(supply(Name,I,J)),
 			message_drop_succeed(Name), !.
 
