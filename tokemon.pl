@@ -195,6 +195,7 @@ milik(tokegill, 0).
 milik(tokejan, 0).
 milik(tokeham, 0).
 milik(tokenna, 0).
+milik(X, 0).
 
 
 

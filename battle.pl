@@ -7,21 +7,59 @@
 :- dynamic(battle/1).
 :- dynamic(health/2).
 :- dynamic(sAttack/2).
+:- dynamic(gagalRun/1).
 
 enemyTokemon(tokeyub).
 playerTokemon(tokedon).
 
+bat :-
+    assert(battle(_)).
+
+rem :-
+    retract(battle(_)).
+
+run :-
+    \+battle(_),
+    write('You are not in the battle right now!'), 
+    nl, !, fail.
+
+run :-
+    gagalRun(_),
+    write('You cannot run!'),
+    nl, !, fail.
+
 run :-
     random(0,2, X),
     X == 1, 
-    write('You sucessfully escaped the Tokemon!'), 
+    write('You sucessfully escaped the Tokemon!'),
+    retract(battle(_)),
     !, fail.
 
 run :-
     nl,
-    assert(battle(_)),
+    battle(_),
+    assert(gagalRun(_)),
     write('You failed to run!\nChoose your Tokemon!'), 
     nl.
+
+pick(_) :-
+    \+battle(_),
+    write('You are not in the battle right now!'), 
+    !, fail.
+
+pick(PT) :-
+    milik(PT, X),
+    ( X = 0 ->
+        write('You don’t have that Tokemon!'), 
+        !, fail
+        ;
+        retract(playerTokemon(_)),
+        assert(playerTokemon(PT)),
+        write('You : “'), 
+        write(PT), 
+        write(' I choose you!”\n'),
+        !, fail
+    ).
 
 attack :- 
     enemyTokemon(ET),
@@ -124,7 +162,7 @@ specialAttack :-
     NewDamage is X,
     NewHP is HP - NewDamage,
     write(PT),
-    write('uses leaf blade!'),nl,
+    write('uses special attack!'),nl,
     write('It was super effective!'),nl,
     write('You dealt '), 
     write(NewDamage), 
