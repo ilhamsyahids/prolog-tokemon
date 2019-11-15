@@ -49,19 +49,19 @@ take(Name) :- supply(Name,I,J),
 			 retract(player_inventory(L,Max)),
 			 asserta(player_inventory(Result,Max)),
 			 retract(supply(Name,I,J)),
-			 message_take_succeed(Name), !.
+			%  message_take_succeed(Name), !.
 
 take(Name) :- supply(Name,I,J),
 			player(I,J), 
 			player_inventory(L,Max), 
 			countElmt(L,X), 
 			X == Max,
-			message_take_inventfull, !.
+			% message_take_inventfull, !.
 
 take(Name) :-
 			player_position(I,J),
 			\+supply(Name,I,J), 
-			message_take_notfound(Name).
+			% message_take_notfound(Name).
 
 /*---------- DROP ----------*/
 drop(Name) :- player_inventory(L,Max),
@@ -71,10 +71,10 @@ drop(Name) :- player_inventory(L,Max),
 			asserta(player_inventory(X,Max)),
 			player(I,J),
 			asserta(supply(Name,I,J)),
-			message_drop_succeed(Name), !.
+			% message_drop_succeed(Name), !.
 
 drop(Name) :- player_inventory(L,_),
 			\+is_member(Name,L), 
-			message_drop_notfound(Name).
+			% message_drop_notfound(Name).
  
 
