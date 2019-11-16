@@ -8,11 +8,12 @@
 :- dynamic(health/2).
 :- dynamic(sAttack/2).
 :- dynamic(gagalRun/1).
+:- dynamic(picked/0).
 
 enemyTokemon(tokeyub).
 playerTokemon(tokedon).
 
-bat :-
+fight :-
     assert(battle(_)).
 
 rem :-
@@ -43,6 +44,11 @@ run :-
     nl.
 
 pick(_) :-
+    picked,
+    write('You have picked Tokemon!'), 
+    !, fail.
+
+pick(_) :-
     \+battle(_),
     write('You are not in the battle right now!'), 
     !, fail.
@@ -58,6 +64,7 @@ pick(PT) :-
         write('You : “'), 
         write(PT), 
         write(' I choose you!”\n'),
+        assert(picked),
         !, fail
     ).
 
@@ -114,7 +121,7 @@ enemyAttack :-
     write(HP2), !, fail.
 
 % TP yang diserang, TE yang menyerang, 
-% Damage awal, X damage akhir
+% Damage = damage awal, X = damage akhir
 modifier(TP, TE, Damage, X) :- 
     ( TE == fire, TP == leaves ->
             X is Damage + 0.5*Damage 
@@ -137,23 +144,33 @@ modifier(TP, TE, Damage, X) :-
                             X is Damage
     ).
 
+capture :-
+    \+battle(_),
+    write('You are not in the battle right now!'), 
+    !, fail.    
+
 capture :- 
     enemyTokemon(ET),
     health(ET, HP),
     ( \+battle(_) ->
     write('You cannot capture!. ') ;
         ( HP =< 0 ->
-            write(ET),
             write('You cannot capture!. ')
             ;
-            write('Captured!. ') 
+            write(ET),
+            write(' is captured!. ') 
         )
     ).
 
 specialAttack :-
-    \+sAttack(PT, _),
+    \+battle(_),
+    write('You are not in the battle right now!'), 
+    !, fail.    
+
+specialAttack :-
     enemyTokemon(ET),
     playerTokemon(PT),
+    \+sAttack(PT, _),
     skill(PT, Damage),
     health(ET, HP),
     type(ET, TE),
@@ -162,7 +179,7 @@ specialAttack :-
     NewDamage is X,
     NewHP is HP - NewDamage,
     write(PT),
-    write('uses special attack!'),nl,
+    write(' uses special attack!'),nl,
     write('It was super effective!'),nl,
     write('You dealt '), 
     write(NewDamage), 
@@ -171,7 +188,8 @@ specialAttack :-
     write(NewHP),
     retract(health(ET, HP)),
     assert(health(ET, NewHP)),
-    assert(sAttack(PT, _)).
+    assert(sAttack(PT, _)),
+    !, fail.
 
 specialAttack :- 
     write('Special attacks can only be used once per battle!').
