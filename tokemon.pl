@@ -1,3 +1,7 @@
+:- dynamic(health/2).
+:- dynamic(milik/2).
+:- dynamic(inventory/1).
+
 /*nama tokemon*/
 /* 20 tokemon normal*/
 /* 4 tokemon super*/
@@ -171,7 +175,7 @@ skill(tokenna, 97).
 
 /*kepemilikan*/
 milik(tokeyub, 0).
-milik(tokedon, 1).
+milik(tokedon, 0).
 milik(tokecha, 0).
 milik(tokego, 0).
 milik(tokedo, 0).
@@ -195,6 +199,64 @@ milik(tokegill, 0).
 milik(tokejan, 0).
 milik(tokeham, 0).
 milik(tokenna, 0).
+
+/*id tokemon*/
+id(tokeyub, 1).
+id(tokedon, 2).
+id(tokecha, 3).
+id(tokego, 4).
+id(tokedo, 5).
+id(tokefab, 6).
+id(tokegun, 7).
+id(tokepan, 8).
+id(tokendra, 9).
+id(tokejon, 10).
+id(tokevin, 11).
+id(tokenan, 12).
+id(tokemezz, 13).
+id(tokeat, 14).
+id(toketir, 15).
+id(tokekha, 16).
+id(tokedhil, 17).
+id(tokema, 18).
+id(tokevan, 19).
+id(tokeli, 20).
+
+id(tokegill, 21).
+id(tokejan, 22).
+id(tokeham, 23).
+id(tokenna, 24).
+
+/* =========RULES========= */
+
+/*random tokemon init*/
+tokemon_init:-
+    random(1,20,Id),
+    id(Y,Id),
+    asserta(milik(Y,1)),!.
+
+/*cek kepemilikan*/
+isMilik(Tokemon):-milik(Tokemon, X),(X=:=1),!.
+
+/*tokemon dalam inventory*/
+tokeCounter(X):-
+    findall(A,isMilik(A),ListInvent),
+    length(ListInvent,X),!.
+
+/*inventory*/
+addToInventory(Toke):-
+    tokemon(Toke),
+    asserta(milik(Toke,1)),!.
+
+delFromInventory(Toke):-
+    tokemon(Toke),
+    asserta(milik(Toke,0)),!.
+
+# inventory(Inventory):-
+#     findall(A,isMilik(A),ListInvent),
+#     Inventory is ListInvent.
+    
+    
 
 
 

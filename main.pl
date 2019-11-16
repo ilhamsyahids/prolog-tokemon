@@ -2,6 +2,7 @@
 % M Fauzan Al-G 			13518112
 % Felicia Gillian T. Tuerah 13518070
 % Muhammad Rizki Fonna 		13516001
+
 :- include('map.pl').
 :- include('tokemon.pl').
 
@@ -134,12 +135,13 @@ status :-
 
 status :-
 	write('Your Tokemon : '), nl,
+	tokemon_init,
 	tokemon(K),
 	milik(K, J),
 	J =:= 1,
 	write(K), nl,
 	write('health : '), health(K, X), write(X), nl,
-	write('type : '), type(K, Y), write(Y), nl, nl.
+	write('type : '), type(K, Y), write(Y), nl, nl,!.
 
 status :-
 	write('Your Enemy : '), nl,
@@ -148,4 +150,4 @@ status :-
 	J =:= 0,
 	write(K), nl,
 	write('health : '), health(K, X), write(X), nl,
-	write('type : '), type(K, Y), write(Y), nl, nl.
+	write('type : '), type(K, Y), write(Y), nl, nl,!.
