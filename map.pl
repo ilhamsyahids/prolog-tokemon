@@ -7,37 +7,62 @@
 :- dynamic(key/2).
 
 lebarpeta(15).
-tinggipeta(15).
+tinggipeta(17).
 
 mulai :-
-	%lebarpeta(X),
-	%tinggipeta(Y),
-	%R is X - 1,
-	%T is Y - 1,
-	%PenghalangX is X - 6,
-	%PenghalangY is Y - 6,
-    %random(2,R,A),
-    %random(2,T,B),
-    %random(2,R,P),
-    %random(2,T,Q),
     asserta(player(3,2)),
-	asserta(gym(13,14)),
-	asserta(key(1,1)),
-	%random(1,PenghalangX,C), random(1,PenghalangY,D),
+	asserta(gym(13,16)),
+	asserta(key(8,9)),
 	C is 6,
 	D is 1,
 	forall(between(0, 3, JJ), (HH is JJ+D, asserta(penghalang(C,HH)))),
 	asserta(penghalang(1,4)),
 	asserta(penghalang(2,4)),
-	asserta(penghalang(3,4)),
 	asserta(penghalang(4,4)),
 	asserta(penghalang(5,4)),
-	%random(1,PenghalangX,E), random(1,PenghalangY,F),
+
+	asserta(penghalang(6,6)),
+	asserta(penghalang(6,7)),
+	asserta(penghalang(6,8)),
+	asserta(penghalang(6,9)),
+	asserta(penghalang(6,10)),
+	asserta(penghalang(6,12)),
+
+	asserta(penghalang(7,6)),
+	asserta(penghalang(7,10)),
+	asserta(penghalang(7,12)),
+
+	asserta(penghalang(8,6)),
+	asserta(penghalang(8,8)),
+	asserta(penghalang(8,10)),
+	asserta(penghalang(8,12)),
+
+	asserta(penghalang(9,6)),
+	asserta(penghalang(9,8)),
+	asserta(penghalang(9,9)),
+	asserta(penghalang(9,10)),
+	asserta(penghalang(9,12)),
+
+	asserta(penghalang(10,6)),
+	asserta(penghalang(10,12)),
+
+	asserta(penghalang(11,6)),
+	asserta(penghalang(11,7)),
+	asserta(penghalang(11,8)),
+	asserta(penghalang(11,9)),
+	asserta(penghalang(11,10)),
+	asserta(penghalang(11,11)),
+	asserta(penghalang(11,12)),
+
+
+
 	E is 10,
-	F is 12,
+	F is 14,
 	forall(between(0, 5, JJ), (HH is JJ+E, asserta(penghalang(HH,F)))), 
+	asserta(penghalang(10,17)),
+	asserta(penghalang(10,16)),
 	asserta(penghalang(10,15)),
-	asserta(penghalang(10,13)), !.
+	!.
 
 borderatas(_,Y) :-
 	Y =:= 0,!.
@@ -83,7 +108,7 @@ key :-
 	key(X,Y),
 	player(X,Y),
 	retract(key(X,Y)),
-	retract(penghalang(3,4)), !.
+	retract(penghalang(10,16)), !.
 
 map:-
 	\+playing(_),
@@ -105,8 +130,8 @@ map:-
 	write(' Legends:'), nl,
 	write('    X = Pagar'), nl,
 	write('    P = Player'), nl,
-	write('    G = Gym'), nl,nl,
-	write('    K = Key'), nl,
+	write('    G = Gym'), nl,
+	write('    K = Key'), nl, nl,
 	!.
 
 
