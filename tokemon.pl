@@ -58,8 +58,34 @@ jenis(tokejan, legend).
 jenis(tokeham, legend).
 jenis(tokenna, legend).
 
+/*health base*/
+healthbase(tokeyub, 97). 
+healthbase(tokedon, 65).
+healthbase(tokecha, 80).
+healthbase(tokego, 78).
+healthbase(tokedo, 88).
+healthbase(tokefab, 108).
+healthbase(tokegun, 66).
+healthbase(tokepan, 92).
+healthbase(tokendra, 90).
+healthbase(tokejon, 81).
+healthbase(tokevin, 72).
+healthbase(tokenan, 77).
+healthbase(tokemezz, 69).
+healthbase(tokeat, 83).
+healthbase(toketir, 82).
+healthbase(tokekha, 86).
+healthbase(tokedhil, 87).
+healthbase(tokema, 99).
+healthbase(tokevan, 103).
+healthbase(tokeli, 101).
+
+healthbase(tokegill, 151).
+healthbase(tokejan, 139).
+healthbase(tokeham, 157).
+healthbase(tokenna, 145).
+
 /*health*/
-/*maks 200*/
 health(tokeyub, 97). 
 health(tokedon, 65).
 health(tokecha, 80).

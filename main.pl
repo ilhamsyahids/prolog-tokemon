@@ -128,8 +128,16 @@ d :-
 	retract(player(X,Y)),
 	NewX is X + 1,
 	asserta(player(NewX, Y)), !.
-	
-quit:- halt.
+
+%quit	
+quit:- 
+	/*\+quit,
+	write('we're sad to see you go'),nl,
+	write('come again to catch some tokemon!'),nl,*/
+	halt,!.
+/*quit:-
+	write('you've not started any game yet'),nl,
+	write('use "start." to start the Tokemon Game!'), nl, !.*/
 
 %status
 status :-
@@ -151,3 +159,25 @@ status :-
 		milik(K, 0) , jenis(K, legend),
 		stat(K), nl)
 	).
+
+%heal
+heal:- 
+	player(I, J), 
+	gym(I, J), 
+	tokemon(Toke),
+	milik(Toke, 1), 
+	healthbase(Toke,X),
+	retract(health(Toke, _)),
+	asserta(health(Toke, X)),!.
+heal:-
+	tokemon(Toke),
+	\+milik(Toke, 1),
+	write('Gagal, Anda tidak memiliki pokemon tersebut'),
+	nl,!.
+heal:- 
+	tokemon(Toke),
+	milik(Toke, 1),
+	player(I,J),
+	\+gym(I, J),
+	write('Gagal, Anda tidak sedang berada di gym'),
+	nl,!.

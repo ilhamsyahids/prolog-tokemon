@@ -49,7 +49,7 @@ run :-
 run :-
     random(0,2,X),
     X == 1, 
-    write('You sucessfully escaped the Tokemon!'),
+    write('You sucessfully escaped the Tokemon!'),nl,
     remove,
     !, fail.
 
@@ -246,7 +246,7 @@ checkvictory :-
     !, fail.
 
 exit :- 
-    rem,
+    remove,
     write('You leave the carcass').
 
 statPlayerEnemy :-
