@@ -104,11 +104,12 @@ key :-
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 key :-
-	write('Selamat!, Anda berhasil menemukan kunci untuk keluar!'),nl,
 	key(X,Y),
 	player(X,Y),
 	retract(key(X,Y)),
-	retract(penghalang(10,16)), !.
+	retract(penghalang(10,16)), 
+	write('Selamat!, Anda berhasil menemukan kunci untuk keluar!'),nl,
+	!.
 
 map:-
 	\+playing(_),

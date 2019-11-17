@@ -30,22 +30,25 @@ start:-
 	asserta(playing(1)),
 	asserta(inventory(6)), nl,nl,
 	repeat,
-		map,
 		write('Enter Command : '), read(X),
 		do(X),
 		X == quit.
 
-do(start) :- start.
-do(help) :- help.
-do(quit) :- quit.
-do(w) :- w.
-do(a) :- a.
-do(s) :- s.
-do(d) :- d.
-do(map) :- map.
-do(status) :- status.
-do(drop(X)) :- drop(X).
-do(heal(X)) :- heal(X).
+do(start) :-!, start.
+do(help) :-!, help.
+do(quit) :-!, quit.
+do(w) :-!, w.
+do(a) :-!, a.
+do(s) :-!, s.
+do(d) :-!, d.
+do(map) :-!, map.
+do(status) :-!, status.
+do(drop(X)) :-!, drop(X).
+do(heal(X)) :-!, heal(X).
+do(_) :- wronginput.
+
+wronginput :-
+	write('Command yang dimasukkan salah, silakan masukan ulang'),nl.
 
 narasi:- 
 	write(' Hello there! Welcome to the world of Tokemon!'),nl,
@@ -83,10 +86,10 @@ status :-
 
 status :-
 	write('Your Enemy : '), nl,
-	tokemon(K),
-	milik(K, J),
-	jenis(K, legend),
-	J =:= 0,
-	write(K), nl,
-	write('health : '), health(K, X), write(X), nl,
-	write('type : '), type(K, Y), write(Y), nl, nl.
+	forall(between(21,24,Val), 
+		(id(K, Val),
+		milik(K, 0) , jenis(K, legend),
+		write(K), nl,
+		write('health : '), health(K, X), write(X), nl,
+		write('type : '), type(K, Y), write(Y), nl, nl)
+	).
