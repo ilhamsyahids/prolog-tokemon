@@ -7,7 +7,7 @@ map.
 
 pick.
 
-==== di tokemon.pl ====
+==== di player.pl ====
 1. tokemon_init 
 /*inisialisasi tokemon di awal*/
 

@@ -1,6 +1,15 @@
 :- dynamic(health/2).
 :- dynamic(milik/2).
-:- dynamic(inventory/1).
+
+:- discontiguous tokemon/1.
+:- discontiguous jenis/2.
+:- discontiguous healthbase/2.
+:- discontiguous health/2.
+:- discontiguous damage/2.
+:- discontiguous skill/2.
+:- discontiguous type/2.
+:- discontiguous id/2.
+:- discontiguous milik/2.
 
 /*nama tokemon*/
 /* 20 tokemon normal*/
@@ -201,7 +210,7 @@ skill(tokenna, 97).
 
 /*kepemilikan*/
 milik(tokeyub, 0).
-milik(tokedon, 0).
+milik(tokedon, 1).
 milik(tokecha, 0).
 milik(tokego, 0).
 milik(tokedo, 0).
@@ -253,48 +262,3 @@ id(tokegill, 21).
 id(tokejan, 22).
 id(tokeham, 23).
 id(tokenna, 24).
-
-/* =========RULES========= */
-
-/*random tokemon init*/
-tokemon_init:-
-    random(1,20,Id),
-    id(Y,Id),
-    retractall(milik(Y,0)),
-    asserta(milik(Y,1)).
-
-/*cek kepemilikan*/
-isMilik(Tokemon):-
-    tokemon(Tokemon),
-    milik(Tokemon,X),
-    X =:= 1,!.
-
-/*tokemon dalam inventory*/
-tokeCounter(X):-
-    findall(A,isMilik(A),ListInvent),
-    length(ListInvent,X).
-
-/*inventory*/
-addToInventory(Toke):-
-    tokemon(Toke),
-    asserta(milik(Toke,1)),
-    retract(milik(Toke,0)),!.
-
-delFromInventory(Toke):-
-    tokemon(Toke),
-    asserta(milik(Toke,0)),
-    retract(milik(Toke,1)),!.
-
-inventory(LInvent):-
-    findall(B,isMilik(B),LInvent).
-    
-stat(K) :-
-	tokemon(K),
-	write(K), nl,
-	write('Health : '), health(K, X), write(X), nl,
-	write('Type : '), type(K, Y), write(Y), nl,!.
-
-capt(Toke) :-
-    tokemon(Toke),
-    addToInventory(Toke),
-    write(Toke),write(' is captured!'),!.

@@ -6,8 +6,8 @@
 :- include('tokemon.pl').
 :- include('player.pl').
 :- include('battle.pl').
+:- include('map.pl').
 
-:- dynamic(playing/1).
 :- dynamic(inventory/1).
 
 start:-
@@ -73,71 +73,9 @@ help :-
 	write('    G = Gym'), nl,
 	write('    K = Key').
 
-%move
-w :-
-	\+playing(_),
-	write('this command can only be used after the game starts.'), nl,
-	write('use "start." to start the Tokemon Game!'), nl, !.
-w :-
-	player(_,Y),
-	Y =:= 1,
-	write('mentok cuy (nanti diperbaiki kata2nya)'),nl,!.
-w :- 
-	retract(player(X,Y)),
-	Y > 1,
-	NewY is Y - 1,
-	asserta(player(X, NewY)), !.
-
-a :-
-	\+playing(_),
-	write('this command can only be used after the game starts.'), nl,
-	write('use "start." to start the Tokemon Game!'), nl, !.
-a :-
-	player(X,_),
-	X =:= 1,
-	write('mentok cuy (nanti diperbaiki kata2nya)'),nl,!.
-a :- 
-	retract(player(X,Y)),
-	NewX is X - 1,
-	asserta(player(NewX, Y)), !.
-
-s :-
-	\+playing(_),
-	write('this command can only be used after the game starts.'), nl,
-	write('use "start." to start the Tokemon Game!'), nl, !.
-s :-
-	player(_,Y),
-	tinggipeta(P),
-	Y =:= P,
-	write('mentok cuy (nanti diperbaiki kata2nya)'),nl,!.
-s :- 
-	retract(player(X,Y)),
-	NewY is Y + 1,
-	asserta(player(X, NewY)), !.
-
-d :-
-	\+playing(_),
-	write('this command can only be used after the game starts.'), nl,
-	write('use "start." to start the Tokemon Game!'), nl, !.
-d :-
-	player(X,_),
-	lebarpeta(Q),
-	X =:= Q,
-	write('mentok cuy (nanti diperbaiki kata2nya)'),nl,!.
-d :- 
-	retract(player(X,Y)),
-	NewX is X + 1,
-	asserta(player(NewX, Y)), !.
-
 %quit	
 quit:- 
-	/*\+quit,
-	write('we're sad to see you go'),nl,
-	write('come again to catch some tokemon!'),nl,*/
 	halt,!.
-/*quit:-
-	write('you've not started any game yet'),nl,
-	write('use "start." to start the Tokemon Game!'), nl, !.*/
 
 %status
 status :-

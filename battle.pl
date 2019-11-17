@@ -1,4 +1,4 @@
-:- include('map.pl').
+:- include('player.pl').
 
 :- dynamic(battle/1).
 :- dynamic(enemyTokemon/1).
@@ -9,24 +9,40 @@
 :- dynamic(gagalRun/1).
 :- dynamic(picked/0).
 
-enemyTokemon(tokeyub).
-playerTokemonBattle(tokedon).
+:- discontiguous decide/0.
+:- discontiguous fight/0.
+:- discontiguous remove/0.
+:- discontiguous run/0.
+:- discontiguous pick/1.
+:- discontiguous enemyAttack/0.
+:- discontiguous serang/2.
+:- discontiguous attack/0.
+:- discontiguous specialAttack/0.
+:- discontiguous checklose/0.
+:- discontiguous checkvictory/0.
+:- discontiguous modifier/4.
+:- discontiguous capture/0.
+:- discontiguous exit/0.
+:- discontiguous statPlayerEnemy/0.
+
+% enemyTokemon(tokeyub).
+% playerTokemonBattle(tokedo).
 
 decide :-
-    write('Tokemon Liar Muncul!!'), nl,
+    milik(Y, 0),
+    assert(enemyTokemon(Y)),
+    write(Y),
+    write(' liar Muncul!!'), nl,
     write('fight atau run'), nl,
     read(X),
     (X == run -> run; X == fight -> fight).
 
-wow :-
-    write('wow'), nl.
-
-wiw :-
-    write('wiw'), nl.
-
 fight :-
-    assert(battle(1)).
-
+    assert(battle(_)),
+    write('You decided to fight!\nChoose your Tokemon!\n\nAvailable Tokemons: '), 
+    inventory(X),
+    write(X),
+    nl, !.
 
 remove :-
     retractall(picked(_)),
@@ -35,11 +51,6 @@ remove :-
     retractall(battle(_)),
     retractall(enemyTokemon(_)),
     retractall(playerTokemonBattle(_)).
-
-%run :-
-%    \+battle(_),
-%    write('You are not in the battle right now!'), 
-%    nl, !, fail.
 
 run :-
     gagalRun(_),
@@ -66,28 +77,26 @@ run :-
 pick(_) :-
     picked,
     write('You have picked Tokemon!'), 
-    !, fail.
+    !.
 
 pick(_) :-
     \+battle(_),
     write('You are not in the battle right now!'), 
-    !, fail.
+    !.
 
 pick(PT) :-
-    milik(PT, X),
-    ( X =:= 0 ->
-        write('You don’t have that Tokemon!'), 
-        !, fail
-        ;
-        retract(playerTokemonBattle(_)),
-        assert(playerTokemonBattle(PT)),
-        write('You : “'), 
-        write(PT), 
-        write(' I choose you!”\n'),
-        assert(picked),
-        statPlayerEnemy,
-        !, fail
-    ).
+    milik(PT, 1),
+    write('You : “'), 
+    write(PT), 
+    write(' I choose you!”\n'),
+    retractall(playerTokemonBattle(_)),
+    assert(playerTokemonBattle(PT)),
+    assert(picked),
+    statPlayerEnemy,
+    !.
+
+pick(_) :-
+    write('You don’t have that Tokemon!'), !.
 
 attack :- 
     enemyTokemon(ET),
@@ -97,6 +106,7 @@ attack :-
     NewDamage is X,
     serang(ET, NewDamage),
     nl,
+    !,
     (\+checkvictory ->
         write('You dealt '),
         write(NewDamage),
@@ -104,9 +114,13 @@ attack :-
         write(ET), nl,
         statPlayerEnemy,
         nl,
+        !,
         enemyAttack, 
         !, fail
-    ).
+        ;
+        !, fail
+    ),
+    !.
 
 enemyAttack :-
     enemyTokemon(ET),
@@ -115,13 +129,19 @@ enemyAttack :-
     modifier(PT, ET, Damage, X),
     NewDamage is X,
     serang(PT, NewDamage),
-    write(ET),
-    write(' attacks!\nIt dealt '), 
-    write(NewDamage), 
-    write(' damage to '),
-    write(PT), nl,
-    statPlayerEnemy,
-    !, fail.
+    !,
+    (\+checklose ->
+        write(ET),
+        write(' attacks!\nIt dealt '), 
+        write(NewDamage), 
+        write(' damage to '),
+        write(PT), nl,
+        statPlayerEnemy,
+        !, fail
+        ;
+        !, fail
+    ),
+    !.
 
 serang(T, Damage) :-
     health(T, HP),
@@ -131,7 +151,7 @@ serang(T, Damage) :-
         ;
         HPP is NewHP
     ),
-    retract(health(T, HP)),
+    retractall(health(T, HP)),
     assert(health(T, HPP)).
 
 % PT tokemon yang diserang, ET tokemon yang menyerang, 
@@ -195,12 +215,7 @@ capture :-
         (X =:= 6 ->
             write('You cannot capture another Tokemon! You have to drop one first.'), nl
             ;
-            write(ET),
-            write(' is captured!. '),
-            addToInventory(ET),
-            random(45, 60, X),
-            retract(health(ET, 0)),
-            assert(health(ET, X)),
+            capt(ET),
             remove
         )
     ).
@@ -243,7 +258,20 @@ checkvictory :-
     write(' capture/0 to capture '), 
     write(ET),
     write(', \notherwise exit/0 to leave the carcass.'),
-    !, fail.
+    !.
+
+checklose :-
+    playerTokemonBattle(ET),
+    health(ET, HPE),
+    HPE =< 0,
+    write(ET),
+    write(' died! Choose your pokemon '),
+    delFromInventory(ET),
+    retractall(playerTokemonBattle(ET)),    
+    retractall(picked),    
+    inventory(X),
+    write(X),
+    !. 
 
 exit :- 
     remove,

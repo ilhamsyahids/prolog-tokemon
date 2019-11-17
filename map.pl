@@ -1,3 +1,6 @@
+:- include('battle.pl').
+
+:- dynamic(playing/1).
 :- dynamic(lebarpeta/1).
 :- dynamic(tinggipeta/1).
 :- dynamic(player/2).
@@ -53,8 +56,6 @@ mulai :-
 	asserta(penghalang(11,10)),
 	asserta(penghalang(11,11)),
 	asserta(penghalang(11,12)),
-
-
 
 	E is 10,
 	F is 14,
@@ -225,8 +226,8 @@ d :-
 	!.
 
 appear :-
-	random(1,6,Appear),	
+	random(1,7,Appear),
 	(Appear =:= 5 -> decide; nothing).
-
+		
 nothing :-
 	write('Tidak ada apa-apa di sini'), nl,nl.
