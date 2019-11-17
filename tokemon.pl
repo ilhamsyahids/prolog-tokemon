@@ -175,7 +175,7 @@ skill(tokenna, 97).
 
 /*kepemilikan*/
 milik(tokeyub, 0).
-milik(tokedon, 0).
+milik(tokedon, 1).
 milik(tokecha, 0).
 milik(tokego, 1).
 milik(tokedo, 0).
@@ -240,12 +240,12 @@ tokemon_init:-
 /*cek kepemilikan*/
 isMilik(Tokemon):-
     milik(Tokemon,X),
-    X==1,!.
+    X=:=1.
 
 /*tokemon dalam inventory*/
 tokeCounter(X):-
     findall(A,isMilik(A),ListInvent),
-    length(ListInvent,X),!.
+    length(ListInvent,X).
 
 /*inventory*/
 addToInventory(Toke):-
@@ -263,7 +263,7 @@ stat(K) :-
 	tokemon(K),
 	write(K), nl,
 	write('Health : '), health(K, X), write(X), nl,
-	write('Type : '), type(K, Y), write(Y), nl, nl,!.
+	write('Type : '), type(K, Y), write(Y), nl,!.
 
 capt(Toke) :-
     tokemon(Toke),
