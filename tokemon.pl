@@ -60,31 +60,31 @@ jenis(tokenna, legend).
 
 /*health*/
 /*maks 200*/
-health(tokeyub, 77). 
-health(tokedon, 45).
-health(tokecha, 60).
-health(tokego, 58).
-health(tokedo, 68).
-health(tokefab, 88).
-health(tokegun, 46).
-health(tokepan, 72).
-health(tokendra, 70).
-health(tokejon, 61).
-health(tokevin, 52).
-health(tokenan, 57).
-health(tokemezz, 49).
-health(tokeat, 63).
-health(toketir, 62).
-health(tokekha, 66).
-health(tokedhil, 67).
-health(tokema, 79).
-health(tokevan, 83).
-health(tokeli, 81).
+health(tokeyub, 97). 
+health(tokedon, 65).
+health(tokecha, 80).
+health(tokego, 78).
+health(tokedo, 88).
+health(tokefab, 108).
+health(tokegun, 66).
+health(tokepan, 92).
+health(tokendra, 90).
+health(tokejon, 81).
+health(tokevin, 72).
+health(tokenan, 77).
+health(tokemezz, 69).
+health(tokeat, 83).
+health(toketir, 82).
+health(tokekha, 86).
+health(tokedhil, 87).
+health(tokema, 99).
+health(tokevan, 103).
+health(tokeli, 101).
 
-health(tokegill, 131).
-health(tokejan, 119).
-health(tokeham, 137).
-health(tokenna, 125).
+health(tokegill, 151).
+health(tokejan, 139).
+health(tokeham, 157).
+health(tokenna, 145).
 
 /*tipe*/
 /* fire, water, leaves, ground, flying, ice*/
@@ -120,31 +120,31 @@ type(tokeham, leaves).
 type(tokenna, flying).
 
 /*normal attack*/
-damage(tokeyub, 35).
-damage(tokedon, 21).
-damage(tokecha, 29).
-damage(tokego, 27).
-damage(tokedo, 31).
-damage(tokefab, 41).
-damage(tokegun, 23).
-damage(tokepan, 38).
-damage(tokendra, 36).
-damage(tokejon, 32).
-damage(tokevin, 25).
-damage(tokenan, 26).
-damage(tokemezz, 19).
-damage(tokeat, 33).
-damage(toketir, 30).
-damage(tokekha, 37).
-damage(tokedhil, 34).
-damage(tokema, 40).
-damage(tokevan, 47).
-damage(tokeli, 42).
+damage(tokeyub, 25).
+damage(tokedon, 11).
+damage(tokecha, 19).
+damage(tokego, 17).
+damage(tokedo, 21).
+damage(tokefab, 31).
+damage(tokegun, 13).
+damage(tokepan, 28).
+damage(tokendra, 26).
+damage(tokejon, 22).
+damage(tokevin, 15).
+damage(tokenan, 16).
+damage(tokemezz, 9).
+damage(tokeat, 23).
+damage(toketir, 20).
+damage(tokekha, 27).
+damage(tokedhil, 24).
+damage(tokema, 30).
+damage(tokevan, 37).
+damage(tokeli, 32).
 
-damage(tokegill, 48).
-damage(tokejan, 43).
-damage(tokeham, 50).
-damage(tokenna, 51).
+damage(tokegill, 38).
+damage(tokejan, 33).
+damage(tokeham, 40).
+damage(tokenna, 41).
 
 /*special attack atau skill */
 skill(tokeyub, 63).
@@ -175,18 +175,18 @@ skill(tokenna, 97).
 
 /*kepemilikan*/
 milik(tokeyub, 0).
-milik(tokedon, 1).
+milik(tokedon, 0).
 milik(tokecha, 0).
-milik(tokego, 1).
+milik(tokego, 0).
 milik(tokedo, 0).
 milik(tokefab, 0).
 milik(tokegun, 0).
-milik(tokepan, 1).
+milik(tokepan, 0).
 milik(tokendra, 0).
 milik(tokejon, 0).
 milik(tokevin, 0).
 milik(tokenan, 0).
-milik(tokemezz, 1).
+milik(tokemezz, 0).
 milik(tokeat, 0).
 milik(toketir, 0).
 milik(tokekha, 0).
@@ -239,8 +239,9 @@ tokemon_init:-
 
 /*cek kepemilikan*/
 isMilik(Tokemon):-
+    tokemon(Tokemon),
     milik(Tokemon,X),
-    X=:=1.
+    X =:= 1,!.
 
 /*tokemon dalam inventory*/
 tokeCounter(X):-
@@ -250,11 +251,13 @@ tokeCounter(X):-
 /*inventory*/
 addToInventory(Toke):-
     tokemon(Toke),
-    asserta(milik(Toke,1)),!.
+    asserta(milik(Toke,1)),
+    retract(milik(Toke,0)),!.
 
 delFromInventory(Toke):-
     tokemon(Toke),
-    asserta(milik(Toke,0)),!.
+    asserta(milik(Toke,0)),
+    retract(milik(Toke,1)),!.
 
 inventory(LInvent):-
     findall(B,isMilik(B),LInvent).
@@ -272,4 +275,5 @@ capt(Toke) :-
 
 noMilik:-
     tokemon(_),
-    asserta(milik(_,0)).
+    asserta(milik(_,0)),
+    asserta(inventory([])),!.
