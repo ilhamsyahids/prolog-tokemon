@@ -253,9 +253,9 @@ delFromInventory(Toke):-
     tokemon(Toke),
     asserta(milik(Toke,0)),!.
 
-# inventory(Inventory):-
-#     findall(A,isMilik(A),ListInvent),
-#     Inventory is ListInvent.
+% inventory(Inventory):-
+%     findall(A,isMilik(A),ListInvent),
+%     Inventory is ListInvent.
     
     
 

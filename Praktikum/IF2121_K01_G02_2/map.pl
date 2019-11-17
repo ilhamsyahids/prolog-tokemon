@@ -19,10 +19,10 @@ mulai :-
     random(2,T,Q),
     asserta(player(A,B)),
 	asserta(gym(P,Q)),
-    %tokemon(Z),
-    %random(2,R,C),
-    %random(2,T,D),
-    %asserta(postokemon(Z, C, D)),
+    tokemon(Z),
+    random(2,R,C),
+    random(2,T,D),
+    asserta(postokemon(Z, C, D)),
 	!.
 
 borderatas(_,Y) :-

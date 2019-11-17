@@ -2,7 +2,6 @@
 % M Fauzan Al-G 			13518112
 % Felicia Gillian T. Tuerah 13518070
 % Muhammad Rizki Fonna 		13516001
-
 :- include('map.pl').
 :- include('tokemon.pl').
 
@@ -13,36 +12,21 @@ start:-
 	playing(_),
 	write('You can only start the game once'),nl,!.
 start:-
-	%write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
-	%write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
-	%write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
-	%write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
-	%write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
-	%write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
-	%write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
-	%write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
-	%write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
+	write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
+	write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
+	write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
+	write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
+	write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
+	write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
+	write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
+	write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
+	write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
 	narasi, 
 	help,
 	mulai,
-	tokemon_init,
 	asserta(playing(1)),
-	asserta(inventory(6)), nl,nl,
-	repeat,
-		map,
-		write('Enter Command : '), read(X),
-		do(X),
-		X == quit.
-
-do(start) :- start.
-do(help) :- help.
-do(quit) :- quit.
-do(w) :- w.
-do(a) :- a.
-do(s) :- s.
-do(d) :- d.
-do(map) :- map.
-do(status) :- status.
+	asserta(inventory(6)),
+	nl.
 
 narasi:- 
 	write(' Hello there! Welcome to the world of Tokemon!'),nl.
@@ -82,7 +66,7 @@ map:-
 	write(' Legends:'), nl,
 	write('    X = Pagar'), nl,
 	write('    P = Player'), nl,
-	write('    G = Gym'), nl,nl,
+	write('    G = Gym'), nl,
 	!.
 
 % move
