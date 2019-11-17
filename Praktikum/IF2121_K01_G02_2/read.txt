@@ -1,0 +1,2 @@
+jalankan main.pl
+lalu command pertama adalah "start."

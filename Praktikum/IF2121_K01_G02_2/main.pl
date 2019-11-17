@@ -2,10 +2,8 @@
 % M Fauzan Al-G 			13518112
 % Felicia Gillian T. Tuerah 13518070
 % Muhammad Rizki Fonna 		13516001
-
+:- include('map.pl').
 :- include('tokemon.pl').
-:- include('player.pl').
-:- include('battle.pl').
 
 :- dynamic(playing/1).
 :- dynamic(inventory/1).
@@ -14,45 +12,24 @@ start:-
 	playing(_),
 	write('You can only start the game once'),nl,!.
 start:-
-	%write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
-	%write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
-	%write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
-	%write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
-	%write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
-	%write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
-	%write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
-	%write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
-	%write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
+	write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
+	write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
+	write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
+	write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
+	write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
+	write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
+	write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
+	write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
+	write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
 	narasi, 
 	help,
 	mulai,
-	%tokemon_init,
 	asserta(playing(1)),
-	asserta(inventory(6)), nl,nl,
-	repeat,
-		write('Enter Command : '), read(X),
-		do(X),
-	X == quit.
-
-do(start) :-!, start.
-do(help) :-!, help.
-do(quit) :-!, quit.
-do(w) :-!, w.
-do(a) :-!, a.
-do(s) :-!, s.
-do(d) :-!, d.
-do(map) :-!, map.
-do(status) :-!, status.
-do(drop(X)) :-!, drop(X).
-do(heal(X)) :-!, heal(X).
-do(_) :- wronginput.
-
-wronginput :-
-	write('Command yang dimasukkan salah, silakan masukan ulang'),nl.
+	asserta(inventory(6)),
+	nl.
 
 narasi:- 
-	write(' Hello there! Welcome to the world of Tokemon!'),nl,
-	write(' Temukan Key untuk membuka gerbang menuju Gym!!'),nl, nl.
+	write(' Hello there! Welcome to the world of Tokemon!'),nl.
 
 help :-
 	write(' Available commands:'), nl,
@@ -65,15 +42,34 @@ help :-
 	write('    heal. -- cure Tokemon in inventory if in gym center'), nl,
 	write('    status. -- show your status'), nl,
 	write('    save(Filename). -- save your game'), nl,
-	write('    load(Filename). -- load previously saved game'), nl,nl,
+	write('    load(Filename). -- load previously saved game').
 
+quit:- halt.
+
+map:-
+	\+playing(_),
+	write('this command can only be used after the game starts.'), nl,
+	write('use "start." to start the Tokemon Game!'), nl, !.
+map:-
+	tinggipeta(T),
+	lebarpeta(L),
+	X is 0,
+	Xmax is L+1,
+	Y is 0,
+	Ymax is T+1,
+	forall(between(Y, Ymax, J), (
+		forall(between(X, Xmax, I), (
+			printpeta(I,J)
+		)),
+		nl
+	)),
 	write(' Legends:'), nl,
 	write('    X = Pagar'), nl,
 	write('    P = Player'), nl,
 	write('    G = Gym'), nl,
-	write('    K = Key').
+	!.
 
-%move
+% move
 w :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -129,7 +125,6 @@ d :-
 	NewX is X + 1,
 	asserta(player(NewX, Y)), !.
 	
-quit:- halt.
 
 %status
 status :-
@@ -142,12 +137,15 @@ status :-
 	tokemon(K),
 	milik(K, J),
 	J =:= 1,
-	stat(K), nl.
+	write(K), nl,
+	write('health : '), health(K, X), write(X), nl,
+	write('type : '), type(K, Y), write(Y), nl, nl.
 
 status :-
 	write('Your Enemy : '), nl,
-	forall(between(21,24,Val), 
-		(id(K, Val),
-		milik(K, 0) , jenis(K, legend),
-		stat(K), nl)
-	).
+	tokemon(K),
+	milik(K, J),
+	J =:= 0,
+	write(K), nl,
+	write('health : '), health(K, X), write(X), nl,
+	write('type : '), type(K, Y), write(Y), nl, nl.
