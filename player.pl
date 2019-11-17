@@ -84,13 +84,52 @@ drop(Name) :- %player_inventory(L,Max),
 			%asserta(player_inventory(X,Max)),
 			milik(Name, 1), 
 			retract(milik(Name, 1)),
-			asserta(milik(Name, 0)).
+			asserta(milik(Name, 0)), !.
 			%player(I,J).
 			%asserta(supply(Name,I,J)),
 			% message_drop_succeed(Name), !.
 
+
+
 drop(Name) :- %player_inventory(L,_),
-			\+milik(Name, 0),
-			write('Gagal'),
+			%player(I,J), 
+			\+milik(Name, 1),
+			write('Gagal, Anda tidak memiliki pokemon tersebut'),
 			nl.
 			% message_drop_notfound(Name).
+
+
+heal(Name) :- %player_inventory(L,Max),
+			%is_member(Name,L),
+			%delete_one(Name,L,X), 
+			%retract(player_inventory(L,Max)),
+			%asserta(player_inventory(X,Max)),
+			player(I, J), 
+			gym(I, J), 
+			milik(Name, 1), 
+			retract(health(Name, _)),
+			asserta(health(Name, 200)), !.
+			%player(I,J).
+			%asserta(supply(Name,I,J)),
+			% message_drop_succeed(Name), !.
+
+
+
+heal(Name) :- %player_inventory(L,_),
+			%player(I,J), 
+			\+milik(Name, 1),
+			write('Gagal, Anda tidak memiliki pokemon tersebut'),
+			nl, !.
+			% message_drop_notfound(Name).
+
+
+heal(Name) :- %player_inventory(L,_),
+			%player(I,J), 
+			milik(Name, 1),
+			player(I,J),
+			\+gym(I, J),
+			write('Gagal, Anda tidak sedang berada di gym'),
+			nl.
+			% message_drop_notfound(Name).
+
+
