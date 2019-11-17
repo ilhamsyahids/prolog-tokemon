@@ -32,7 +32,7 @@ start:-
 	repeat,
 		write('Enter Command : '), read(X),
 		do(X),
-		X == quit.
+	X == quit.
 
 do(start) :-!, start.
 do(help) :-!, help.
@@ -86,16 +86,12 @@ status :-
 	tokemon(K),
 	milik(K, J),
 	J =:= 1,
-	write(K), nl,
-	write('health : '), health(K, X), write(X), nl,
-	write('type : '), type(K, Y), write(Y), nl, nl.
+	stat(K), nl.
 
 status :-
 	write('Your Enemy : '), nl,
 	forall(between(21,24,Val), 
 		(id(K, Val),
 		milik(K, 0) , jenis(K, legend),
-		write(K), nl,
-		write('health : '), health(K, X), write(X), nl,
-		write('type : '), type(K, Y), write(Y), nl, nl)
+		stat(K), nl)
 	).
