@@ -1,4 +1,3 @@
-:- include('map.pl').
 :- include('main.pl').
 
 :- dynamic(battle/1).
@@ -6,7 +5,7 @@
 :- dynamic(playerTokemonBattle/1).
 :- dynamic(battle/1).
 :- dynamic(health/2).
-:- dynamic(sAttack/2).
+:- dynamic(sAttack/1).
 :- dynamic(gagalRun/1).
 :- dynamic(picked/0).
 
@@ -18,7 +17,12 @@ fight :-
     assert(battle(_)).
 
 rem :-
-    retract(battle(_)).
+    retractall(picked(_)),
+    retractall(gagalRun(_)),
+    retractall(sAttack(_)),
+    retractall(battle(_)),
+    retractall(enemyTokemon(_)),
+    retractall(playerTokemonBattle(_)).
 
 run :-
     \+battle(_),
@@ -177,7 +181,7 @@ capture :-
         tokeCounter(X),
         write(X),
         (X =:= 6 ->
-            write('You cannot capture another Tokemon! You have to drop one first.')
+            write('You cannot capture another Tokemon! You have to drop one first.'), nl
             ;
             write(ET),
             write(' is captured!. '),
@@ -191,13 +195,13 @@ capture :-
 
 specialAttack :-
     \+battle(_),
-    write('You are not in the battle right now!'), 
+    write('You are not in the battle right now!'), nl,
     !, fail.    
 
 specialAttack :-
     enemyTokemon(ET),
     playerTokemonBattle(PT),
-    \+sAttack(PT, _),
+    \+sAttack(_),
     skill(PT, Damage),
     modifier(ET, PT, Damage, X),
     NewDamage is X,
@@ -208,13 +212,14 @@ specialAttack :-
     write('You dealt '), 
     write(NewDamage), 
     write(' damage to '),
-    write(ET),
-    assert(sAttack(PT, _)),
-    checkvictory,
-    !, fail.
+    write(ET), nl, nl,
+    assert(sAttack(_)),
+    (\+checkvictory ->
+        !, fail
+    ).
 
 specialAttack :- 
-    write('Special attacks can only be used once per battle!').
+    write('Special attacks can only be used once per battle!'), !, fail.
 
 checkvictory :-
     enemyTokemon(ET),
@@ -225,7 +230,12 @@ checkvictory :-
     write(ET),
     write(' capture/0 to capture '), 
     write(ET),
-    write(', otherwise move away.').
+    write(', \notherwise exit/0 to leave the carcass.'),
+    !, fail.
+
+exit :- 
+    rem,
+    write('You leave the carcass').
 
 statPlayerEnemy :-
     playerTokemonBattle(PT),
