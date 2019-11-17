@@ -6,3 +6,28 @@ w,s,a,d.
 map.
 
 pick.
+
+==== di tokemon.pl ====
+1. tokemon_init 
+/*inisialisasi tokemon di awal*/
+
+2. isMilik(Tokemon) 
+/*ngecek tokemon ada di invent ato ga*/
+
+3. tokeCounter(X) 
+/*hitung tokemon yg kita punya*/
+
+4. addToInventory(Toke) 
+/*masukin tokemon ke inventory*/
+
+5. delFromInventory(Toke) 
+/*hapus tokemon dari inventory*/
+
+6. inventory(LInvent) 
+/*nampilin list of tokemon yang ada di inventory*/
+
+7. stat(K) 
+/*buat status*/
+
+8. capt(Toke) 
+/*buat capture blm dikonek ke attack*/

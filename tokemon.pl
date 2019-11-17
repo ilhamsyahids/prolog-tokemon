@@ -272,8 +272,3 @@ capt(Toke) :-
     tokemon(Toke),
     addToInventory(Toke),
     write(Toke),write(' is captured!'),!.
-
-noMilik:-
-    tokemon(_),
-    asserta(milik(_,0)),
-    asserta(inventory([])),!.
