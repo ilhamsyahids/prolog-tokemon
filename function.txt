@@ -1,0 +1,8 @@
+start.
+help.
+quit.
+narasi.
+w,s,a,d.
+map.
+
+pick.

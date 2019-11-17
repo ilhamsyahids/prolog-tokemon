@@ -177,16 +177,16 @@ skill(tokenna, 97).
 milik(tokeyub, 0).
 milik(tokedon, 0).
 milik(tokecha, 0).
-milik(tokego, 0).
+milik(tokego, 1).
 milik(tokedo, 0).
 milik(tokefab, 0).
 milik(tokegun, 0).
-milik(tokepan, 0).
+milik(tokepan, 1).
 milik(tokendra, 0).
 milik(tokejon, 0).
 milik(tokevin, 0).
 milik(tokenan, 0).
-milik(tokemezz, 0).
+milik(tokemezz, 1).
 milik(tokeat, 0).
 milik(toketir, 0).
 milik(tokekha, 0).
@@ -234,10 +234,13 @@ id(tokenna, 24).
 tokemon_init:-
     random(1,20,Id),
     id(Y,Id),
-    asserta(milik(Y,1)),!.
+    retractall(milik(Y,0)),
+    asserta(milik(Y,1)).
 
 /*cek kepemilikan*/
-isMilik(Tokemon):-milik(Tokemon, X),(X=:=1),!.
+isMilik(Tokemon):-
+    milik(Tokemon,X),
+    X==1,!.
 
 /*tokemon dalam inventory*/
 tokeCounter(X):-
@@ -253,11 +256,20 @@ delFromInventory(Toke):-
     tokemon(Toke),
     asserta(milik(Toke,0)),!.
 
-% inventory(Inventory):-
-%     findall(A,isMilik(A),ListInvent),
-%     Inventory is ListInvent.
+inventory(LInvent):-
+    findall(B,isMilik(B),LInvent).
     
-    
+stat(K) :-
+	tokemon(K),
+	write(K), nl,
+	write('Health : '), health(K, X), write(X), nl,
+	write('Type : '), type(K, Y), write(Y), nl, nl,!.
 
+capt(Toke) :-
+    tokemon(Toke),
+    addToInventory(Toke),
+    write(Toke),write(' is captured!'),!.
 
-
+noMilik:-
+    tokemon(_),
+    asserta(milik(_,0)).

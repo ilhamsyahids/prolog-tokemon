@@ -33,13 +33,14 @@ run :-
     random(0,2, X),
     X == 1, 
     write('You sucessfully escaped the Tokemon!'),
-    retract(battle(_)),
+    rem,
     !, fail.
 
 run :-
     nl,
     battle(_),
     assert(gagalRun(_)),
+    fight,
     write('You failed to run!\nChoose your Tokemon!'), 
     nl.
 
@@ -55,7 +56,7 @@ pick(_) :-
 
 pick(PT) :-
     milik(PT, X),
-    ( X = 0 ->
+    ( X =:= 0 ->
         write('You don’t have that Tokemon!'), 
         !, fail
         ;
@@ -65,24 +66,20 @@ pick(PT) :-
         write(PT), 
         write(' I choose you!”\n'),
         assert(picked),
+        statPlayerEnemy,
         !, fail
     ).
 
 attack :- 
     enemyTokemon(ET),
     playerTokemon(PT),
-    health(ET, HP),
     damage(PT, Damage),
-    type(ET, TE),
-    type(PT, TP),
-    modifier(TE, TP, Damage, X),
+    modifier(ET, PT, Damage, X),
     NewDamage is X,
-    NewHP is HP - NewDamage,
-    retract(health(ET, HP)),
-    assert(health(ET, NewHP)),
-    health(ET, HP2),
+    serang(ET, NewDamage),
+    health(ET, HP),
     nl,
-    ( NewHP =< 0 ->
+    ( HP =< 0 ->
         write(ET),
         write(' faints! Do you want to capture ') ,
         write(ET),
@@ -93,36 +90,39 @@ attack :-
         write('You dealt '), 
         write(Damage), 
         write(' damage to '),
-        write(ET),
-        write(HP2), 
+        write(ET), nl,
+        statPlayerEnemy, 
         nl,
         enemyAttack, !, fail
     ).
 
-
 enemyAttack :-
     enemyTokemon(ET),
     playerTokemon(PT),
-    health(PT, HP),
-    damage(ET, Damage),
-    type(ET, TE),
-    type(PT, TP),
-    modifier(TP, TE, Damage, X),
+    damage(ET, Damage),    
+    modifier(PT, ET, Damage, X),
     NewDamage is X,
-    NewHP is HP - NewDamage,
+    serang(PT, NewDamage),
     write(ET),
     write(' attacks!\nIt dealt '), 
     write(Damage), 
     write(' damage to '),
     write(PT),
-    retract(health(PT, HP)),
-    assert(health(PT, NewHP)),
-    health(PT, HP2),
-    write(HP2), !, fail.
+    !, fail.
+
+serang(T, Damage) :-
+    health(T, HP),
+    NewHP is HP - Damage,
+    retract(health(T, HP)),
+    assert(health(T, NewHP)),
+    health(T, HP2),
+    write(HP2).
 
 % TP yang diserang, TE yang menyerang, 
 % Damage = damage awal, X = damage akhir
-modifier(TP, TE, Damage, X) :- 
+modifier(PT, ET, Damage, X) :- 
+    type(ET, TE),
+    type(PT, TP),
     ( TE == fire, TP == leaves ->
             X is Damage + 0.5*Damage 
         ; 
@@ -132,16 +132,34 @@ modifier(TP, TE, Damage, X) :-
             TE == water, TP == fire ->
                 X is Damage + 0.5*Damage 
                 ;
-                    TE == leaves, TP == fire ->
-                        X is Damage - 0.5*Damage 
-                    ; 
-                    TE == water, TP == leaves ->
-                        X is Damage - 0.5*Damage 
-                        ;    
-                        TE == fire, TP == water ->
-                            X is Damage - 0.5*Damage 
+                TE == flying, TP == ground ->
+                    X is Damage + 0.5*Damage 
+                    ;
+                    TE == ice, TP == water ->
+                        X is Damage + 0.3*Damage 
+                        ;
+                        TE == ground, TP == leaves ->
+                            X is Damage + 0.3*Damage 
                             ;
-                            X is Damage
+                            TP == fire, TP == leaves ->
+                                X is Damage + 0.5*Damage 
+                                ; 
+                                TP == leaves, TP == water ->
+                                    X is Damage + 0.5*Damage 
+                                    ;    
+                                    TP == water, TP == fire ->
+                                        X is Damage + 0.5*Damage 
+                                        ;
+                                        TP == flying, TP == ground ->
+                                            X is Damage + 0.5*Damage 
+                                            ;
+                                            TP == ice, TP == water ->
+                                                X is Damage + 0.3*Damage 
+                                                ;
+                                                TP == ground, TP == leaves ->
+                                                    X is Damage + 0.3*Damage 
+                                                    ;
+                                                    X is Damage 
     ).
 
 capture :-
@@ -178,8 +196,13 @@ specialAttack :-
     modifier(TE, TP, Damage, X),
     NewDamage is X,
     NewHP is HP - NewDamage,
+    (NewHP =< 0 ->
+        NewHP is 0
+        ;
+        NewHP is NewHP
+    ),
     write(PT),
-    write(' uses special attack!'),nl,
+    write(' uses special attack!'),nl,nl,
     write('It was super effective!'),nl,
     write('You dealt '), 
     write(NewDamage), 
@@ -189,7 +212,21 @@ specialAttack :-
     retract(health(ET, HP)),
     assert(health(ET, NewHP)),
     assert(sAttack(PT, _)),
+    % checkvictory,
     !, fail.
 
 specialAttack :- 
     write('Special attacks can only be used once per battle!').
+
+% checkvictory :-
+%     enemyTokemon(ET),
+%     health(ET, HPE),
+%     (HPE =:= 0 -> 
+%         write('')
+%         )
+
+statPlayerEnemy :-
+    playerTokemon(PT),
+    enemyTokemon(ET),
+    stat(PT),
+    stat(ET).

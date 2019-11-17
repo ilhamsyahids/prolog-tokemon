@@ -5,6 +5,7 @@
 
 :- include('map.pl').
 :- include('tokemon.pl').
+:- include('player.pl').
 
 :- dynamic(playing/1).
 :- dynamic(inventory/1).
@@ -25,7 +26,7 @@ start:-
 	narasi, 
 	help,
 	mulai,
-	tokemon_init,
+	%tokemon_init,
 	asserta(playing(1)),
 	asserta(inventory(6)), nl,nl,
 	repeat,
@@ -44,6 +45,7 @@ do(d) :- d.
 do(map) :- map.
 do(status) :- status.
 do(drop(X)) :- drop(X).
+do(heal(X)) :- heal(X).
 
 narasi:- 
 	write(' Hello there! Welcome to the world of Tokemon!'),nl,
@@ -63,7 +65,7 @@ help :-
 	write('    load(Filename). -- load previously saved game').
 
 quit:- halt.
-	
+
 %status
 status :-
 	\+playing(_),
@@ -83,6 +85,7 @@ status :-
 	write('Your Enemy : '), nl,
 	tokemon(K),
 	milik(K, J),
+	jenis(K, legend),
 	J =:= 0,
 	write(K), nl,
 	write('health : '), health(K, X), write(X), nl,
