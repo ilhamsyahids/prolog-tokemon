@@ -48,7 +48,8 @@ do(drop(X)) :- drop(X).
 do(heal(X)) :- heal(X).
 
 narasi:- 
-	write(' Hello there! Welcome to the world of Tokemon!'),nl.
+	write(' Hello there! Welcome to the world of Tokemon!'),nl,
+	write(' Anda terkunci di dalam barrier, temukan kunci untuk keluar!'),nl.
 
 help :-
 	write(' Available commands:'), nl,
@@ -64,9 +65,6 @@ help :-
 	write('    load(Filename). -- load previously saved game').
 
 quit:- halt.
-
-
-	
 
 %status
 status :-

@@ -4,6 +4,7 @@
 :- dynamic(gym/2).
 :- dynamic(tokemon/2).
 :- dynamic(penghalang/2).
+:- dynamic(key/2).
 
 lebarpeta(15).
 tinggipeta(15).
@@ -21,12 +22,14 @@ mulai :-
     %random(2,T,Q),
     asserta(player(3,2)),
 	asserta(gym(13,14)),
+	asserta(key(1,1)),
 	%random(1,PenghalangX,C), random(1,PenghalangY,D),
 	C is 6,
 	D is 1,
 	forall(between(0, 3, JJ), (HH is JJ+D, asserta(penghalang(C,HH)))),
 	asserta(penghalang(1,4)),
 	asserta(penghalang(2,4)),
+	asserta(penghalang(3,4)),
 	asserta(penghalang(4,4)),
 	asserta(penghalang(5,4)),
 	%random(1,PenghalangX,E), random(1,PenghalangY,F),
@@ -65,9 +68,22 @@ printpeta(X,Y) :-
 printpeta(X,Y) :-
 	gym(X,Y), !, write('G').
 printpeta(X,Y) :-
+	key(X,Y), !, write('K').
+printpeta(X,Y) :-
 	penghalang(X,Y), !, write('X').
 printpeta(_,_) :-
 	write('-').
+
+key :-
+	\+playing(_),
+	write('this command can only be used after the game starts.'), nl,
+	write('use "start." to start the Tokemon Game!'), nl, !.
+key :-
+	write('Selamat!, Anda berhasil menemukan kunci untuk keluar!'),nl,
+	key(X,Y),
+	player(X,Y),
+	retract(key(X,Y)),
+	retract(penghalang(3,4)), !.
 
 map:-
 	\+playing(_),
@@ -90,6 +106,7 @@ map:-
 	write('    X = Pagar'), nl,
 	write('    P = Player'), nl,
 	write('    G = Gym'), nl,nl,
+	write('    K = Key'), nl,
 	!.
 
 
@@ -112,7 +129,7 @@ w :-
 	retract(player(X,Y)),
 	Y > 1,
 	NewY is Y - 1,
-	asserta(player(X, NewY)), !.
+	asserta(player(X, NewY)), key,!.
 
 a :-
 	\+playing(_),
@@ -131,7 +148,7 @@ a :-
 a :- 
 	retract(player(X,Y)),
 	NewX is X - 1,
-	asserta(player(NewX, Y)), !.
+	asserta(player(NewX, Y)), key, !.
 
 s :-
 	\+playing(_),
@@ -151,7 +168,7 @@ s :-
 s :- 
 	retract(player(X,Y)),
 	NewY is Y + 1,
-	asserta(player(X, NewY)), !.
+	asserta(player(X, NewY)),  key, !.
 
 d :-
 	\+playing(_),
@@ -171,4 +188,4 @@ d :-
 d :- 
 	retract(player(X,Y)),
 	NewX is X + 1,
-	asserta(player(NewX, Y)), !.
+	asserta(player(NewX, Y)), key, !.
