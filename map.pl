@@ -155,7 +155,9 @@ w :-
 	retract(player(X,Y)),
 	Y > 1,
 	NewY is Y - 1,
-	asserta(player(X, NewY)), key,!.
+	write('Anda bergerak ke utara'), nl,
+	asserta(player(X, NewY)), appear,
+	!.
 
 a :-
 	\+playing(_),
@@ -174,7 +176,9 @@ a :-
 a :- 
 	retract(player(X,Y)),
 	NewX is X - 1,
-	asserta(player(NewX, Y)), key, !.
+	write('Anda bergerak ke barat'), nl,
+	asserta(player(NewX, Y)), key, appear, 
+	!.
 
 s :-
 	\+playing(_),
@@ -194,7 +198,9 @@ s :-
 s :- 
 	retract(player(X,Y)),
 	NewY is Y + 1,
-	asserta(player(X, NewY)),  key, !.
+	write('Anda bergerak ke selatan'), nl,
+	asserta(player(X, NewY)),  appear, 
+	!.
 
 d :-
 	\+playing(_),
@@ -214,4 +220,13 @@ d :-
 d :- 
 	retract(player(X,Y)),
 	NewX is X + 1,
-	asserta(player(NewX, Y)), key, !.
+	write('Anda bergerak ke timur'), nl,
+	asserta(player(NewX, Y)), appear, 
+	!.
+
+appear :-
+	random(1,6,Appear),	
+	(Appear =:= 5 -> decide; nothing).
+
+nothing :-
+	write('Tidak ada apa-apa di sini'), nl,nl.

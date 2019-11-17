@@ -1,5 +1,4 @@
 :- include('map.pl').
-:- include('main.pl').
 
 :- dynamic(battle/1).
 :- dynamic(enemyTokemon/1).
@@ -13,17 +12,28 @@
 enemyTokemon(tokeyub).
 playerTokemonBattle(tokedon).
 
-battle(1).
-fight :-
-    assert(battle(_)).
+decide :-
+    write('Tokemon Liar Muncul!!'), nl,
+    write('fight atau run'), nl,
+    read(X),
+    (X == run -> run; X == fight -> fight).
 
-rem :-
+wow :-
+    write('wow'), nl.
+
+wiw :-
+    write('wiw'), nl.
+
+fight :-
+    assert(battle(1)).
+
+remove :-
     retract(battle(_)).
 
-run :-
-    \+battle(_),
-    write('You are not in the battle right now!'), 
-    nl, !, fail.
+%run :-
+%    \+battle(_),
+%    write('You are not in the battle right now!'), 
+%    nl, !, fail.
 
 run :-
     gagalRun(_),
@@ -31,10 +41,10 @@ run :-
     nl, !, fail.
 
 run :-
-    random(0,2, X),
+    random(0,2,X),
     X == 1, 
     write('You sucessfully escaped the Tokemon!'),
-    rem,
+    remove,
     !, fail.
 
 run :-
@@ -185,7 +195,7 @@ capture :-
             random(45, 60, X),
             retract(health(ET, 0)),
             assert(health(ET, X)),
-            rem
+            remove
         )
     ).
 

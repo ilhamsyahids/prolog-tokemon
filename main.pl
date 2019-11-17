@@ -3,9 +3,9 @@
 % Felicia Gillian T. Tuerah 13518070
 % Muhammad Rizki Fonna 		13516001
 
-:- include('map.pl').
 :- include('tokemon.pl').
 :- include('player.pl').
+:- include('battle.pl').
 
 :- dynamic(playing/1).
 :- dynamic(inventory/1).
@@ -52,7 +52,7 @@ wronginput :-
 
 narasi:- 
 	write(' Hello there! Welcome to the world of Tokemon!'),nl,
-	write(' Anda terkunci di dalam barrier, temukan kunci untuk keluar!'),nl.
+	write(' Temukan Key untuk membuka gerbang menuju Gym!!'),nl, nl.
 
 help :-
 	write(' Available commands:'), nl,
@@ -65,7 +65,13 @@ help :-
 	write('    heal. -- cure Tokemon in inventory if in gym center'), nl,
 	write('    status. -- show your status'), nl,
 	write('    save(Filename). -- save your game'), nl,
-	write('    load(Filename). -- load previously saved game').
+	write('    load(Filename). -- load previously saved game'), nl,nl,
+
+	write(' Legends:'), nl,
+	write('    X = Pagar'), nl,
+	write('    P = Player'), nl,
+	write('    G = Gym'), nl,
+	write('    K = Key').
 
 quit:- halt.
 
