@@ -26,9 +26,8 @@ start:-
 	narasi, 
 	help,
 	mulai,
-	%tokemon_init,
-	asserta(playing(1)),
-	asserta(inventory(6)), nl,nl,
+	nl,
+	asserta(playing(1)), nl,nl,
 	repeat,
 		write('Enter Command : '), read(X),
 		do(X),
@@ -52,7 +51,9 @@ wronginput :-
 
 narasi:- 
 	write(' Hello there! Welcome to the world of Tokemon!'),nl,
-	write(' Temukan Key untuk membuka gerbang menuju Gym!!'),nl, nl.
+	write(' Temukan Key untuk membuka gerbang menuju Gym!!'),nl, nl,
+	write(' Anda Mendapatkan satu Tokemon!!'),nl, nl,
+	tokemon_init.
 
 help :-
 	write(' Available commands:'), nl,

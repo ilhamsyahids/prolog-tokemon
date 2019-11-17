@@ -9,24 +9,25 @@
 :- dynamic(gagalRun/1).
 :- dynamic(picked/0).
 
-:- discontiguous decide/0.
-:- discontiguous fight/0.
-:- discontiguous remove/0.
-:- discontiguous run/0.
-:- discontiguous pick/1.
-:- discontiguous enemyAttack/0.
-:- discontiguous serang/2.
-:- discontiguous attack/0.
-:- discontiguous specialAttack/0.
-:- discontiguous checklose/0.
-:- discontiguous checkvictory/0.
-:- discontiguous modifier/4.
-:- discontiguous capture/0.
-:- discontiguous exit/0.
-:- discontiguous statPlayerEnemy/0.
+:- discontiguous(decide/0).
+:- discontiguous(fight/0).
+:- discontiguous(remove/0).
+:- discontiguous(run/0).
+:- discontiguous(pick/1).
+:- discontiguous(enemyAttack/0).
+:- discontiguous(serang/2).
+:- discontiguous(attack/0).
+:- discontiguous(specialAttack/0).
+:- discontiguous(checklose/0).
+:- discontiguous(checkvictory/0).
+:- discontiguous(modifier/4).
+:- discontiguous(capture/0).
+:- discontiguous(exit/0).
+:- discontiguous(statPlayerEnemy/0).
+:- discontiguous(checklosegame/0).
 
-% enemyTokemon(tokeyub).
-% playerTokemonBattle(tokedo).
+enemyTokemon(tokeyub).
+playerTokemonBattle(tokedo).
 
 decide :-
     milik(Y, 0),
@@ -271,7 +272,14 @@ checklose :-
     retractall(picked),    
     inventory(X),
     write(X),
+    % checklosegame,
     !. 
+
+checklosegame :-
+    tokeCounter(X),
+    X =:= 0,
+    write('Sayang sekali Anda gagal!'),
+    halt.
 
 exit :- 
     remove,

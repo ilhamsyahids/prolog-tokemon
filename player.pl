@@ -1,14 +1,14 @@
 :- include('tokemon.pl').
 
-:- discontiguous tokemon_init/0.
-:- discontiguous drop/1.
-:- discontiguous stat/1.
-:- discontiguous capt/1.
-:- discontiguous isMilik/1.
-:- discontiguous tokeCounter/1.
-:- discontiguous addToInventory/1.
-:- discontiguous inventory/1.
-:- discontiguous delFromInventory/1.
+:- discontiguous(tokemon_init/0).
+:- discontiguous(drop/1).
+:- discontiguous(stat/1).
+:- discontiguous(capt/1).
+:- discontiguous(isMilik/1).
+:- discontiguous(tokeCounter/1).
+:- discontiguous(addToInventory/1).
+:- discontiguous(inventory/1).
+:- discontiguous(delFromInventory/1).
 
 /*---------- DROP ----------*/
 drop(Name) :- 
@@ -52,7 +52,7 @@ addToInventory(Toke):-
 delFromInventory(Toke):-
     tokemon(Toke),
     retractall(milik(Toke,1)),
-    assert(milik(Toke,0)),!.
+    assert(milik(Toke,0)).
 
 inventory(LInvent):-
     findall(B,isMilik(B),LInvent).
