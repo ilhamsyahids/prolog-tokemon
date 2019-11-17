@@ -70,7 +70,7 @@ map:-
 	write('    G = Gym'), nl,
 	!.
 
-% move
+%move
 w :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
