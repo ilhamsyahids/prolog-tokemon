@@ -24,7 +24,7 @@ drop(Name) :-
     (X =:= 1 ->
         delForever(Name),
         write('You have dropped '),
-        write(Name), write('.'),
+        write(Name), write('.'),nl,
         tokeCounter(Y),
         (Y =:= 0 -> losegame;write(''))
         ; write('You do not have '),write(Name),write(' in your inventory!'),nl ),
@@ -40,7 +40,7 @@ tokemon_init:- nl, nl,
     stat(X), nl,
     stat(Y), nl,
     stat(Z), nl, 
-    write('Choose your own Tokemon using rule select/1'),
+    write('Choose your own Tokemon using rule select/1'),nl,
     !.
 
 select(PT) :- 
@@ -63,7 +63,7 @@ select(PT) :-
 
 select(_) :- 
     \+selected,
-    write('You can only choose from those 3 Tokemon!'), !.
+    write('You can only choose from those 3 Tokemon!'),nl, !.
 
 ambil(PT) :-
     write(PT), 
@@ -74,7 +74,7 @@ ambil(PT) :-
 
 select(_) :- 
     selected,
-    write('Sudah ambil tokemon starter kan tadi? masa lupa...').
+    write('Sudah ambil tokemon starter kan tadi? masa lupa...'),nl,!.
 
 /*cek kepemilikan*/
 isMilik(Tokemon):-

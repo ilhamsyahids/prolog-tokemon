@@ -145,7 +145,7 @@ oneHeal(Toke) :-
 
 save(_):-
 	battle(_),
-	write('You can\'t save while battle'),!.
+	write('You can\'t save while battle'),nl,!.
 
 save(FileAwal) :-
     atom_concat('data/', FileAwal, Filename),
@@ -175,7 +175,7 @@ save_data(FinalFile) :-
 
 loads(_):-
 	battle(_),
-	write('You can\'t load while battle'),!.
+	write('You can\'t load while battle'),nl,!.
 
 loads(FileAwal):-
 	atom_concat('data/', FileAwal, Filename),
