@@ -8,7 +8,11 @@
 :- dynamic(gagalRun/1).
 :- dynamic(picked/0).
 :- dynamic(pilih/1).
+:- dynamic(evolvedA/0).
+:- dynamic(evolvedB/0).
+:- dynamic(evolvedC/0).
 
+:- discontiguous(evolve/1).
 :- discontiguous(decide/0).
 :- discontiguous(fight/0).
 :- discontiguous(remove/0).
@@ -87,11 +91,25 @@ pick(PT) :-
     retractall(playerTokemonBattle(_)),
     asserta(playerTokemonBattle(PT)),
     asserta(picked),
-    statPlayerEnemy,
+    statPlayerEnemy, !,
+    cek(PT),
     !.
 
+cek(PT) :-
+    PT == tokeyub,
+    retractall(evolvedA),
+    write('masuk'), !.
+
+cek(PT) :-
+    PT == tokedon,
+    retractall(evolvedB), !.
+
+cek(PT) :-
+    PT == tokecha,
+    retractall(evolvedC), !.
+
 pick(_) :-
-    write('You don’t have that Tokemon!'), !.
+    write('You dont have that Tokemon!'), !.
 
 attack :- 
     enemyTokemon(ET),
@@ -212,6 +230,7 @@ capture :-
             capt(ET),
             tokeCountLegend(Z),
             (Z =:= 4 -> wingame),
+            cek2,
             remove
         )
     ).
@@ -255,7 +274,7 @@ checkvictory :-
     write(ET),
     write(' capture/0 to capture '), 
     write(ET),
-    write(', \notherwise exit/0 to leave the carcass.'),
+    write(', \notherwise exit/0 to leave the carcass.'), nl,
     !.
 
 checklose :-
@@ -279,7 +298,20 @@ exit :-
     enemyTokemon(Toke),
     backNormal(Toke),
     remove,
-    write('You leave the carcass').
+    write('You leave the carcass'), nl, cek2, !.
+
+cek2 :-
+    \+evolvedA,
+    milik(tokeyub,1),
+    write('you can evolve tokeyub!'), !.
+cek2 :-
+    \+evolvedB,
+    milik(tokedon,1),
+    write('you can evolve tokedon!'), !.
+cek2 :-
+    \+evolvedC,
+    milik(tokecha,1),
+    write('you can evolve tokecha!'), !.
 
 statPlayerEnemy :-
     playerTokemonBattle(PT),
@@ -296,3 +328,58 @@ wingame :-
     write('YOU WINNNNN :))'),nl,
     write('You are amazing! You have beat all the legendary Tokemons'),nl,
     write('Come back later to test your luck'),halt.
+
+
+evolve(PT) :- 
+    \+evolvedA,
+    asserta(evolvedA),
+    PT == tokeyub,
+    milik(PT, 1),
+    retract(milik(tokeyub,1)),
+
+    retract(milik(ayyub,0)),
+    asserta(milik(ayyub,1)),
+
+    retract(id(tokeyub,1)),
+    retractall(id(ayyub,_)),
+    asserta(id(ayyub,1)),
+    write('tokeyyub evolved to ayyub!!'),
+    !.
+
+elvolve(PT) :- 
+    \+evolvedB,
+    asserta(evolvedB),
+    PT == tokedon,
+    milik(PT, 1),
+    retract(milik(tokedon,1)),
+
+    retract(milik(brandon,0)),
+    asserta(milik(brandon,1)),
+
+    retract(id(tokedon,1)),
+    retractall(id(brandon,_)),
+    asserta(id(brandon,1)),
+    write('tokedon evolved to brandon!!'), 
+    !.
+
+evolve(PT) :- 
+    \+evolvedC,
+    asserta(evolvedC),
+    PT == tokecha,
+    milik(PT, 1),
+    retract(milik(tokecha,1)),
+
+    retract(milik(chacha,0)),
+    asserta(milik(chacha,1)),
+
+    retract(id(tokecha,1)),
+    retractall(id(chacha,_)),
+    asserta(id(chacha,1)),
+    write('tokecha evolved to chacha!!'),
+    !.
+
+evolve(_) :-
+    write('can not evolve tokemon'),! .
+
+evolve(_) :-
+    write('can not evolve tokemon'),!.

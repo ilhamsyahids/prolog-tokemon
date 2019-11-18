@@ -34,6 +34,10 @@ spawnTokemon :-
 /* 20 tokemon normal*/
 /* 4 tokemon super*/
 spawn_tokemon :-
+    asserta(tokemon(ayyub)),
+    asserta(tokemon(brandon)),
+    asserta(tokemon(chacha)),
+
     asserta(tokemon(tokeyub)),
     asserta(tokemon(tokedon)),
     asserta(tokemon(tokecha)),
@@ -61,6 +65,10 @@ spawn_tokemon :-
 
 /*jenis*/
 spawn_jenis :-
+    asserta(jenis(ayyub, normal)),
+    asserta(jenis(brandon, normal)),
+    asserta(jenis(chacha, normal)),
+
     asserta(jenis(tokeyub, normal)),
     asserta(jenis(tokedon, normal)),
     asserta(jenis(tokecha, normal)),
@@ -88,6 +96,11 @@ spawn_jenis :-
 
 /*health base*/
 spawn_healthbase :-
+    asserta(healthbase(ayyub, 95)), 
+    asserta(healthbase(brandon, 95)),
+    asserta(healthbase(chacha, 95)),
+
+
     asserta(healthbase(tokeyub, 97)), 
     asserta(healthbase(tokedon, 65)),
     asserta(healthbase(tokecha, 80)),
@@ -114,9 +127,15 @@ spawn_healthbase :-
     asserta(healthbase(tokenna, 145)).
 
 /*health*/
+
+
 spawn_health :-
-    asserta(health(tokeyub, 10)), 
-    asserta(health(tokedon, 65)),
+    asserta(health(ayyub, 95)), 
+    asserta(health(brandon, 95)),
+    asserta(health(chacha, 95)),
+
+    asserta(health(tokeyub, 80)), 
+    asserta(health(tokedon, 80)),
     asserta(health(tokecha, 80)),
     asserta(health(tokego, 78)),
     asserta(health(tokedo, 88)),
@@ -148,6 +167,11 @@ spawn_health :-
 /* ground lebih besar 40% damagenya melawan leaves*/
 
 spawn_type :-
+    asserta(type(ayyub, fire)),
+    asserta(type(brandon, water)),
+    asserta(type(chacha, leaves)),
+
+
     asserta(type(tokeyub, fire)),
     asserta(type(tokedon, water)),
     asserta(type(tokecha, leaves)),
@@ -175,8 +199,13 @@ spawn_type :-
 
 /*normal attack*/
 spawn_damage :-
+    asserta(damage(ayyub, 30)),
+    asserta(damage(brandon, 30)),
+    asserta(damage(chacha, 30)),
+
+
     asserta(damage(tokeyub, 25)),
-    asserta(damage(tokedon, 11)),
+    asserta(damage(tokedon, 20)),
     asserta(damage(tokecha, 19)),
     asserta(damage(tokego, 17)),
     asserta(damage(tokedo, 21)),
@@ -202,7 +231,12 @@ spawn_damage :-
 
 /*special attack atau skill */
 spawn_skill :-
-    asserta(skill(tokeyub, 63)),
+    asserta(skill(ayyub, 60)),
+    asserta(skill(brandon, 60)),
+    asserta(skill(chacha, 60)),
+
+
+    asserta(skill(tokeyub, 50)),
     asserta(skill(tokedon, 36)),
     asserta(skill(tokecha, 54)),
     asserta(skill(tokego, 47)),
@@ -229,6 +263,11 @@ spawn_skill :-
 
 /*kepemilikan*/
 spawn_milik :-
+    asserta(milik(ayyub, 0)),
+    asserta(milik(brandon, 0)),
+    asserta(milik(chacha, 0)),
+
+
     asserta(milik(tokeyub, 0)),
     asserta(milik(tokedon, 0)),
     asserta(milik(tokecha, 0)),
@@ -256,6 +295,10 @@ spawn_milik :-
 
 /*id tokemon*/
 spawn_id :-
+    asserta(id(tokeyub, 999)),
+    asserta(id(tokedon, 999)),
+    asserta(id(tokecha, 999)),
+
     asserta(id(tokeyub, 1)),
     asserta(id(tokedon, 2)),
     asserta(id(tokecha, 3)),

@@ -3,6 +3,8 @@
 :- dynamic(player/2).
 :- dynamic(playing/0).
 :- dynamic(selected/0).
+
+:- discontiguous(select/1).
 :- discontiguous(tokemon_init/0).
 :- discontiguous(drop/1).
 :- discontiguous(stat/1).
@@ -42,8 +44,28 @@ tokemon_init:- nl, nl,
     !.
 
 select(PT) :- 
+    PT == tokeyub,
     \+selected,
     asserta(selected),
+    ambil(PT), !.
+
+select(PT) :- 
+    PT == tokedon,
+    \+selected,
+    asserta(selected),
+    ambil(PT), !.
+
+select(PT) :- 
+    PT == tokecha,
+    \+selected,
+    asserta(selected),
+    ambil(PT), !.
+
+select(_) :- 
+    \+selected,
+    write('hanya bisa memilih 3 tokemon di atas'), !.
+
+ambil(PT) :-
     write(PT), 
     write(' I choose you!\n'),
     retractall(milik(PT, _)),
