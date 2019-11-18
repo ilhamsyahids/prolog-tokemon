@@ -180,7 +180,7 @@ save_data(FinalFile) :-
 	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
     fail.
 
-load(_):-
+loads(_):-
 	battle(_),
 	write('You can\'t load while battle'),!.
 
@@ -196,7 +196,7 @@ loads(FileAwal):-
 	nl, write('Loaded form!'), 
 	write(FinalFile), nl, !.
 
-load(Filename):-
+loads(Filename):-
 	nl, write('File '), 
 	write(Filename), 
 	write(' no\'t found!'), 
