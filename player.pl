@@ -46,13 +46,19 @@ tokeCounter(X):-
 /*inventory*/
 addToInventory(Toke):-
     tokemon(Toke),
+    retractall(milik(Toke,_)),
     asserta(milik(Toke,1)),
-    retract(milik(Toke,0)),!.
+    !.
 
 delFromInventory(Toke):-
     tokemon(Toke),
     retractall(milik(Toke,1)),
-    assert(milik(Toke,0)).
+    asserta(milik(Toke,0)),!.
+
+delForeve(Toke):-
+    tokemon(Toke),
+    retractall(milik(Toke,_)),
+    asserta(milik(Toke,2)),!.
 
 inventory(LInvent):-
     findall(B,isMilik(B),LInvent).
@@ -68,5 +74,5 @@ capt(Toke) :-
 	addToInventory(Toke),
 	healthbase(Toke, X),
 	retract(health(Toke, 0)),
-	assert(health(Toke, X)),
+	asserta(health(Toke, X)),
     write(Toke),write(' is captured!'),!.

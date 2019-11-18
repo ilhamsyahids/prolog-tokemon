@@ -7,6 +7,7 @@
 :- dynamic(sAttack/1).
 :- dynamic(gagalRun/1).
 :- dynamic(picked/0).
+:- dynamic(pilih/1).
 
 :- discontiguous(decide/0).
 :- discontiguous(fight/0).
@@ -27,18 +28,25 @@
 % enemyTokemon(tokeyub).
 % playerTokemonBattle(tokedo).
 
+randomenemy :-
+    repeat,
+        random(1, 24, Nomer),
+        id(Toke, Nomer),
+        milik(Toke, Siapa),
+        Siapa =:= 0,
+        retractall(enemyTokemon(_)),
+        asserta(enemyTokemon(Toke)), !.
+
 decide :-
-    milik(Y, 0),
-    asserta(enemyTokemon(Y)),
-    write(Y),
+    write('tokemon liar muncul'), nl,
     write(' liar Muncul!!'), nl,
     write('fight atau run'), nl,
-    read(X),
-    (X == run -> run; X == fight -> fight).
+    asserta(pilih(1)).
 
 fight :-
     asserta(battle(_)),
-    write('You decided to fight!\nChoose your Tokemon!\n\nAvailable Tokemons: '), 
+    randomenemy,
+    write('Choose your Tokemon!\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
     nl, !.
@@ -50,28 +58,21 @@ remove :-
     retractall(battle(_)),
     retractall(enemyTokemon(_)),
     retractall(playerTokemonBattle(_)).
+    retractall(pilih(_)).
+
 
 run :-
-    gagalRun(_),
-    write('You cannot run!'),
-    nl, !, fail.
-
-run :-
-    random(0,2,X),
-    X == 1, 
-    write('You sucessfully escaped the Tokemon!'),nl,
+    random(0,2,Result),	
+	(Result =:= 0 -> gagalrun; berhasilrun).
+    
+berhasilrun :-
+    write('Kamu berhasil kabur dari serangan Tokemon!'), nl,
     remove,
     !, fail.
 
-run :-
-    nl,
-    battle(_),
-    asserta(gagalRun(_)),
-    fight,
-    write('You failed to run!\nChoose your Tokemon!\n\nAvailable Tokemons: '), 
-    inventory(X),
-    write(X),
-    nl.
+gagalrun :-
+    write('Kamu gagal kabur dari serangan Tokemon'), nl,
+    fight. 
 
 pick(_) :-
     picked,
@@ -265,7 +266,7 @@ checklose :-
     HPE =< 0,
     write(ET),
     write(' died! Choose your pokemon '),
-    delFromInventory(ET),
+    delForever(ET),
     retractall(playerTokemonBattle(ET)),    
     retractall(picked),    
     inventory(X),

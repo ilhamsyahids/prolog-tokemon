@@ -139,6 +139,9 @@ map:-
 
 % move
 w :-
+	pilih(1),
+	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+w :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
@@ -161,6 +164,9 @@ w :-
 	!.
 
 a :-
+	pilih(1),
+	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+a :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
@@ -181,6 +187,9 @@ a :-
 	asserta(player(NewX, Y)), key, appear, 
 	!.
 
+s :-
+	pilih(1),
+	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
 s :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -203,6 +212,9 @@ s :-
 	asserta(player(X, NewY)),  appear, 
 	!.
 
+d :-
+	pilih(1),
+	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
 d :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
