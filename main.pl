@@ -4,44 +4,40 @@
 % Muhammad Rizki Fonna 		13516001
 
 :- include('map.pl').
-:- dynamic(healed/0).
 
+:- dynamic(healed/0).
 
 start:-
 	playing(_),
 	write('You can only start the game once'),nl,!.
 start:-
-	spawnAll,
-	%write('            ▄▄▄█████▓ ▒█████   ██ ▄█▀▓█████  ███▄ ▄███▓ ▒█████   ███▄    █'),nl,
-	%write('            ▓  ██▒ ▓▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █▒'),nl,
-	%write('            ▒ ▓██░ ▒░▒██░  ██▒▓███▄░ ▒███   ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒'),nl,
-	%write('            ░ ▓██▓ ░ ▒██   ██░▓██ █▄ ▒▓█  ▄ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒'),nl,
-	%write('              ▒██▒ ░ ░ ████▓▒░▒██▒ █▄░▒████▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░'),nl,
-	%write('               ▒ ░░   ░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒'),nl,
-	%write('                 ░      ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░'),nl,
-	%write('               ░      ░ ░ ░ ▒  ░ ░░ ░    ░   ░      ░   ░ ░ ░ ▒     ░   ░ ░'),nl,
-	%write('                            ░ ░  ░  ░      ░  ░       ░       ░ ░           ░'),nl,nl,
-	write('ëëëëëëë££±±££±£±ëëëë±±ëëë±££±X£±££ë±±ë±£±ÉÉ'),nl,
-	write('ëë@@@ëëëë±£±£££±±±ëëëëë±±ëë±XX±£±±ë±££±£±ÉÉ'),nl,
-	write('@@@@@ë±ëëë±£X£Xo&&&&&&&&&&&&%o±±±£ëëëëëë±ÉÉ'),nl,
-	write('@@@@ë@ë±±±±£X&&&&&&&&&&&&&&&&II&±@ë@ë@ëëëÉÉ'),nl,
-	write('@ëëëëëë±±±£%%%%%&&&&&&&&&&&&&&&&&&ÑÑ@ë@@@§É'),nl,
-	write('ëëëëëëëëëX%%%%%%%%&%&%%&&&&&&&&&&&&ëÉ§Ñ@Ñ§É'),nl,
-	write('@@Ñ@@@@ë£%%%%%%%%%%&%oXo&&&&&&&&&&&&ÑÉ§ÑÑÉÉ'),nl,
-	write('ÑÑÑÑÑÑÑ@%%%%%%%%%%XÉ±/~/£É££±ë@Ñ§ÉÉÉ§¶É§§ÉÉ'),nl,
-	write('ÑÑÑÑÑÑÑë£±ë@§ÉÉææææ/~"""~/ÉÉÉÉÉÉÉÉÉÉÉ¶æÉÑÉÉ'),nl,
-	write('ÑÑÑÑÑ§Ñ§æææææææææææ»~"""~/É£%&*?/;í~~ÑæÉ§ÉÉ'),nl,
-	write('§§§ÑÑÑÑÑ@XX&*»;~^"~@ë?;»±@;"""""""""";¶§æææ'),nl,
-	write('§§§§§§ÑÑ@~""""""""""""""""""""""""""^§É§§æÉ'),nl,
-	write('§§§§§ÑÑ§Ñ@;""""""""""""""""""""""";æÉ§§§§ææ'),nl,
-	write('§§§§§§§§§ÑÑX^""""""""""""""""""^£æÉ§§dÑ§ÑÑæ'),nl,
-	write('§Ñ§§§§§§§§§Ñ§ë»""""""""""""""ÑÉÉÉÉÉÉ§§d§ÉdÉ'),nl,
-	write('§§§§§§§§§§§§§§§§§ëI»~~;»=&%£É§§§§§§ÉÉÉÉÉÉææ'),nl,
-	write('§§§§§§§§§§§§§§§§§§§§§§§§ÉÉ§§ÉÉÉ§ÉÉÉÉÉÉÉÉÉÉæ'),nl,
-	write('§§§ÉÉÉÉ§§§§§ÉÉÉÉÉÉ§§§§§ÉÉÉ§§ÉÉÉÉÉÉÉÉÉÉÉÉÉÉ§'),nl,
+	write('  /$$$$$$$$        /$$'), nl,
+	write(' |__  $$__/       | $$'), nl,
+	write('    | $$  /$$$$$$ | $$   /$$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$  /$$$$$$$'), nl,
+	write('    | $$ /$$__  $$| $$  /$$/ /$$__  $$| $$_  $$_  $$ /$$__  $$| $$__  $$'), nl,
+	write('    | $$| $$  \\ $$| $$$$$$/ | $$$$$$$$| $$ \\ $$ \\ $$| $$  \\ $$| $$  \\ $$'), nl,
+	write('    | $$| $$  | $$| $$_  $$ | $$_____/| $$ | $$ | $$| $$  | $$| $$  | $$'), nl,
+	write('    | $$|  $$$$$$/| $$ \\  $$|  $$$$$$$| $$ | $$ | $$|  $$$$$$/| $$  | $$'), nl,
+	write('    |__/ \\______/ |__/  \\__/ \\_______/|__/ |__/ |__/ \\______/ |__/  |__/'), nl,
+	write(''), nl,
+	write(''), nl,
+	write(''), nl,
+	write('    /$$$$$$$$ /$$           /$$         /$$'), nl,
+	write('    | $$_____/|__/          | $$        | $$'), nl,
+	write('    | $$       /$$  /$$$$$$ | $$$$$$$  /$$$$$$'), nl,
+	write('    | $$$$$   | $$ /$$__  $$| $$__  $$|_  $$_/'), nl,
+	write('    | $$__/   | $$| $$  \\ $$| $$  \\ $$  | $$'), nl,
+	write('    | $$      | $$| $$  | $$| $$  | $$  | $$ /$$'), nl,
+	write('    | $$      | $$|  $$$$$$$| $$  | $$  |  $$$$/'), nl,
+	write('    |__/      |__/ \\____  $$|__/  |__/   \\___/'), nl,
+	write('                   /$$  \\ $$'), nl,
+	write('                   |  $$$$$$/'), nl,
+	write('                   \\______/'), nl,
 	narasi, 
 	help,
 	mulai,
+	spawnPlayer,
+	spawnTokemon,
 	tokemon_init,
 	asserta(playing(1)).
 
@@ -62,8 +58,8 @@ help :-
 	write('    map. -- look at the map'), nl,
 	write('    heal. -- cure Tokemon in inventory if in gym center'), nl,
 	write('    status. -- show your status'), nl,
-	write('    save(Filename). -- save your game'), nl,
-	write('    load(Filename). -- load previously saved game'), nl,nl,
+	write('    save(Filename). -- save your game to directory data/'), nl,
+	write('    load(Filename). -- load your game from directory data/'), nl,nl,
 
 	write(' Legends:'), nl,
 	write('    X = Pagar'), nl,
@@ -108,15 +104,6 @@ heal:-
 	write('All your tokemon has been healed.yey.'),nl,
 	!.
 
-healList([]).
-
-healList([H|T]) :- oneHeal(H), healList(T).
-
-oneHeal(Toke) :-
-	healthbase(Toke,X),
-	retractall(health(Toke,_)),
-	asserta(health(Toke, X)),!.
-
 heal:- 
 	tokemon(Toke),
 	milik(Toke, 1),
@@ -125,3 +112,12 @@ heal:-
 	write('You can only use this command when you are in the gym.'),nl,
 	write('Go to the gym to heal your tokemon!'),
 	nl,!.
+
+healList([]).
+healList([H|T]) :- oneHeal(H), healList(T).
+
+oneHeal(Toke) :-
+	healthbase(Toke,X),
+	retractall(health(Toke,_)),
+	asserta(health(Toke, X)),!.
+

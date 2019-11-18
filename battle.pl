@@ -231,7 +231,10 @@ specialAttack :-
     serang(ET, NewDamage),
     write(PT),
     write(' uses special attack!'),nl,nl,
-    write('It was super effective!'),nl,
+    ( Damage < NewDamage ->
+        write('It was super effective!')
+    ),
+    nl,
     write('You dealt '), 
     write(NewDamage), 
     write(' damage to '),
@@ -289,7 +292,9 @@ statPlayerEnemy :-
 
 losegame :-
     write('YOU LOSEEEEE :(('),nl,
-    write('Better luck next time!')
+    write('Better luck next time!'),halt.
 
 wingame :-
-    write('YOU WINNNNN :))').
+    write('YOU WINNNNN :))'),nl,
+    write('You are amazing! You have beat all the legendary Tokemons'),nl,
+    write('Come back later to test your luck'),halt.
