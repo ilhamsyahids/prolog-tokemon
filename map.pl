@@ -176,7 +176,7 @@ a :-
 a :-
 	selected,
 	pilih(1),
-	write('Your journey is being blocked by a wild tokemon!!!'),
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
 	write('fight or run ?'),!,nl.
 a :-
 	\+playing(_),

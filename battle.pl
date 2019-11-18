@@ -54,7 +54,7 @@ remove :-
     retractall(battle(_)),
     retractall(enemyTokemon(_)),
     retractall(playerTokemonBattle(_)),
-    retractall(pilih(_)).
+    retract(pilih(1)).
 
 run :-
     random(0,2,Result),	
@@ -93,7 +93,12 @@ pick(PT) :-
 pick(_) :-
     write('You don’t have that Tokemon!'), !.
 
+attack :-
+    \+picked,
+    write('Pick your Tokemon first.'),nl,!.
+
 attack :- 
+    picked,
     enemyTokemon(ET),
     playerTokemonBattle(PT),
     damage(PT, Damage),
