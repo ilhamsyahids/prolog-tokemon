@@ -25,19 +25,6 @@ start:-
 	tokemon_init,
 	asserta(playing(1)).
 
-do(start) :-!, start.
-do(help) :-!, help.
-do(quit) :-!, quit.
-do(w) :-!, w.
-do(a) :-!, a.
-do(s) :-!, s.
-do(d) :-!, d.
-do(map) :-!, map.
-do(status) :-!, status.
-do(drop(X)) :-!, drop(X).
-do(heal(X)) :-!, heal(X).
-do(_) :- wronginput.
-
 wronginput :-
 	write('Command yang dimasukkan salah, silakan masukan ulang'),nl.
 
@@ -76,17 +63,17 @@ status :-
 
 status :-
 	write('Your Tokemon : '), nl,
-	tokemon(K),
-	milik(K, J),
-	J =:= 1,
-	stat(K), nl,
+	forall(between(1,25,Val), 
+		(id(K, Val), milik(K, P),
+		(P =:= 1 -> stat(K), nl);write(''))
+	), statusenemy.
 
+statusenemy :- nl,
 	write('Your Enemy : '), nl,
-	forall(between(21,24,Val), 
-		(id(K, Val),
-		milik(K, 0) , jenis(K, legend),
-		stat(K), nl)
-	),!.
+	forall(between(21,25,Val), 
+		(id(K, Val), milik(K, P),
+		(P =:= 0 -> jenis(K, legend),stat(K), nl);write(''))
+	).
 
 %heal
 heal:- 

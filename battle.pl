@@ -251,9 +251,9 @@ specialAttack :-
     write(ET), nl, nl,
     statPlayerEnemy,
     asserta(sAttack(_)),
-    (\+checkvictory ->
-        !, fail
-    ).
+    !, 
+    \+checkvictory, 
+    !, fail.
 
 specialAttack :- 
     write('Special attacks can only be used once per battle!'), !, fail.
