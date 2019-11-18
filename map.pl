@@ -109,12 +109,12 @@ key :-
 	player(X,Y),
 	retract(key(X,Y)),
 	retract(penghalang(10,16)), 
-	write('Selamat!, Anda berhasil menemukan kunci untuk keluar!'),nl,
+	write('CONGRATS!, You found the key to the Gym!'),nl,
 	!.
 
 map:-
 	\+playing(_),
-	write('this command can only be used after the game starts.'), nl,
+	write('This command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 map:-
 	tinggipeta(T),
@@ -130,7 +130,7 @@ map:-
 		nl
 	)),
 	write(' Legends:'), nl,
-	write('    X = Pagar'), nl,
+	write('    X = Barrier'), nl,
 	write('    P = Player'), nl,
 	write('    G = Gym'), nl,
 	write('    K = Key'), nl, nl,
@@ -140,7 +140,8 @@ map:-
 % move
 w :-
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
+	write('fight or run ?'),!,nl.
 
 w :-
 	\+playing(_),
@@ -149,24 +150,25 @@ w :-
 w :-
 	player(_,Y),
 	Y =:= 1,
-	write('Anda bergerak ke utara, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move north, but there is a very strong barrier that is impenetrable'),nl,!.
 w :-
 	player(X,Y),
 	penghalang(X,P),
 	Q is P+1,
 	Y =:= Q,
-	write('Anda bergerak ke utara, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move north, but there is a very strong barrier that is impenetrable'),nl,!.
 w :- 
 	retract(player(X,Y)),
 	Y > 1,
 	NewY is Y - 1,
-	write('Anda bergerak ke utara'), nl,
+	write('You move north'), nl,
 	asserta(player(X, NewY)), appear,
 	!.
 
 a :-
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),
+	write('fight or run ?'),!,nl.
 a :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -174,17 +176,17 @@ a :-
 a :-
 	player(X,_),
 	X =:= 1,
-	write('Anda bergerak ke barat, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move west, but there is a very strong barrier that is impenetrable'),nl,!.
 a :-
 	player(X,Y),
 	penghalang(P,Y),
 	Q is P+1,
 	X =:= Q,
-	write('Anda bergerak ke barat, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move west, but there is a very strong barrier that is impenetrable'),nl,!.
 a :- 
 	retract(player(X,Y)),
 	NewX is X - 1,
-	write('Anda bergerak ke barat'), nl,
+	write('You move west'), nl,
 	asserta(player(NewX, Y)), appear, 
 	!.
 

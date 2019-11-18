@@ -247,12 +247,12 @@ spawn_milik :-
     asserta(milik(toketir, 0)),
     asserta(milik(tokekha, 0)),
     asserta(milik(tokedhil, 0)),   
-    asserta(milik(tokema, 1)), 
-    asserta(milik(tokevan, 1)),
-    asserta(milik(tokeli, 1)), 
-    asserta(milik(tokegill, 1)),   
+    asserta(milik(tokema, 0)), 
+    asserta(milik(tokevan, 0)),
+    asserta(milik(tokeli, 0)), 
+    asserta(milik(tokegill, 0)),   
     asserta(milik(tokejan, 0)),
-    asserta(milik(tokeham, 1)),
+    asserta(milik(tokeham, 0)),
     asserta(milik(tokenna, 0)).
 
 /*id tokemon*/

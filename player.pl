@@ -20,7 +20,7 @@ drop(Name) :-
         write('You have dropped '),
         write(Name), write('.')
         ;
-        write('You do not have '),write(Name),write(' in your inventory!'),nl,
+        write('You do not have '),write(Name),write(' in your inventory!'),nl
     ),
     !.
 
@@ -34,7 +34,7 @@ tokemon_init:- nl, nl,
     stat(X), nl,
     stat(Y), nl,
     stat(Z), nl, 
-    write('Pilih Pokemon Starter dengan rule select/1'),
+    write('Choose your own Tokemon using rule select/1'),
     !.
 
 select(PT) :- 

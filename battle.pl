@@ -35,14 +35,14 @@ randomenemy :-
         asserta(enemyTokemon(Toke)), !.
 
 decide :-
-    write('tokemon liar muncul'), nl,
-    write('fight atau run'), nl,
+    write('A wild tokemon appears!'), nl,
+    write('fight or run'), nl,
     asserta(pilih(1)).
 
 fight :-
     asserta(battle(_)),
     randomenemy,
-    write('Choose your Tokemon!\n\nAvailable Tokemons: '), 
+    write('Choose your Tokemon using pick/1 !\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
     nl, !.
@@ -61,12 +61,12 @@ run :-
 	(Result =:= 0 -> gagalrun; berhasilrun).
     
 berhasilrun :-
-    write('Kamu berhasil kabur dari serangan Tokemon!'), nl,
+    write('You successfully escape from Tokemon!'), nl,
     remove,
     !, fail.
 
 gagalrun :-
-    write('Kamu gagal kabur dari serangan Tokemon'), nl,
+    write('You failed to run!'), nl,
     fight. 
 
 pick(_) :-
@@ -288,7 +288,8 @@ statPlayerEnemy :-
     stat(ET).
 
 losegame :-
-    write('Anda sudah kalah :((').
+    write('YOU LOSEEEEE :(('),nl,
+    write('Better luck next time!')
 
 wingame :-
-    write('Anda menang :))').
+    write('YOU WINNNNN :))').
