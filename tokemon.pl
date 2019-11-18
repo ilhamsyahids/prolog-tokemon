@@ -1,125 +1,145 @@
+:- dynamic(tokemon/1).
 :- dynamic(health/2).
 :- dynamic(milik/2).
+:- dynamic(jenis/2).
+:- dynamic(healthbase/2).
+:- dynamic(damage/2).
+:- dynamic(skill/2).
+:- dynamic(type/2).
+:- dynamic(id/2).
 
-:- discontiguous(tokemon/1).
-:- discontiguous(jenis/2).
-:- discontiguous(healthbase/2).
-:- discontiguous(health/2).
-:- discontiguous(damage/2).
-:- discontiguous(skill/2).
-:- discontiguous(type/2).
-:- discontiguous(id/2).
-:- discontiguous(milik/2).
+:- discontiguous(spawn_tokemon/0).
+:- discontiguous(spawn_health/0).
+:- discontiguous(spawn_milik/0).
+:- discontiguous(spawn_jenis/0).
+:- discontiguous(spawn_damage/0).
+:- discontiguous(spawn_healthbase/0).
+:- discontiguous(spawn_skill/0).
+:- discontiguous(spawn_type/0).
+:- discontiguous(spawn_id/0).
+:- discontiguous(spawnAll/0).
+
+
+spawnAll :-
+    spawn_damage,
+    spawn_health,
+    spawn_healthbase,
+    spawn_id,
+    spawn_jenis,
+    spawn_milik,
+    spawn_skill,
+    spawn_tokemon,
+    spawn_type.
 
 /*nama tokemon*/
 /* 20 tokemon normal*/
 /* 4 tokemon super*/
-tokemon(tokeyub).
-tokemon(tokedon).
-tokemon(tokecha).
-tokemon(tokego).
-tokemon(tokedo).
-tokemon(tokefab).
-tokemon(tokegun).
-tokemon(tokepan).
-tokemon(tokendra).
-tokemon(tokejon).
-tokemon(tokevin).
-tokemon(tokenan).
-tokemon(tokemezz).
-tokemon(tokeat).
-tokemon(toketir).
-tokemon(tokekha).
-tokemon(tokedhil).
-tokemon(tokema).
-tokemon(tokevan).
-tokemon(tokeli).
-
-tokemon(tokegill).
-tokemon(tokejan).
-tokemon(tokeham).
-tokemon(tokenna).
+spawn_tokemon :-
+    asserta(tokemon(tokeyub)),
+    asserta(tokemon(tokedon)),
+    asserta(tokemon(tokecha)),
+    asserta(tokemon(tokego)),
+    asserta(tokemon(tokedo)),
+    asserta(tokemon(tokefab)),
+    asserta(tokemon(tokegun)),
+    asserta(tokemon(tokepan)),
+    asserta(tokemon(tokendra)),
+    asserta(tokemon(tokejon)),
+    asserta(tokemon(tokevin)),
+    asserta(tokemon(tokenan)),
+    asserta(tokemon(tokemezz)),
+    asserta(tokemon(tokeat)),
+    asserta(tokemon(toketir)),
+    asserta(tokemon(tokekha)),
+    asserta(tokemon(tokedhil)),
+    asserta(tokemon(tokema)),
+    asserta(tokemon(tokevan)),
+    asserta(tokemon(tokeli)),
+    asserta(tokemon(tokegill)),
+    asserta(tokemon(tokejan)),
+    asserta(tokemon(tokeham)),
+    asserta(tokemon(tokenna)).
 
 /*jenis*/
-jenis(tokeyub, normal).
-jenis(tokedon, normal).
-jenis(tokecha, normal).
-jenis(tokego, normal).
-jenis(tokedo, normal).
-jenis(tokefab, normal).
-jenis(tokegun, normal).
-jenis(tokepan, normal).
-jenis(tokendra, normal).
-jenis(tokejon, normal).
-jenis(tokevin, normal).
-jenis(tokenan, normal).
-jenis(tokemezz, normal).
-jenis(tokeat, normal).
-jenis(toketir, normal).
-jenis(tokekha, normal).
-jenis(tokedhil, normal).
-jenis(tokema, normal).
-jenis(tokevan, normal).
-jenis(tokeli, normal).
-
-jenis(tokegill, legend).
-jenis(tokejan, legend).
-jenis(tokeham, legend).
-jenis(tokenna, legend).
+spawn_jenis :-
+    asserta(jenis(tokeyub, normal)),
+    asserta(jenis(tokedon, normal)),
+    asserta(jenis(tokecha, normal)),
+    asserta(jenis(tokego, normal)),
+    asserta(jenis(tokedo, normal)),
+    asserta(jenis(tokefab, normal)),
+    asserta(jenis(tokegun, normal)),
+    asserta(jenis(tokepan, normal)),
+    asserta(jenis(tokendra, normal)),
+    asserta(jenis(tokejon, normal)),
+    asserta(jenis(tokevin, normal)),
+    asserta(jenis(tokenan, normal)),
+    asserta(jenis(tokemezz, normal)),
+    asserta(jenis(tokeat, normal)),
+    asserta(jenis(toketir, normal)),
+    asserta(jenis(tokekha, normal)),
+    asserta(jenis(tokedhil, normal)),
+    asserta(jenis(tokema, normal)),
+    asserta(jenis(tokevan, normal)),
+    asserta(jenis(tokeli, normal)),
+    asserta(jenis(tokegill, legend)),
+    asserta(jenis(tokejan, legend)),
+    asserta(jenis(tokeham, legend)),
+    asserta(jenis(tokenna, legend)).
 
 /*health base*/
-healthbase(tokeyub, 97). 
-healthbase(tokedon, 65).
-healthbase(tokecha, 80).
-healthbase(tokego, 78).
-healthbase(tokedo, 88).
-healthbase(tokefab, 108).
-healthbase(tokegun, 66).
-healthbase(tokepan, 92).
-healthbase(tokendra, 90).
-healthbase(tokejon, 81).
-healthbase(tokevin, 72).
-healthbase(tokenan, 77).
-healthbase(tokemezz, 69).
-healthbase(tokeat, 83).
-healthbase(toketir, 82).
-healthbase(tokekha, 86).
-healthbase(tokedhil, 87).
-healthbase(tokema, 99).
-healthbase(tokevan, 103).
-healthbase(tokeli, 101).
-
-healthbase(tokegill, 151).
-healthbase(tokejan, 139).
-healthbase(tokeham, 157).
-healthbase(tokenna, 145).
+spawn_healthbase :-
+    asserta(healthbase(tokeyub, 97)), 
+    asserta(healthbase(tokedon, 65)),
+    asserta(healthbase(tokecha, 80)),
+    asserta(healthbase(tokego, 78)),
+    asserta(healthbase(tokedo, 88)),
+    asserta(healthbase(tokefab, 108)),
+    asserta(healthbase(tokegun, 66)),
+    asserta(healthbase(tokepan, 92)),
+    asserta(healthbase(tokendra, 90)),
+    asserta(healthbase(tokejon, 81)),
+    asserta(healthbase(tokevin, 72)),
+    asserta(healthbase(tokenan, 77)),
+    asserta(healthbase(tokemezz, 69)),
+    asserta(healthbase(tokeat, 83)),
+    asserta(healthbase(toketir, 82)),
+    asserta(healthbase(tokekha, 86)),
+    asserta(healthbase(tokedhil, 87)),
+    asserta(healthbase(tokema, 99)),
+    asserta(healthbase(tokevan, 103)),
+    asserta(healthbase(tokeli, 101)),
+    asserta(healthbase(tokegill, 151)),
+    asserta(healthbase(tokejan, 139)),
+    asserta(healthbase(tokeham, 157)),
+    asserta(healthbase(tokenna, 145)).
 
 /*health*/
-health(tokeyub, 10). 
-health(tokedon, 65).
-health(tokecha, 80).
-health(tokego, 78).
-health(tokedo, 88).
-health(tokefab, 108).
-health(tokegun, 66).
-health(tokepan, 92).
-health(tokendra, 90).
-health(tokejon, 81).
-health(tokevin, 72).
-health(tokenan, 77).
-health(tokemezz, 69).
-health(tokeat, 83).
-health(toketir, 82).
-health(tokekha, 86).
-health(tokedhil, 87).
-health(tokema, 99).
-health(tokevan, 103).
-health(tokeli, 10).
-
-health(tokegill, 151).
-health(tokejan, 139).
-health(tokeham, 157).
-health(tokenna, 145).
+spawn_health :-
+    asserta(health(tokeyub, 10)), 
+    asserta(health(tokedon, 65)),
+    asserta(health(tokecha, 80)),
+    asserta(health(tokego, 78)),
+    asserta(health(tokedo, 88)),
+    asserta(health(tokefab, 108)),
+    asserta(health(tokegun, 66)),
+    asserta(health(tokepan, 92)),
+    asserta(health(tokendra, 90)),
+    asserta(health(tokejon, 81)),
+    asserta(health(tokevin, 72)),
+    asserta(health(tokenan, 77)),
+    asserta(health(tokemezz, 69)),
+    asserta(health(tokeat, 83)),
+    asserta(health(toketir, 82)),
+    asserta(health(tokekha, 86)),
+    asserta(health(tokedhil, 87)),
+    asserta(health(tokema, 99)),
+    asserta(health(tokevan, 103)),
+    asserta(health(tokeli, 101)),
+    asserta(health(tokegill, 151)),
+    asserta(health(tokejan, 139)),
+    asserta(health(tokeham, 157)),
+    asserta(health(tokenna, 145)).
 
 /*tipe*/
 /* fire, water, leaves, ground, flying, ice*/
@@ -128,143 +148,141 @@ health(tokenna, 145).
 /* ice lebih besar 30% damagenya melawan water */
 /* ground lebih besar 40% damagenya melawan leaves*/
 
-type(tokeyub, fire).
-type(tokedon, water).
-type(tokecha, leaves).
-type(tokego, ground).
-type(tokedo, flying).
-type(tokefab, ice).
-type(tokegun, fire).
-type(tokepan, water).
-type(tokendra, leaves).
-type(tokejon, ground).
-type(tokevin, flying).
-type(tokenan, ice).
-type(tokemezz, fire).
-type(tokeat, water).
-type(toketir, leaves).
-type(tokekha, ground).
-type(tokedhil, flying).
-type(tokema, ice).
-type(tokevan, fire).
-type(tokeli, water).
-
-type(tokegill, water).
-type(tokejan, fire).
-type(tokeham, leaves).
-type(tokenna, flying).
+spawn_type :-
+    asserta(type(tokeyub, fire)),
+    asserta(type(tokedon, water)),
+    asserta(type(tokecha, leaves)),
+    asserta(type(tokego, ground)),
+    asserta(type(tokedo, flying)),
+    asserta(type(tokefab, ice)),
+    asserta(type(tokegun, fire)),
+    asserta(type(tokepan, water)),
+    asserta(type(tokendra, leaves)),
+    asserta(type(tokejon, ground)),
+    asserta(type(tokevin, flying)),
+    asserta(type(tokenan, ice)),
+    asserta(type(tokemezz, fire)),
+    asserta(type(tokeat, water)),
+    asserta(type(toketir, leaves)),
+    asserta(type(tokekha, ground)),
+    asserta(type(tokedhil, flying)),
+    asserta(type(tokema, ice)),
+    asserta(type(tokevan, fire)),
+    asserta(type(tokeli, water)),
+    asserta(type(tokegill, water)),
+    asserta(type(tokejan, fire)),
+    asserta(type(tokeham, leaves)),
+    asserta(type(tokenna, flying)).
 
 /*normal attack*/
-damage(tokeyub, 25).
-damage(tokedon, 11).
-damage(tokecha, 19).
-damage(tokego, 17).
-damage(tokedo, 21).
-damage(tokefab, 31).
-damage(tokegun, 13).
-damage(tokepan, 28).
-damage(tokendra, 26).
-damage(tokejon, 22).
-damage(tokevin, 15).
-damage(tokenan, 16).
-damage(tokemezz, 9).
-damage(tokeat, 23).
-damage(toketir, 20).
-damage(tokekha, 27).
-damage(tokedhil, 24).
-damage(tokema, 30).
-damage(tokevan, 37).
-damage(tokeli, 32).
-
-damage(tokegill, 38).
-damage(tokejan, 33).
-damage(tokeham, 40).
-damage(tokenna, 41).
+spawn_damage :-
+    asserta(damage(tokeyub, 25)),
+    asserta(damage(tokedon, 11)),
+    asserta(damage(tokecha, 19)),
+    asserta(damage(tokego, 17)),
+    asserta(damage(tokedo, 21)),
+    asserta(damage(tokefab, 31)),
+    asserta(damage(tokegun, 13)),
+    asserta(damage(tokepan, 28)),
+    asserta(damage(tokendra, 26)),
+    asserta(damage(tokejon, 22)),
+    asserta(damage(tokevin, 15)),
+    asserta(damage(tokenan, 16)),
+    asserta(damage(tokemezz, 9)),
+    asserta(damage(tokeat, 23)),
+    asserta(damage(toketir, 20)),
+    asserta(damage(tokekha, 27)),
+    asserta(damage(tokedhil, 24)),
+    asserta(damage(tokema, 30)),
+    asserta(damage(tokevan, 37)),
+    asserta(damage(tokeli, 32)),
+    asserta(damage(tokegill, 38)),
+    asserta(damage(tokejan, 33)),
+    asserta(damage(tokeham, 40)),
+    asserta(damage(tokenna, 41)).
 
 /*special attack atau skill */
-skill(tokeyub, 63).
-skill(tokedon, 36).
-skill(tokecha, 54).
-skill(tokego, 47).
-skill(tokedo, 55).
-skill(tokefab, 75).
-skill(tokegun, 43).
-skill(tokepan, 68).
-skill(tokendra, 65).
-skill(tokejon, 57).
-skill(tokevin, 46).
-skill(tokenan, 42).
-skill(tokemezz, 49).
-skill(tokeat, 56).
-skill(toketir, 52).
-skill(tokekha, 58).
-skill(tokedhil, 59).
-skill(tokema, 64).
-skill(tokevan, 77).
-skill(tokeli, 79).
-
-skill(tokegill, 107).
-skill(tokejan, 92).
-skill(tokeham, 109).
-skill(tokenna, 97).
+spawn_skill :-
+    asserta(skill(tokeyub, 63)),
+    asserta(skill(tokedon, 36)),
+    asserta(skill(tokecha, 54)),
+    asserta(skill(tokego, 47)),
+    asserta(skill(tokedo, 55)),
+    asserta(skill(tokefab, 75)),
+    asserta(skill(tokegun, 43)),
+    asserta(skill(tokepan, 68)),
+    asserta(skill(tokendra, 65)),
+    asserta(skill(tokejon, 57)),
+    asserta(skill(tokevin, 46)),
+    asserta(skill(tokenan, 42)),
+    asserta(skill(tokemezz, 49)),
+    asserta(skill(tokeat, 56)),
+    asserta(skill(toketir, 52)),
+    asserta(skill(tokekha, 58)),
+    asserta(skill(tokedhil, 59)),
+    asserta(skill(tokema, 64)),
+    asserta(skill(tokevan, 77)),
+    asserta(skill(tokeli, 79)),
+    asserta(skill(tokegill, 107)),
+    asserta(skill(tokejan, 92)),
+    asserta(skill(tokeham, 109)),
+    asserta(skill(tokenna, 97)).
 
 /*kepemilikan*/
-milik(tokeyub, 0).
-milik(tokedon, 0).
-milik(tokecha, 0).
-milik(tokego, 0).
-milik(tokedo, 0).
-milik(tokefab, 0).
-milik(tokegun, 0).
-milik(tokepan, 0).
-milik(tokendra, 0).
-milik(tokejon, 0).
-milik(tokevin, 0).
-milik(tokenan, 0).
-milik(tokemezz, 0).
-milik(tokeat, 0).
-milik(toketir, 0).
-milik(tokekha, 0).
-milik(tokedhil, 0).
-milik(tokema, 1).
-milik(tokevan, 1).
-milik(tokeli, 1).
-
-
-milik(tokegill, 1).
-milik(tokejan, 0).
-milik(tokeham, 1).
-milik(tokenna, 0).
-
-
+spawn_milik :-
+    asserta(milik(tokeyub, 0)),
+    asserta(milik(tokedon, 0)),
+    asserta(milik(tokecha, 0)),
+    asserta(milik(tokego, 0)), 
+    asserta(milik(tokedo, 0)), 
+    asserta(milik(tokefab, 0)),
+    asserta(milik(tokegun, 0)),
+    asserta(milik(tokepan, 0)),
+    asserta(milik(tokendra, 0)),   
+    asserta(milik(tokejon, 0)),
+    asserta(milik(tokevin, 0)),
+    asserta(milik(tokenan, 0)),
+    asserta(milik(tokemezz, 0)),   
+    asserta(milik(tokeat, 0)), 
+    asserta(milik(toketir, 0)),
+    asserta(milik(tokekha, 0)),
+    asserta(milik(tokedhil, 0)),   
+    asserta(milik(tokema, 1)), 
+    asserta(milik(tokevan, 1)),
+    asserta(milik(tokeli, 1)), 
+    asserta(milik(tokegill, 1)),   
+    asserta(milik(tokejan, 0)),
+    asserta(milik(tokeham, 1)),
+    asserta(milik(tokenna, 0)).
 
 /*id tokemon*/
-id(tokeyub, 1).
-id(tokedon, 2).
-id(tokecha, 3).
-id(tokego, 4).
-id(tokedo, 5).
-id(tokefab, 6).
-id(tokegun, 7).
-id(tokepan, 8).
-id(tokendra, 9).
-id(tokejon, 10).
-id(tokevin, 11).
-id(tokenan, 12).
-id(tokemezz, 13).
-id(tokeat, 14).
-id(toketir, 15).
-id(tokekha, 16).
-id(tokedhil, 17).
-id(tokema, 18).
-id(tokevan, 19).
-id(tokeli, 20).
+spawn_id :-
+    asserta(id(tokeyub, 1)),
+    asserta(id(tokedon, 2)),
+    asserta(id(tokecha, 3)),
+    asserta(id(tokego, 4)),
+    asserta(id(tokedo, 5)),
+    asserta(id(tokefab, 6)),
+    asserta(id(tokegun, 7)),
+    asserta(id(tokepan, 8)),
+    asserta(id(tokendra, 9)),
+    asserta(id(tokejon, 10)),
+    asserta(id(tokevin, 11)),
+    asserta(id(tokenan, 12)),
+    asserta(id(tokemezz, 13)),
+    asserta(id(tokeat, 14)),
+    asserta(id(toketir, 15)),
+    asserta(id(tokekha, 16)),
+    asserta(id(tokedhil, 17)),
+    asserta(id(tokema, 18)),
+    asserta(id(tokevan, 19)),
+    asserta(id(tokeli, 20)),
+    asserta(id(tokegill, 21)),
+    asserta(id(tokejan, 22)),
+    asserta(id(tokeham, 23)),
+    asserta(id(tokenna, 24)).
 
-id(tokegill, 21).
-id(tokejan, 22).
-id(tokeham, 23).
-id(tokenna, 24).
-
+/*rules*/
 backNormal(Toke) :- 
     tokemon(Toke),
 	healthbase(Toke, X),

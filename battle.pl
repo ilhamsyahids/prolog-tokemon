@@ -25,9 +25,6 @@
 :- discontiguous(exit/0).
 :- discontiguous(statPlayerEnemy/0).
 
-% enemyTokemon(tokeyub).
-% playerTokemonBattle(tokedo).
-
 randomenemy :-
     repeat,
         random(1, 24, Nomer),
@@ -42,18 +39,9 @@ decide :-
     write('fight atau run'), nl,
     asserta(pilih(1)).
 
-    % milik(Y, 0),
-    % asserta(enemyTokemon(Y)),
-    % write(Y),
-    % write(' liar Muncul!!'), nl,
-    % write('fight atau run'), nl,
-    % read(X),
-    % (X == run -> !, run; X == fight -> fight).
-
 fight :-
     asserta(battle(_)),
     randomenemy,
-    %asserta(enemyTokemon(tokenna)),
     write('Choose your Tokemon!\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
@@ -67,7 +55,6 @@ remove :-
     retractall(enemyTokemon(_)),
     retractall(playerTokemonBattle(_)),
     retractall(pilih(_)).
-
 
 run :-
     random(0,2,Result),	
