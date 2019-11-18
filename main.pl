@@ -142,8 +142,9 @@ facts(FinalFile) :- save_data(FinalFile).
 facts(_) :- !.
 
 save_data(FinalFile) :-
-    (selected -> write(FinalFile, selected), write(FinalFile, '.'), nl(FinalFile)),
-    (healed -> write(FinalFile, healed), write(FinalFile, '.'), nl(FinalFile), !),
+	(selected -> write(FinalFile, selected), write(FinalFile, '.'), nl(FinalFile)),
+	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
+    (healed -> write(FinalFile, healed), write(FinalFile, '.'), nl(FinalFile);!),
 	tokemon(Toke), write(FinalFile, tokemon(Toke)), write(FinalFile, '.'), nl(FinalFile),
 	jenis(Toke, Jenis), write(FinalFile, jenis(Toke, Jenis)), write(FinalFile, '.'), nl(FinalFile),
 	healthbase(Toke, Healthbase), write(FinalFile, healthbase(Toke, Healthbase)), write(FinalFile, '.'), nl(FinalFile),
@@ -153,7 +154,6 @@ save_data(FinalFile) :-
 	skill(Toke, Skill), write(FinalFile, skill(Toke, Skill)), write(FinalFile, '.'), nl(FinalFile),
 	milik(Toke, Milik), write(FinalFile, milik(Toke, Milik)), write(FinalFile, '.'), nl(FinalFile),
 	id(Toke, Id), write(FinalFile, id(Toke, Id)), write(FinalFile, '.'), nl(FinalFile),
-	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
     fail.
 
 loads(_):-
