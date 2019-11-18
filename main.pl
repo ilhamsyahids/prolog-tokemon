@@ -60,7 +60,7 @@ help :-
 	write('    heal. -- cure Tokemon in inventory if in gym center'), nl,
 	write('    status. -- show your status'), nl,
 	write('    save(Filename). -- save your game to directory data/'), nl,
-	write('    load(Filename). -- load your game from directory data/'), nl,nl,
+	write('    loads(Filename). -- load your game from directory data/'), nl,nl,
 
 	write(' Legends:'), nl,
 	write('    X = Barrier'), nl,

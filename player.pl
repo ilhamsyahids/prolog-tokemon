@@ -161,8 +161,8 @@ save_data(FinalFile) :-
 load(_):-
 	battle(_),
 	write('You can\'t load while battle'),!.
-	
-load(FileAwal):-
+
+loads(FileAwal):-
 	atom_concat('data/', FileAwal, Filename),
 	resetAll,
 	open(Filename, read, FinalFile),

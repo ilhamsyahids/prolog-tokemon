@@ -246,6 +246,7 @@ specialAttack :-
     !, fail.
 
 specialAttack :- 
+    sAttack(_),
     write('Special attacks can only be used once per battle!'), !, fail.
 
 checkvictory :-
@@ -267,7 +268,7 @@ checklose :-
     health(ET, HPE),
     HPE =< 0,
     write(ET),
-    write(' died!'),
+    write(' died!'),nl,
     delForever(ET),
     retract(playerTokemonBattle(ET)),    
     retractall(picked),
