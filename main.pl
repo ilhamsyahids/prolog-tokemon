@@ -4,8 +4,8 @@
 % Muhammad Rizki Fonna 		13516001
 
 :- include('map.pl').
-:- dynamic(healed/0).
 
+:- dynamic(healed/0).
 
 start:-
 	playing(_),
@@ -120,3 +120,27 @@ heal:-
 	write('You can only use this command when you are in the gym.'),nl,
 	write('Go to the gym to heal your tokemon!'),
 	nl,!.
+
+save(File) :-
+    atom_concat('data/', File, Filename),
+	open(Filename, write, FinalFile),
+	facts(FinalFile),
+	close(FinalFile),
+	write('Saved to '),
+	write(Filename), nl.
+
+facts(FinalFile) :- save_data(FinalFile).
+facts(_) :- !.
+
+save_data(FinalFile) :-
+	tokemon(Toke), write(FinalFile, tokemon(Toke)), write(FinalFile, '.'), nl(FinalFile),
+	jenis(Toke, Jenis), write(FinalFile, jenis(Toke, Jenis)), write(FinalFile, '.'), nl(FinalFile),
+	healthbase(Toke, Healthbase), write(FinalFile, healthbase(Toke, Healthbase)), write(FinalFile, '.'), nl(FinalFile),
+	health(Toke, Health), write(FinalFile, health(Toke, Health)), write(FinalFile, '.'), nl(FinalFile),
+	type(Toke, Type), write(FinalFile, type(Toke, Type)), write(FinalFile, '.'), nl(FinalFile),
+	damage(Toke, Damage), write(FinalFile, damage(Toke, Damage)), write(FinalFile, '.'), nl(FinalFile),
+	skill(Toke, Skill), write(FinalFile, skill(Toke, Skill)), write(FinalFile, '.'), nl(FinalFile),
+	milik(Toke, Milik), write(FinalFile, milik(Toke, Milik)), write(FinalFile, '.'), nl(FinalFile),
+	id(Toke, Id), write(FinalFile, id(Toke, Id)), write(FinalFile, '.'), nl(FinalFile),
+	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
+    fail.
