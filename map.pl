@@ -13,7 +13,7 @@ lebarpeta(15).
 tinggipeta(17).
 
 mulai :-
-    asserta(player(13,15)),
+    asserta(player(7,9)),
 	asserta(gym(13,16)),
 	asserta(key(8,9)),
 	C is 6,
@@ -245,7 +245,12 @@ appear :-
 nothing :-
 	player(X,Y),
 	gym(X,Y),
-	write('Anda berada di gym'), nl,nl.
+	write('Anda berada di gym'), nl,nl,!.
+
+nothing :-
+	player(X,Y),
+	key(X,Y),
+	key,!.
 
 nothing :-
 	write('Tidak ada apa-apa di sini'), nl,nl.

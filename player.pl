@@ -1,5 +1,7 @@
 :- include('tokemon.pl').
 
+:- dynamic(playing/0).
+:- dynamic(selected/0).
 :- discontiguous(tokemon_init/0).
 :- discontiguous(drop/1).
 :- discontiguous(stat/1).
@@ -25,13 +27,28 @@ drop(Name) :-
 /* =========RULES========= */
 
 /*random tokemon init*/
-tokemon_init:-
-    random(1,20,Id),
-    id(Y,Id),
-    retractall(milik(Y,_)),
-    write('You have '),
-    write(Y),
-    asserta(milik(Y,1)), !.
+tokemon_init:- nl, nl,
+    id(X, 1),
+    id(Y, 2),
+    id(Z, 3),
+    stat(X), nl,
+    stat(Y), nl,
+    stat(Z), nl, 
+    write('Pilih Pokemon Starter dengan rule select/1'),
+    !.
+
+select(PT) :- 
+    \+selected,
+    asserta(selected),
+    write(PT), 
+    write(' I choose you!\n'),
+    retractall(milik(PT, _)),
+    asserta(milik(PT,1)),
+    !.
+
+select(_) :- 
+    selected,
+    write('Sudah ambil tokemon starter kan tadi? masa lupa').
 
 /*cek kepemilikan*/
 isMilik(Tokemon):-
