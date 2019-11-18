@@ -23,7 +23,7 @@ start:-
 	narasi, 
 	help,
 	mulai,
-	%tokemon_init,
+	tokemon_init,
 	asserta(playing(1)).
 
 wronginput :-
@@ -103,5 +103,6 @@ heal:-
 	milik(Toke, 1),
 	player(I,J),
 	\+gym(I, J),
-	write('Gagal, Anda tidak sedang berada di gym'),
+	write('You can only use this command when you are in the gym.'),nl,
+	write('Go to the gym to heal your tokemon!'),
 	nl,!.
