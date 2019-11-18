@@ -101,8 +101,8 @@ spawn_healthbase :-
     asserta(healthbase(chacha, 95)),
 
 
-    asserta(healthbase(tokeyub, 97)), 
-    asserta(healthbase(tokedon, 65)),
+    asserta(healthbase(tokeyub, 80)), 
+    asserta(healthbase(tokedon, 80)),
     asserta(healthbase(tokecha, 80)),
     asserta(healthbase(tokego, 78)),
     asserta(healthbase(tokedo, 88)),
