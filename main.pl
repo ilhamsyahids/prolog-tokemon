@@ -79,14 +79,14 @@ statusenemy :- nl,
 %heal
 heal:- 
 	healed,
-	write('Sudah heal pada game ini gaes'), nl, !.
+	write('You can only heal your tokemon once.'), nl, !.
 
 heal:- 
 	\+healed,
 	inventory(X),
 	healList(X), 
 	asserta(healed),
-	write('Semua pokemon milikmu sudah disembuhkan yey'),
+	write('All your tokemon has been healed.yey.'),nl,
 	!.
 
 healList([]).
