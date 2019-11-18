@@ -12,14 +12,15 @@
 
 /*---------- DROP ----------*/
 drop(Name) :- 
-	milik(Name, 1), 
-	delFromInventory(Name), 
-	!.
-	
-drop(Name) :-
-	\+milik(Name, 1),
-	write('Gagal, Anda tidak memiliki pokemon tersebut'),
-	nl.
+    milik(Name, X), 
+    (X =:= 1 ->
+        delForever(Name),
+        write('Anda membuang '),
+        write(Name)
+        ;
+        write('Gagal, Anda tidak memiliki pokemon tersebut')
+    ),
+    !.
 
 /* =========RULES========= */
 

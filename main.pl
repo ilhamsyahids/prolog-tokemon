@@ -25,19 +25,6 @@ start:-
 	%tokemon_init,
 	asserta(playing(1)).
 
-do(start) :-!, start.
-do(help) :-!, help.
-do(quit) :-!, quit.
-do(w) :-!, w.
-do(a) :-!, a.
-do(s) :-!, s.
-do(d) :-!, d.
-do(map) :-!, map.
-do(status) :-!, status.
-do(drop(X)) :-!, drop(X).
-do(heal(X)) :-!, heal(X).
-do(_) :- wronginput.
-
 wronginput :-
 	write('Command yang dimasukkan salah, silakan masukan ulang'),nl.
 
