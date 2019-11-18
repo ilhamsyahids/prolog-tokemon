@@ -39,14 +39,14 @@ randomenemy :-
         asserta(enemyTokemon(Toke)), !.
 
 decide :-
-    write('tokemon liar muncul'), nl,
-    write('fight atau run'), nl,
+    write('A wild tokemon appears!'), nl,
+    write('fight or run'), nl,
     asserta(pilih(1)).
 
 fight :-
     asserta(battle(_)),
     randomenemy,
-    write('Choose your Tokemon!\n\nAvailable Tokemons: '), 
+    write('Choose your Tokemon using pick/1 !\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
     nl, !.
@@ -65,12 +65,12 @@ run :-
 	(Result =:= 0 -> gagalrun; berhasilrun).
     
 berhasilrun :-
-    write('Kamu berhasil kabur dari serangan Tokemon!'), nl,
+    write('You successfully escape from Tokemon!'), nl,
     remove,
     !, fail.
 
 gagalrun :-
-    write('Kamu gagal kabur dari serangan Tokemon'), nl,
+    write('You failed to run!'), nl,
     fight. 
 
 pick(_) :-
@@ -250,7 +250,10 @@ specialAttack :-
     serang(ET, NewDamage),
     write(PT),
     write(' uses special attack!'),nl,nl,
-    write('It was super effective!'),nl,
+    ( Damage < NewDamage ->
+        write('It was super effective!')
+    ),
+    nl,
     write('You dealt '), 
     write(NewDamage), 
     write(' damage to '),
@@ -262,6 +265,7 @@ specialAttack :-
     !, fail.
 
 specialAttack :- 
+    sAttack(_),
     write('Special attacks can only be used once per battle!'), !, fail.
 
 checkvictory :-
@@ -283,7 +287,7 @@ checklose :-
     health(ET, HPE),
     HPE =< 0,
     write(ET),
-    write(' died!'),
+    write(' died!'),nl,
     delForever(ET),
     retract(playerTokemonBattle(ET)),    
     retractall(picked),
@@ -320,10 +324,13 @@ statPlayerEnemy :-
     stat(ET).
 
 losegame :-
-    write('Anda sudah kalah :((').
+    write('YOU LOSEEEEE :(('),nl,
+    write('Better luck next time!'),halt.
 
 wingame :-
-    write('Anda menang :))').
+    write('YOU WINNNNN :))'),nl,
+    write('You are amazing! You have beat all the legendary Tokemons'),nl,
+    write('Come back later to test your luck'),halt.
 
 
 evolve(PT) :- 

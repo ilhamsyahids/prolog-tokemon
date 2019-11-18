@@ -1,5 +1,6 @@
 :- include('tokemon.pl').
 
+:- dynamic(player/2).
 :- dynamic(playing/0).
 :- dynamic(selected/0).
 
@@ -13,6 +14,9 @@
 :- discontiguous(addToInventory/1).
 :- discontiguous(inventory/1).
 :- discontiguous(delFromInventory/1).
+
+spawnPlayer :-
+    asserta(player(7,9)).
 
 /*---------- DROP ----------*/
 drop(Name) :- 
@@ -36,7 +40,7 @@ tokemon_init:- nl, nl,
     stat(X), nl,
     stat(Y), nl,
     stat(Z), nl, 
-    write('Pilih Pokemon Starter dengan rule select/1'),
+    write('Choose your own Tokemon using rule select/1'),
     !.
 
 select(PT) :- 
@@ -135,3 +139,65 @@ capt(Toke) :-
 	retract(health(Toke, 0)),
 	asserta(health(Toke, X)),
     write(Toke),write(' is captured!'),nl,!.
+
+resetAll :-
+    retractall(player(_,_)),
+    retractall(tokemon(_)),
+    retractall(damage(_,_)),
+    retractall(health(_,_)),
+    retractall(healthbase(_,_)),
+    retractall(id(_,_)),
+    retractall(jenis(_,_)),
+    retractall(milik(_,_)),
+    retractall(skill(_,_)),
+    retractall(type(_,_)).
+
+save(_):-
+	battle(_),
+	write('You can\'t save while battle'),!.
+
+save(FileAwal) :-
+    atom_concat('data/', FileAwal, Filename),
+	open(Filename, write, FinalFile),
+	facts(FinalFile),
+	close(FinalFile),
+	write('Saved to '),
+	write(Filename), nl.
+
+facts(FinalFile) :- save_data(FinalFile).
+facts(_) :- !.
+
+save_data(FinalFile) :-
+	tokemon(Toke), write(FinalFile, tokemon(Toke)), write(FinalFile, '.'), nl(FinalFile),
+	jenis(Toke, Jenis), write(FinalFile, jenis(Toke, Jenis)), write(FinalFile, '.'), nl(FinalFile),
+	healthbase(Toke, Healthbase), write(FinalFile, healthbase(Toke, Healthbase)), write(FinalFile, '.'), nl(FinalFile),
+	health(Toke, Health), write(FinalFile, health(Toke, Health)), write(FinalFile, '.'), nl(FinalFile),
+	type(Toke, Type), write(FinalFile, type(Toke, Type)), write(FinalFile, '.'), nl(FinalFile),
+	damage(Toke, Damage), write(FinalFile, damage(Toke, Damage)), write(FinalFile, '.'), nl(FinalFile),
+	skill(Toke, Skill), write(FinalFile, skill(Toke, Skill)), write(FinalFile, '.'), nl(FinalFile),
+	milik(Toke, Milik), write(FinalFile, milik(Toke, Milik)), write(FinalFile, '.'), nl(FinalFile),
+	id(Toke, Id), write(FinalFile, id(Toke, Id)), write(FinalFile, '.'), nl(FinalFile),
+	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
+    fail.
+
+load(_):-
+	battle(_),
+	write('You can\'t load while battle'),!.
+
+loads(FileAwal):-
+	atom_concat('data/', FileAwal, Filename),
+	resetAll,
+	open(Filename, read, FinalFile),
+	repeat,
+		read(FinalFile, In),
+		asserta(In),
+	at_end_of_stream(FinalFile),
+	close(FinalFile),
+	nl, write('Loaded form!'), 
+	write(FinalFile), nl, !.
+
+load(Filename):-
+	nl, write('File '), 
+	write(Filename), 
+	write(' no\'t found!'), 
+	nl, fail.

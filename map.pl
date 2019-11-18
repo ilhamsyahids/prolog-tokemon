@@ -3,7 +3,6 @@
 :- dynamic(playing/1).
 :- dynamic(lebarpeta/1).
 :- dynamic(tinggipeta/1).
-:- dynamic(player/2).
 :- dynamic(gym/2).
 :- dynamic(tokemon/2).
 :- dynamic(penghalang/2).
@@ -13,7 +12,6 @@ lebarpeta(15).
 tinggipeta(17).
 
 mulai :-
-    asserta(player(7,9)),
 	asserta(gym(13,16)),
 	asserta(key(8,9)),
 	C is 6,
@@ -109,12 +107,12 @@ key :-
 	player(X,Y),
 	retract(key(X,Y)),
 	retract(penghalang(10,16)), 
-	write('Selamat!, Anda berhasil menemukan kunci untuk keluar!'),nl,
+	write('CONGRATS!, You found the key to the Gym!'),nl,
 	!.
 
 map:-
 	\+playing(_),
-	write('this command can only be used after the game starts.'), nl,
+	write('This command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 map:-
 	tinggipeta(T),
@@ -130,7 +128,7 @@ map:-
 		nl
 	)),
 	write(' Legends:'), nl,
-	write('    X = Pagar'), nl,
+	write('    X = Barrier'), nl,
 	write('    P = Player'), nl,
 	write('    G = Gym'), nl,
 	write('    K = Key'), nl, nl,
@@ -139,102 +137,132 @@ map:-
 
 % move
 w :-
+	\+selected,
+	write('Choose your Tokemon starter first before moving!'),!.
+
+w :-
+	selected,
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
+	write('fight or run ?'),!,nl.
 
 w :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 w :-
+	selected,
 	player(_,Y),
 	Y =:= 1,
-	write('Anda bergerak ke utara, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move north, but there is a very strong barrier that is impenetrable'),nl,!.
 w :-
+	selected,
 	player(X,Y),
 	penghalang(X,P),
 	Q is P+1,
 	Y =:= Q,
-	write('Anda bergerak ke utara, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move north, but there is a very strong barrier that is impenetrable'),nl,!.
 w :- 
+	selected,
 	retract(player(X,Y)),
 	Y > 1,
 	NewY is Y - 1,
-	write('Anda bergerak ke utara'), nl,
+	write('You move north'), nl,
 	asserta(player(X, NewY)), appear,
 	!.
-
 a :-
+	\+selected,
+	write('Choose your Tokemon starter first before moving!'),!.
+a :-
+	selected,
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),
+	write('fight or run ?'),!,nl.
 a :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 a :-
+	selected,
 	player(X,_),
 	X =:= 1,
-	write('Anda bergerak ke barat, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move west, but there is a very strong barrier that is impenetrable'),nl,!.
 a :-
+	selected,
 	player(X,Y),
 	penghalang(P,Y),
 	Q is P+1,
 	X =:= Q,
-	write('Anda bergerak ke barat, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move west, but there is a very strong barrier that is impenetrable'),nl,!.
 a :- 
+	selected,
 	retract(player(X,Y)),
 	NewX is X - 1,
-	write('Anda bergerak ke barat'), nl,
+	write('You move west'), nl,
 	asserta(player(NewX, Y)), appear, 
 	!.
-
 s :-
+	\+selected,
+	write('Choose your Tokemon starter first before moving!'),!.
+s :-
+	selected,
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
+	write('fight or run ?'),!,nl.
 s :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 s :-
+	selected,
 	player(_,Y),
 	tinggipeta(P),
 	Y =:= P,
-	write('Anda bergerak ke selatan, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move south, but there is a very strong barrier that is impenetrable'),nl,!.
 s :-
+	selected,
 	player(X,Y),
 	penghalang(X,P),
 	Q is P-1,
 	Y =:= Q,
-	write('Anda bergerak ke selatan, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move south, but there is a very strong barrier that is impenetrable'),nl,!.
 s :- 
+	selected,
 	retract(player(X,Y)),
 	NewY is Y + 1,
-	write('Anda bergerak ke selatan'), nl,
+	write('You move South!'), nl,
 	asserta(player(X, NewY)),  appear, 
 	!.
-
 d :-
+	\+selected,
+	write('Choose your Tokemon starter first before moving!'),!.
+d :-
+	selected,
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
+	write('fight or run ?'),!,nl.
 d :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 d :-
+	selected,
 	player(X,_),
 	lebarpeta(Q),
 	X =:= Q,
-	write('Anda bergerak ke timur, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move east, but there is a very strong barrier that is impenetrable'),nl,!.
 d :-
+	selected,
 	player(X,Y),
 	penghalang(P,Y),
 	Q is P-1,
 	X =:= Q,
-	write('Anda bergerak ke timur, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move east, but there is a very strong barrier that is impenetrable'),nl,!.
 d :- 
+	selected,
 	retract(player(X,Y)),
 	NewX is X + 1,
-	write('Anda bergerak ke timur'), nl,
+	write('You move east!'), nl,
 	asserta(player(NewX, Y)), appear, key,
 	!.
 
@@ -245,7 +273,7 @@ appear :-
 nothing :-
 	player(X,Y),
 	gym(X,Y),
-	write('Anda berada di gym'), nl,nl,!.
+	write('You are on the Gym'), nl,nl,!.
 
 nothing :-
 	player(X,Y),
@@ -253,4 +281,4 @@ nothing :-
 	key,!.
 
 nothing :-
-	write('Tidak ada apa-apa di sini'), nl,nl.
+	write('There is nothing in here'), nl,nl.
