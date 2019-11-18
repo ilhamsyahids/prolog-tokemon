@@ -45,6 +45,7 @@ decide :-
 fight :-
     asserta(battle(_)),
     randomenemy,
+    %asserta(enemyTokemon(tokenna)),
     write('Choose your Tokemon!\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
@@ -214,6 +215,8 @@ capture :-
             write('You cannot capture another Tokemon! You have to drop one first.'), nl
             ;
             capt(ET),
+            tokeCountLegend(Z),
+            (Z =:= 4 -> wingame),
             remove
         )
     ).
@@ -270,7 +273,7 @@ checklose :-
     retract(playerTokemonBattle(ET)),    
     retractall(picked),
     (Q =:= 0 -> losegame;
-    write('Choose your Tokemon : ')  
+    write('Choose your Tokemon : '),
     inventory(P),
     write(P)),
     !. 
