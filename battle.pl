@@ -231,7 +231,10 @@ specialAttack :-
     serang(ET, NewDamage),
     write(PT),
     write(' uses special attack!'),nl,nl,
-    write('It was super effective!'),nl,
+    ( Damage < NewDamage ->
+        write('It was super effective!')
+    ),
+    nl,
     write('You dealt '), 
     write(NewDamage), 
     write(' damage to '),
