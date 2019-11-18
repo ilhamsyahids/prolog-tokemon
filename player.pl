@@ -130,6 +130,10 @@ resetAll :-
     retractall(skill(_,_)),
     retractall(type(_,_)).
 
+save(_):-
+	battle(_),
+	write('You can\'t save while battle'),!.
+
 save(FileAwal) :-
     atom_concat('data/', FileAwal, Filename),
 	open(Filename, write, FinalFile),
@@ -154,6 +158,10 @@ save_data(FinalFile) :-
 	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
     fail.
 
+load(_):-
+	battle(_),
+	write('You can\'t load while battle'),!.
+	
 load(FileAwal):-
 	atom_concat('data/', FileAwal, Filename),
 	resetAll,
