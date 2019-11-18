@@ -16,7 +16,7 @@
 :- discontiguous(delFromInventory/1).
 
 spawnPlayer :-
-    asserta(player(7,9)).
+    asserta(player(3,2)).
 
 /*---------- DROP ----------*/
 drop(Name) :- 

@@ -6,7 +6,7 @@
 :- dynamic(battle/1).
 :- dynamic(sAttack/1).
 :- dynamic(gagalRun/1).
-:- dynamic(picked/0).
+:- dynamic(picked/1).
 :- dynamic(pilih/1).
 :- dynamic(evolvedA/0).
 :- dynamic(evolvedB/0).
@@ -36,37 +36,48 @@ randomenemy :-
         milik(Toke, Siapa),
         Siapa =:= 0,
         retractall(enemyTokemon(_)),
-        asserta(enemyTokemon(Toke)), !.
+        asserta(enemyTokemon(Toke)), !,
+        write('enemy : '),
+        tokemon(Toke),
+        write(Toke), nl,
+        write('Type : '), type(Toke, Y), write(Y), nl,
+        write('Jenis : '), jenis(Toke, Z), write(Z), nl.
 
 decide :-
     write('A wild tokemon appears!'), nl,
+    randomenemy,
     write('fight or run'), nl,
     asserta(pilih(1)).
 
 fight :-
+	\+playing(_),
+	write('This command can only be used after the game starts.'), nl,
+	write('use "start." to start the Tokemon Game!'), nl, !.
+fight :-
     asserta(battle(_)),
-    randomenemy,
     write('Choose your Tokemon using pick/1 !\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
     nl, !.
 
-remove :-
-    retractall(picked),
-    retractall(gagalRun(_)),
-    retractall(sAttack(_)),
-    retractall(battle(_)),
-    retractall(enemyTokemon(_)),
-    retractall(playerTokemonBattle(_)),
-    retract(pilih(1)).
+    
 
+run:-
+	\+playing(_),
+	write('This command can only be used after the game starts.'), nl,
+	write('use "start." to start the Tokemon Game!'), nl, !.
 run :-
     random(0,2,Result),	
 	(Result =:= 0 -> gagalrun; berhasilrun).
     
 berhasilrun :-
     write('You successfully escape from Tokemon!'), nl,
-    remove,
+    retractall(picked(_)),
+    retractall(gagalRun(_)),
+    retractall(sAttack(_)),
+    retractall(battle(_)),
+    retractall(enemyTokemon(_)),
+    retractall(playerTokemonBattle(_)),
     !, fail.
 
 gagalrun :-
@@ -74,7 +85,7 @@ gagalrun :-
     fight. 
 
 pick(_) :-
-    picked,
+    picked(1),
     write('You have picked Tokemon!'), 
     !.
 
@@ -84,13 +95,14 @@ pick(_) :-
     !.
 
 pick(PT) :-
+    \+picked(1),
     milik(PT, 1),
     write('You : '), 
     write(PT), 
     write(' I choose you!\n'),
     retractall(playerTokemonBattle(_)),
     asserta(playerTokemonBattle(PT)),
-    asserta(picked),
+    asserta(picked(1)),
     statPlayerEnemy, !,
     cek(PT),
     !.
@@ -98,7 +110,7 @@ pick(PT) :-
 cek(PT) :-
     PT == tokeyub,
     retractall(evolvedA),
-    write('masuk'), !.
+     !.
 
 cek(PT) :-
     PT == tokedon,
@@ -115,11 +127,11 @@ attack :-
     \+battle(_),
     write('You are not in a battle right now!'),nl,!.
 attack :-
-    \+picked,
+    \+picked(1),
     write('Pick your Tokemon first.'),nl,!.
 
 attack :- 
-    picked,
+    picked(1),
     enemyTokemon(ET),
     playerTokemonBattle(PT),
     damage(PT, Damage),
@@ -236,10 +248,15 @@ capture :-
             write('You cannot capture another Tokemon! You have to drop one first.'), nl
             ;
             capt(ET),
+            retractall(picked(_)),
+            retractall(picked(_)),
+            retractall(gagalRun(_)),
+            retractall(sAttack(_)),
+            retractall(battle(_)),
+            retractall(enemyTokemon(_)),
+            retractall(playerTokemonBattle(_)),
             tokeCountLegend(Z),
-            (Z =:= 4 -> wingame),
-            cek2,
-            remove
+            (Z =:= 4 -> wingame; cek2)
         )
     ).
 
@@ -295,7 +312,7 @@ checklose :-
     write(' died!'),nl,
     delForever(ET),
     retract(playerTokemonBattle(ET)),    
-    retractall(picked),
+    retractall(picked(_)),
     (Q =:= 0 -> losegame;
     write('Choose your Tokemon : '),
     inventory(P),
@@ -305,8 +322,14 @@ checklose :-
 exit :- 
     enemyTokemon(Toke),
     delForever(Toke),
-    remove,
-    write('You leave the carcass'), nl, cek2, !.
+    retractall(picked(_)),
+    retractall(gagalRun(_)),
+    retractall(sAttack(_)),
+    retractall(battle(_)),
+    retractall(enemyTokemon(_)),
+    retractall(playerTokemonBattle(_)),
+    tokeCountLegend(Z),
+(Z =:= 4 -> wingame; write('You leave the carcass'), nl, cek2).
 
 cek2 :-
     \+evolvedA,
@@ -354,7 +377,7 @@ evolve(PT) :-
     write('tokeyyub evolved to ayyub!!'),
     !.
 
-elvolve(PT) :- 
+evolve(PT) :- 
     \+evolvedB,
     asserta(evolvedB),
     PT == tokedon,
@@ -364,9 +387,9 @@ elvolve(PT) :-
     retract(milik(brandon,0)),
     asserta(milik(brandon,1)),
 
-    retract(id(tokedon,1)),
+    retract(id(tokedon,2)),
     retractall(id(brandon,_)),
-    asserta(id(brandon,1)),
+    asserta(id(brandon,2)),
     write('tokedon evolved to brandon!!'), 
     !.
 
@@ -380,9 +403,9 @@ evolve(PT) :-
     retract(milik(chacha,0)),
     asserta(milik(chacha,1)),
 
-    retract(id(tokecha,1)),
+    retract(id(tokecha,3)),
     retractall(id(chacha,_)),
-    asserta(id(chacha,1)),
+    asserta(id(chacha,3)),
     write('tokecha evolved to chacha!!'),
     !.
 
