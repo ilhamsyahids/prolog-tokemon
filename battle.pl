@@ -40,7 +40,6 @@ randomenemy :-
         write('enemy : '),
         tokemon(Toke),
         write(Toke), nl,
-        write('Health : '), health(Toke, X), write(X), nl,
         write('Type : '), type(Toke, Y), write(Y), nl,
         write('Jenis : '), jenis(Toke, Z), write(Z), nl.
 
