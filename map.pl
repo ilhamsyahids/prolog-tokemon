@@ -139,7 +139,9 @@ map:-
 w :-
 	\+selected,
 	write('Choose your Tokemon starter first before moving!'),!.
-
+w :-
+	battle(_),
+	write('Finish your battle first!!'),!.
 w :-
 	selected,
 	pilih(1),
@@ -173,11 +175,15 @@ w :-
 a :-
 	\+selected,
 	write('Choose your Tokemon starter first before moving!'),!.
+
 a :-
 	selected,
 	pilih(1),
 	write('Your journey is being blocked by a wild tokemon!!!'),nl,
 	write('fight or run ?'),!,nl.
+a :-
+	battle(_),
+	write('Finish your battle first!!'),!.
 a :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -204,6 +210,9 @@ a :-
 s :-
 	\+selected,
 	write('Choose your Tokemon starter first before moving!'),!.
+s :-
+	battle(_),
+	write('Finish your battle first!!'),!.
 s :-
 	selected,
 	pilih(1),
@@ -236,6 +245,9 @@ s :-
 d :-
 	\+selected,
 	write('Choose your Tokemon starter first before moving!'),!.
+d :-
+	battle(_),
+	write('Finish your battle first!!'),!.
 d :-
 	selected,
 	pilih(1),
