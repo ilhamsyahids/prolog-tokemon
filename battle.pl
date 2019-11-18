@@ -301,7 +301,7 @@ checklose :-
 
 exit :- 
     enemyTokemon(Toke),
-    backNormal(Toke),
+    delForever(Toke),
     remove,
     write('You leave the carcass'), nl, cek2, !.
 
