@@ -265,6 +265,7 @@ id(tokejan, 22).
 id(tokeham, 23).
 id(tokenna, 24).
 
+/*rules*/
 backNormal(Toke) :- 
     tokemon(Toke),
 	healthbase(Toke, X),
