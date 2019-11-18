@@ -74,16 +74,14 @@ status :-
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 
-status :- 
-
 status :-
 	write('Your Tokemon : '), nl,
-	tokemon(K),
-	milik(K, J),
-	J =:= 1,
-	stat(K), nl.
+	forall(between(1,25,Val), 
+		(id(K, Val), milik(K, P),
+		(P =:= 1 -> stat(K), nl);write(''))
+	), statusenemy.
 
-status :- nl,
+statusenemy :- nl,
 	write('Your Enemy : '), nl,
 	forall(between(21,25,Val), 
 		(id(K, Val), milik(K, P),
