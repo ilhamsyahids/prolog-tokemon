@@ -16,22 +16,18 @@
 :- discontiguous(delFromInventory/1).
 
 spawnPlayer :-
-    asserta(player(7,9)).
+    asserta(player(3,2)).
 
 /*---------- DROP ----------*/
 drop(Name) :- 
-    tokeCounter(Y),
-    Q is Y-1,
-    (Q =:= 0 -> losegame;
-        milik(Name, X), 
-        (X =:= 1 ->
-            delForever(Name),
-            write('You have dropped '),
-            write(Name), write('.')
-            ;
-            write('You do not have '),write(Name),write(' in your inventory!'),nl
-        )
-    ),
+    milik(Name, X), 
+    (X =:= 1 ->
+        delForever(Name),
+        write('You have dropped '),
+        write(Name), write('.'),
+        tokeCounter(Y),
+        (Y =:= 0 -> losegame;write(''))
+        ; write('You do not have '),write(Name),write(' in your inventory!'),nl ),
     !.
 
 /* =========RULES========= */
