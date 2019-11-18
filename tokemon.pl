@@ -199,14 +199,14 @@ spawn_type :-
 
 /*normal attack*/
 spawn_damage :-
-    asserta(damage(ayyub, 30)),
-    asserta(damage(brandon, 30)),
-    asserta(damage(chacha, 30)),
+    asserta(damage(ayyub, 35)),
+    asserta(damage(brandon, 35)),
+    asserta(damage(chacha, 35)),
 
 
-    asserta(damage(tokeyub, 25)),
-    asserta(damage(tokedon, 20)),
-    asserta(damage(tokecha, 19)),
+    asserta(damage(tokeyub, 33)),
+    asserta(damage(tokedon, 33)),
+    asserta(damage(tokecha, 33)),
     asserta(damage(tokego, 17)),
     asserta(damage(tokedo, 21)),
     asserta(damage(tokefab, 31)),

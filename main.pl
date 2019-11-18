@@ -178,3 +178,4 @@ loads(Filename):-
 	write(Filename), 
 	write(' no\'t found!'), 
 	nl, fail.
+
