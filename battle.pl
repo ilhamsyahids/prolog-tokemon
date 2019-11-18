@@ -36,10 +36,17 @@ randomenemy :-
         milik(Toke, Siapa),
         Siapa =:= 0,
         retractall(enemyTokemon(_)),
-        asserta(enemyTokemon(Toke)), !.
+        asserta(enemyTokemon(Toke)), !,
+        write('enemy : '),
+        tokemon(Toke),
+        write(Toke), nl,
+        write('Health : '), health(Toke, X), write(X), nl,
+        write('Type : '), type(Toke, Y), write(Y), nl,
+        write('Jenis : '), jenis(Toke, Z), write(Z), nl.
 
 decide :-
     write('A wild tokemon appears!'), nl,
+    randomenemy,
     write('fight or run'), nl,
     asserta(pilih(1)).
 
@@ -49,7 +56,6 @@ fight :-
 	write('use "start." to start the Tokemon Game!'), nl, !.
 fight :-
     asserta(battle(_)),
-    randomenemy,
     write('Choose your Tokemon using pick/1 !\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
