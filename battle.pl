@@ -248,8 +248,7 @@ capture :-
             retractall(enemyTokemon(_)),
             retractall(playerTokemonBattle(_)),
             tokeCountLegend(Z),
-            (Z =:= 4 -> wingame),
-            cek2
+            (Z =:= 4 -> wingame; cek2)
         )
     ).
 
@@ -322,21 +321,20 @@ exit :-
     retractall(enemyTokemon(_)),
     retractall(playerTokemonBattle(_)),
     tokeCountLegend(Z),
-    (Z =:= 4 -> wingame),
-    write('You leave the carcass'), nl, cek2, !.
+(Z =:= 4 -> wingame; write('You leave the carcass'), nl, cek2).
 
 cek2 :-
     \+evolvedA,
     milik(tokeyub,1),
-    write('you can evolve tokeyub!').
+    write('you can evolve tokeyub!'), !.
 cek2 :-
     \+evolvedB,
     milik(tokedon,1),
-    write('you can evolve tokedon!').
+    write('you can evolve tokedon!'), !.
 cek2 :-
     \+evolvedC,
     milik(tokecha,1),
-    write('you can evolve tokecha!').
+    write('you can evolve tokecha!'), !.
 
 statPlayerEnemy :-
     playerTokemonBattle(PT),
