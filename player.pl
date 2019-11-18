@@ -70,9 +70,7 @@ addToInventory(Toke):-
     !.
 
 delFromInventory(Toke):-
-    tokemon(Toke),
-    retractall(milik(Toke,1)),
-    asserta(milik(Toke,0)),!.
+    backNormal(Toke).
 
 delForever(Toke):-
     tokemon(Toke),

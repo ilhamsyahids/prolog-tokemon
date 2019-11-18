@@ -42,6 +42,14 @@ decide :-
     write('fight atau run'), nl,
     asserta(pilih(1)).
 
+    % milik(Y, 0),
+    % asserta(enemyTokemon(Y)),
+    % write(Y),
+    % write(' liar Muncul!!'), nl,
+    % write('fight atau run'), nl,
+    % read(X),
+    % (X == run -> !, run; X == fight -> fight).
+
 fight :-
     asserta(battle(_)),
     randomenemy,
@@ -210,7 +218,6 @@ capture :-
         !, fail
         ;
         tokeCounter(X),
-        write(X),
         (X =:= 6 ->
             write('You cannot capture another Tokemon! You have to drop one first.'), nl
             ;
@@ -239,6 +246,7 @@ specialAttack :-
     write(NewDamage), 
     write(' damage to '),
     write(ET), nl, nl,
+    statPlayerEnemy,
     asserta(sAttack(_)),
     (\+checkvictory ->
         !, fail
@@ -261,20 +269,29 @@ checkvictory :-
 
 checklose :-
     tokeCounter(X),
-    (X =:= 0 -> lose;
-    playerTokemonBattle(ET),
-    health(ET, HPE),
-    HPE =< 0,
-    write(ET),
-    write(' died! Choose your pokemon '),
-    delForever(ET),
-    retract(playerTokemonBattle(ET)),    
-    retractall(picked),    
-    inventory(X),
-    write(X)),
-    !. 
+    (X =:= 0 -> 
+        lose
+        ;
+        playerTokemonBattle(ET),
+        health(ET, HPE),
+        HPE =< 0,
+        write(ET),
+        write(' died! Choose your pokemon '),
+        delForever(ET),
+        retract(playerTokemonBattle(ET)),    
+        retractall(picked),    
+        inventory(X),
+        write(X)
+    ),
+    !.
+
+% checklose :-
+%     write('You lose the game!').
+    % halt.
 
 exit :- 
+    enemyTokemon(Toke),
+    backNormal(Toke),
     remove,
     write('You leave the carcass').
 
