@@ -3,12 +3,8 @@
 % Felicia Gillian T. Tuerah 13518070
 % Muhammad Rizki Fonna 		13516001
 
-:- include('tokemon.pl').
-:- include('player.pl').
-:- include('battle.pl').
 :- include('map.pl').
 
-:- dynamic(inventory/1).
 
 start:-
 	playing(_),
@@ -27,12 +23,7 @@ start:-
 	help,
 	mulai,
 	%tokemon_init,
-	asserta(playing(1)),
-	asserta(inventory(6)), nl,nl,
-	repeat,
-		write('Enter Command : '), read(X),
-		do(X),
-	X == quit.
+	asserta(playing(1)).
 
 do(start) :-!, start.
 do(help) :-!, help.

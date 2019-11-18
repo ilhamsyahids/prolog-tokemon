@@ -4,33 +4,32 @@
 :- dynamic(enemyTokemon/1).
 :- dynamic(playerTokemonBattle/1).
 :- dynamic(battle/1).
-:- dynamic(health/2).
 :- dynamic(sAttack/1).
 :- dynamic(gagalRun/1).
 :- dynamic(picked/0).
 
-:- discontiguous decide/0.
-:- discontiguous fight/0.
-:- discontiguous remove/0.
-:- discontiguous run/0.
-:- discontiguous pick/1.
-:- discontiguous enemyAttack/0.
-:- discontiguous serang/2.
-:- discontiguous attack/0.
-:- discontiguous specialAttack/0.
-:- discontiguous checklose/0.
-:- discontiguous checkvictory/0.
-:- discontiguous modifier/4.
-:- discontiguous capture/0.
-:- discontiguous exit/0.
-:- discontiguous statPlayerEnemy/0.
+:- discontiguous(decide/0).
+:- discontiguous(fight/0).
+:- discontiguous(remove/0).
+:- discontiguous(run/0).
+:- discontiguous(pick/1).
+:- discontiguous(enemyAttack/0).
+:- discontiguous(serang/2).
+:- discontiguous(attack/0).
+:- discontiguous(specialAttack/0).
+:- discontiguous(checklose/0).
+:- discontiguous(checkvictory/0).
+:- discontiguous(modifier/4).
+:- discontiguous(capture/0).
+:- discontiguous(exit/0).
+:- discontiguous(statPlayerEnemy/0).
 
 % enemyTokemon(tokeyub).
 % playerTokemonBattle(tokedo).
 
 decide :-
     milik(Y, 0),
-    assert(enemyTokemon(Y)),
+    asserta(enemyTokemon(Y)),
     write(Y),
     write(' liar Muncul!!'), nl,
     write('fight atau run'), nl,
@@ -38,7 +37,7 @@ decide :-
     (X == run -> run; X == fight -> fight).
 
 fight :-
-    assert(battle(_)),
+    asserta(battle(_)),
     write('You decided to fight!\nChoose your Tokemon!\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
@@ -67,7 +66,7 @@ run :-
 run :-
     nl,
     battle(_),
-    assert(gagalRun(_)),
+    asserta(gagalRun(_)),
     fight,
     write('You failed to run!\nChoose your Tokemon!\n\nAvailable Tokemons: '), 
     inventory(X),
@@ -86,12 +85,12 @@ pick(_) :-
 
 pick(PT) :-
     milik(PT, 1),
-    write('You : “'), 
+    write('You : '), 
     write(PT), 
-    write(' I choose you!”\n'),
+    write(' I choose you!\n'),
     retractall(playerTokemonBattle(_)),
-    assert(playerTokemonBattle(PT)),
-    assert(picked),
+    asserta(playerTokemonBattle(PT)),
+    asserta(picked),
     statPlayerEnemy,
     !.
 
@@ -152,7 +151,7 @@ serang(T, Damage) :-
         HPP is NewHP
     ),
     retractall(health(T, HP)),
-    assert(health(T, HPP)).
+    asserta(health(T, HPP)).
 
 % PT tokemon yang diserang, ET tokemon yang menyerang, 
 % Damage = damage awal, X = damage akhir
@@ -240,7 +239,7 @@ specialAttack :-
     write(NewDamage), 
     write(' damage to '),
     write(ET), nl, nl,
-    assert(sAttack(_)),
+    asserta(sAttack(_)),
     (\+checkvictory ->
         !, fail
     ).

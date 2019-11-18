@@ -1,15 +1,15 @@
 :- dynamic(health/2).
 :- dynamic(milik/2).
 
-:- discontiguous tokemon/1.
-:- discontiguous jenis/2.
-:- discontiguous healthbase/2.
-:- discontiguous health/2.
-:- discontiguous damage/2.
-:- discontiguous skill/2.
-:- discontiguous type/2.
-:- discontiguous id/2.
-:- discontiguous milik/2.
+:- discontiguous(tokemon/1).
+:- discontiguous(jenis/2).
+:- discontiguous(healthbase/2).
+:- discontiguous(health/2).
+:- discontiguous(damage/2).
+:- discontiguous(skill/2).
+:- discontiguous(type/2).
+:- discontiguous(id/2).
+:- discontiguous(milik/2).
 
 /*nama tokemon*/
 /* 20 tokemon normal*/
