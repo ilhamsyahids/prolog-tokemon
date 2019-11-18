@@ -167,10 +167,10 @@ modifier(PT, ET, Damage, X) :-
                     X is Damage + 0.5*Damage 
                     ;
                     TE == ice, TP == water ->
-                        X is Damage + 0.3*Damage 
+                        X is Damage + 0.4*Damage 
                         ;
                         TE == ground, TP == leaves ->
-                            X is Damage + 0.3*Damage 
+                            X is Damage + 0.4*Damage 
                             ;
                             TP == fire, TE == leaves ->
                                 X is Damage - 0.5*Damage 
@@ -185,10 +185,10 @@ modifier(PT, ET, Damage, X) :-
                                             X is Damage - 0.5*Damage 
                                             ;
                                             TP == ice, TE == water ->
-                                                X is Damage - 0.3*Damage 
+                                                X is Damage - 0.4*Damage 
                                                 ;
                                                 TP == ground, TE == leaves ->
-                                                    X is Damage - 0.3*Damage 
+                                                    X is Damage - 0.4*Damage 
                                                     ;
                                                     X is Damage 
     ).
@@ -231,9 +231,6 @@ specialAttack :-
     serang(ET, NewDamage),
     write(PT),
     write(' uses special attack!'),nl,nl,
-    ( Damage < NewDamage ->
-        write('It was super effective!')
-    ),
     nl,
     write('You dealt '), 
     write(NewDamage), 
