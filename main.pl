@@ -50,6 +50,23 @@ wronginput :-
 	write('Command yang dimasukkan salah, silakan masukan ulang'),nl.
 
 narasi:- 
+	write(''),nl,nl
+	write('Di Desa Toke yang dingin hidup seorang anak bernama Kemon. Di suatu malam kemon tidak bisa tidur,'), nl,
+	write('akhirnya dia memutuskan untuk keluar rumah mencari angin segar. Di tengah perjalanannya,'), nl,
+	write('secara tidak sengaja Kemon melihat bola-bola yang melayangdan memancarkan cahaya biru.'), nl,
+	write('Karena penasaran akhirnya Kemon mengikuti cahaya biru tersebut. karena telah terhipnotis dengan,'), nl,
+	write('Tanpa sadar Kemon jatuh terjerumus ke dalam sebuah portal yang membawanya ke dunia Tokemon.'), nl,
+	write(''), nl,
+	write('Saat ia membuka matanya, ia bertemu dengan seorang kakek yang memberitahu bahwa ia hanya'), nl,
+	write('bisa keluar dari dunia Tokemon jika mampu mengalahkan 4 buah tokemon legendary'), nl,
+	write('yaitu, tokegill, tokejan, tokenna dan tokeham. Kakek tersebut juga memberi 1 buah tokemon'), nl,
+	write('untuk membantu Kemon keluar dari dunia Tokemon dan kembali ke desa Toke.'), nl,
+	write('Tetapi Kemon juga harus berhati-hati karena jika ia kehilangan tokemonnya maka Kemon akan'), nl,
+	write('terkurung di dunia tokemon selamanya!.'), nl,
+	write(''), nl,
+	write('Tiba-tiba petir menyabar sangat besar dan kakek itu pun menghilang, dia juga meninggalkan sebuah'), nl,
+	write('peta untuk Kemon. peta tersebut menunjukkan kunci untuk pergi ke Gym, yaitu tempat menyembuhkan'), nl,
+	write('tokemonnya yang terluka dalam pertarungan.Semangat Kemon, kami tau kamu pasti bisa!'), nl,
 	write(' Hello there! Welcome to the world of Tokemon!'),nl,
 	write(' Find the Key to destroy the barrier to the Gym !!!'),nl, nl.
 
