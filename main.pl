@@ -62,8 +62,8 @@ help :-
 	write('    map. -- look at the map'), nl,
 	write('    heal. -- cure Tokemon in inventory if in gym center'), nl,
 	write('    status. -- show your status'), nl,
-	write('    save(Filename). -- save your game to directory data/'), nl,
-	write('    loads(Filename). -- load your game from directory data/'), nl,nl,
+	write('    save(\'Filename.txt\'). -- save your game to directory data/'), nl,
+	write('    loads(\'Filename.txt\'). -- load your game from directory data/'), nl,nl,
 
 	write(' Legends:'), nl,
 	write('    X = Barrier'), nl,
@@ -143,7 +143,7 @@ facts(_) :- !.
 
 save_data(FinalFile) :-
     (selected -> write(FinalFile, selected), write(FinalFile, '.'), nl(FinalFile)),
-    (healed -> write(FinalFile, healed), write(FinalFile, '.'), nl(FinalFile)),
+    %(healed -> write(FinalFile, healed), write(FinalFile, '.'), nl(FinalFile)),
 	tokemon(Toke), write(FinalFile, tokemon(Toke)), write(FinalFile, '.'), nl(FinalFile),
 	jenis(Toke, Jenis), write(FinalFile, jenis(Toke, Jenis)), write(FinalFile, '.'), nl(FinalFile),
 	healthbase(Toke, Healthbase), write(FinalFile, healthbase(Toke, Healthbase)), write(FinalFile, '.'), nl(FinalFile),
