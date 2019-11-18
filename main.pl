@@ -47,7 +47,7 @@ wronginput :-
 
 narasi:- 
 	write(' Hello there! Welcome to the world of Tokemon!'),nl,
-	write(' Temukan Key untuk membuka gerbang menuju Gym!!'),nl, nl.
+	write(' Find the Key to destroy the barrier to the Gym !!!'),nl, nl.
 
 help :-
 	write(' Available commands:'), nl,
@@ -63,7 +63,7 @@ help :-
 	write('    load(Filename). -- load your game from directory data/'), nl,nl,
 
 	write(' Legends:'), nl,
-	write('    X = Pagar'), nl,
+	write('    X = Barrier'), nl,
 	write('    P = Player'), nl,
 	write('    G = Gym'), nl,
 	write('    K = Key').

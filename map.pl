@@ -190,7 +190,8 @@ a :-
 
 s :-
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
+	write('fight or run ?'),!,nl.
 s :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -199,23 +200,24 @@ s :-
 	player(_,Y),
 	tinggipeta(P),
 	Y =:= P,
-	write('Anda bergerak ke selatan, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move south, but there is a very strong barrier that is impenetrable'),nl,!.
 s :-
 	player(X,Y),
 	penghalang(X,P),
 	Q is P-1,
 	Y =:= Q,
-	write('Anda bergerak ke selatan, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move south, but there is a very strong barrier that is impenetrable'),nl,!.
 s :- 
 	retract(player(X,Y)),
 	NewY is Y + 1,
-	write('Anda bergerak ke selatan'), nl,
+	write('You move South!'), nl,
 	asserta(player(X, NewY)),  appear, 
 	!.
 
 d :-
 	pilih(1),
-	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+	write('Your journey is being blocked by a wild tokemon!!!'),nl,
+	write('fight or run ?'),!,nl.
 d :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -224,17 +226,17 @@ d :-
 	player(X,_),
 	lebarpeta(Q),
 	X =:= Q,
-	write('Anda bergerak ke timur, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move east, but there is a very strong barrier that is impenetrable'),nl,!.
 d :-
 	player(X,Y),
 	penghalang(P,Y),
 	Q is P-1,
 	X =:= Q,
-	write('Anda bergerak ke timur, tetapi ternyata ada barrier yang sangat kuat dan tidak dapat ditembus'),nl,!.
+	write('You move east, but there is a very strong barrier that is impenetrable'),nl,!.
 d :- 
 	retract(player(X,Y)),
 	NewX is X + 1,
-	write('Anda bergerak ke timur'), nl,
+	write('You move east!'), nl,
 	asserta(player(NewX, Y)), appear, key,
 	!.
 
@@ -245,7 +247,7 @@ appear :-
 nothing :-
 	player(X,Y),
 	gym(X,Y),
-	write('Anda berada di gym'), nl,nl,!.
+	write('You are on the Gym'), nl,nl,!.
 
 nothing :-
 	player(X,Y),
@@ -253,4 +255,4 @@ nothing :-
 	key,!.
 
 nothing :-
-	write('Tidak ada apa-apa di sini'), nl,nl.
+	write('There is nothing in here'), nl,nl.
