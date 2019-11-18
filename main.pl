@@ -4,6 +4,7 @@
 % Muhammad Rizki Fonna 		13516001
 
 :- include('map.pl').
+:- dynamic(healed/0).
 
 
 start:-
@@ -41,7 +42,7 @@ start:-
 	narasi, 
 	help,
 	mulai,
-	%tokemon_init,
+	tokemon_init,
 	asserta(playing(1)).
 
 wronginput :-
@@ -96,17 +97,31 @@ statusenemy :- nl,
 
 %heal
 heal:- 
-	player(I, J), 
-	gym(I, J), 
-	tokemon(Toke),
-	milik(Toke, 1), 
+	healed,
+	write('You can only heal your tokemon once.'), nl, !.
+
+heal:- 
+	\+healed,
+	inventory(X),
+	healList(X), 
+	asserta(healed),
+	write('All your tokemon has been healed.yey.'),nl,
+	!.
+
+healList([]).
+
+healList([H|T]) :- oneHeal(H), healList(T).
+
+oneHeal(Toke) :-
 	healthbase(Toke,X),
-	retract(health(Toke, _)),
+	retractall(health(Toke,_)),
 	asserta(health(Toke, X)),!.
+
 heal:- 
 	tokemon(Toke),
 	milik(Toke, 1),
 	player(I,J),
 	\+gym(I, J),
-	write('Gagal, Anda tidak sedang berada di gym'),
+	write('You can only use this command when you are in the gym.'),nl,
+	write('Go to the gym to heal your tokemon!'),
 	nl,!.

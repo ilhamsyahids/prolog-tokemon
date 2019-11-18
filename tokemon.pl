@@ -282,6 +282,7 @@ spawn_id :-
     asserta(id(tokeham, 23)),
     asserta(id(tokenna, 24)).
 
+/*rules*/
 backNormal(Toke) :- 
     tokemon(Toke),
 	healthbase(Toke, X),

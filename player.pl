@@ -15,10 +15,10 @@ drop(Name) :-
     milik(Name, X), 
     (X =:= 1 ->
         delForever(Name),
-        write('Anda membuang '),
-        write(Name)
+        write('You have dropped '),
+        write(Name), write('.')
         ;
-        write('Gagal, Anda tidak memiliki pokemon tersebut')
+        write('You do not have '),write(Name),write(' in your inventory!'),nl,
     ),
     !.
 
