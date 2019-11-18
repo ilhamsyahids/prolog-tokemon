@@ -74,6 +74,8 @@ status :-
 	write('this command can only be used after the game starts.'), nl,
 	write('use "start." to start the Tokemon Game!'), nl, !.
 
+status :- 
+
 status :-
 	write('Your Tokemon : '), nl,
 	tokemon(K),
@@ -81,12 +83,11 @@ status :-
 	J =:= 1,
 	stat(K), nl.
 
-status :-
+status :- nl,
 	write('Your Enemy : '), nl,
-	forall(between(21,24,Val), 
-		(id(K, Val),
-		milik(K, 0) , jenis(K, legend),
-		stat(K), nl)
+	forall(between(21,25,Val), 
+		(id(K, Val), milik(K, P),
+		(P =:= 0 -> jenis(K, legend),stat(K), nl);write(''))
 	).
 
 %heal
@@ -98,11 +99,6 @@ heal:-
 	healthbase(Toke,X),
 	retract(health(Toke, _)),
 	asserta(health(Toke, X)),!.
-heal:-
-	tokemon(Toke),
-	\+milik(Toke, 1),
-	write('Gagal, Anda tidak memiliki pokemon tersebut'),
-	nl,!.
 heal:- 
 	tokemon(Toke),
 	milik(Toke, 1),

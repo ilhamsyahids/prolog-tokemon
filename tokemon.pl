@@ -230,11 +230,13 @@ milik(tokema, 1).
 milik(tokevan, 1).
 milik(tokeli, 1).
 
+
 milik(tokegill, 1).
-milik(tokejan, 1).
+milik(tokejan, 0).
 milik(tokeham, 1).
 milik(tokenna, 0).
-milik(_, 0).
+
+
 
 /*id tokemon*/
 id(tokeyub, 1).
