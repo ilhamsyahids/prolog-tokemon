@@ -33,6 +33,7 @@ start:-
 	write('                   /$$  \\ $$'), nl,
 	write('                   |  $$$$$$/'), nl,
 	write('                   \\______/'), nl,
+	resetAll,
 	narasi, 
 	help,
 	mulai,
