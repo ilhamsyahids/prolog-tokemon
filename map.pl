@@ -184,7 +184,7 @@ a :-
 	retract(player(X,Y)),
 	NewX is X - 1,
 	write('Anda bergerak ke barat'), nl,
-	asserta(player(NewX, Y)), key, appear, 
+	asserta(player(NewX, Y)), appear, 
 	!.
 
 s :-
@@ -234,7 +234,7 @@ d :-
 	retract(player(X,Y)),
 	NewX is X + 1,
 	write('Anda bergerak ke timur'), nl,
-	asserta(player(NewX, Y)), appear, 
+	asserta(player(NewX, Y)), appear, key,
 	!.
 
 appear :-

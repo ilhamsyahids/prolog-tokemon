@@ -51,7 +51,7 @@ fight :-
     nl, !.
 
 remove :-
-    retractall(picked(_)),
+    retractall(picked),
     retractall(gagalRun(_)),
     retractall(sAttack(_)),
     retractall(battle(_)),
@@ -268,7 +268,7 @@ checklose :-
     write(ET),
     write(' died! Choose your pokemon '),
     delForever(ET),
-    retractall(playerTokemonBattle(ET)),    
+    retract(playerTokemonBattle(ET)),    
     retractall(picked),    
     inventory(X),
     write(X)),
