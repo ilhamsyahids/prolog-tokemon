@@ -4,6 +4,7 @@
 % Muhammad Rizki Fonna 		13516001
 
 :- include('map.pl').
+:- dynamic(healed/0).
 
 
 start:-
@@ -77,13 +78,26 @@ statusenemy :- nl,
 
 %heal
 heal:- 
-	player(I, J), 
-	gym(I, J), 
-	tokemon(Toke),
-	milik(Toke, 1), 
+	healed,
+	write('Sudah heal pada game ini gaes'), nl, !.
+
+heal:- 
+	\+healed,
+	inventory(X),
+	healList(X), 
+	asserta(healed),
+	write('Semua pokemon milikmu sudah disembuhkan yey'),
+	!.
+
+healList([]).
+
+healList([H|T]) :- oneHeal(H), healList(T).
+
+oneHeal(Toke) :-
 	healthbase(Toke,X),
-	retract(health(Toke, _)),
+	retractall(health(Toke,_)),
 	asserta(health(Toke, X)),!.
+
 heal:- 
 	tokemon(Toke),
 	milik(Toke, 1),

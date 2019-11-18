@@ -13,7 +13,7 @@ lebarpeta(15).
 tinggipeta(17).
 
 mulai :-
-    asserta(player(3,2)),
+    asserta(player(13,15)),
 	asserta(gym(13,16)),
 	asserta(key(8,9)),
 	C is 6,
@@ -141,6 +141,7 @@ map:-
 w :-
 	pilih(1),
 	write('Perjalananmu dihalangi oleh seekor tokemon!!!'),!,nl.
+
 w :-
 	\+playing(_),
 	write('this command can only be used after the game starts.'), nl,
@@ -240,6 +241,11 @@ d :-
 appear :-
 	random(1,7,Appear),
 	(Appear =:= 5 -> decide; nothing).
-		
+
+nothing :-
+	player(X,Y),
+	gym(X,Y),
+	write('Anda berada di gym'), nl,nl.
+
 nothing :-
 	write('Tidak ada apa-apa di sini'), nl,nl.

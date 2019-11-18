@@ -114,7 +114,7 @@ health(tokekha, 86).
 health(tokedhil, 87).
 health(tokema, 99).
 health(tokevan, 103).
-health(tokeli, 101).
+health(tokeli, 10).
 
 health(tokegill, 151).
 health(tokejan, 139).
