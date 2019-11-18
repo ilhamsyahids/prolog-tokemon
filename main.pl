@@ -62,8 +62,8 @@ help :-
 	write('    map. -- look at the map'), nl,
 	write('    heal. -- cure Tokemon in inventory if in gym center'), nl,
 	write('    status. -- show your status'), nl,
-	write('    save(Filename). -- save your game'), nl,
-	write('    load(Filename). -- load previously saved game'), nl,nl,
+	write('    save(Filename). -- save your game to directory data/'), nl,
+	write('    load(Filename). -- load your game from directory data/'), nl,nl,
 
 	write(' Legends:'), nl,
 	write('    X = Pagar'), nl,
@@ -126,8 +126,20 @@ heal:-
 	write('Go to the gym to heal your tokemon!'),
 	nl,!.
 
-save(File) :-
-    atom_concat('data/', File, Filename),
+resetAll :-
+    retractall(player(_,_)),
+    retractall(tokemon(_)),
+    retractall(damage(_,_)),
+    retractall(health(_,_)),
+    retractall(healthbase(_,_)),
+    retractall(id(_,_)),
+    retractall(jenis(_,_)),
+    retractall(milik(_,_)),
+    retractall(skill(_,_)),
+    retractall(type(_,_)).
+
+save(FileAwal) :-
+    atom_concat('data/', FileAwal, Filename),
 	open(Filename, write, FinalFile),
 	facts(FinalFile),
 	close(FinalFile),
@@ -149,3 +161,22 @@ save_data(FinalFile) :-
 	id(Toke, Id), write(FinalFile, id(Toke, Id)), write(FinalFile, '.'), nl(FinalFile),
 	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
     fail.
+
+
+load(FileAwal):-
+	atom_concat('data/', FileAwal, Filename),
+	resetAll,
+	open(Filename, read, FinalFile),
+	repeat,
+		read(FinalFile, In),
+		asserta(In),
+	at_end_of_FinalFile(FinalFile),
+	close(FinalFile),
+	nl, write('Loaded form!'), 
+	write(FinalFile), nl, !.
+
+load(Filename):-
+	nl, write('File '), 
+	write(Filename), 
+	write(' no\'t found!'), 
+	nl, fail.
