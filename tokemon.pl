@@ -209,7 +209,7 @@ skill(tokeham, 109).
 skill(tokenna, 97).
 
 /*kepemilikan*/
-milik(tokeyub, 0).
+milik(tokeyub, 1).
 milik(tokedon, 0).
 milik(tokecha, 0).
 milik(tokego, 0).

@@ -39,7 +39,6 @@ randomenemy :-
 
 decide :-
     write('tokemon liar muncul'), nl,
-    write(' liar Muncul!!'), nl,
     write('fight atau run'), nl,
     asserta(pilih(1)).
 
@@ -261,6 +260,8 @@ checkvictory :-
     !.
 
 checklose :-
+    tokeCounter(X),
+    (X =:= 0 -> lose;
     playerTokemonBattle(ET),
     health(ET, HPE),
     HPE =< 0,
@@ -270,7 +271,7 @@ checklose :-
     retractall(playerTokemonBattle(ET)),    
     retractall(picked),    
     inventory(X),
-    write(X),
+    write(X)),
     !. 
 
 exit :- 
@@ -283,3 +284,9 @@ statPlayerEnemy :-
     stat(PT),
     nl,
     stat(ET).
+
+losegame :-
+    write('Anda sudah kalah :((').
+
+wingame :-
+    write('Anda menang :))').

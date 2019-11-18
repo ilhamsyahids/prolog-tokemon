@@ -36,9 +36,28 @@ tokemon_init:-
 isMilik(Tokemon):-
     tokemon(Tokemon),
     milik(Tokemon,X),
-    X =:= 1,!.
+    X =:= 1.
+
+isLegend(Tokemon):-
+    tokemon(Tokemon),
+    jenis(Tokemon,X),
+    X == legend.
+
+isBukanLiar(Tokemon):-
+    tokemon(Tokemon),
+    milik(Tokemon,X),
+    X =:= 1.
+
+isBukanLiar(Tokemon):-
+    tokemon(Tokemon),
+    milik(Tokemon,X),
+    X =:= 2.
 
 /*tokemon dalam inventory*/
+tokeCountLegend(X) :-
+    findall(A,isLegend(A),isBukanLiar(A), ListInvent),
+    length(ListInvent,X).
+
 tokeCounter(X):-
     findall(A,isMilik(A),ListInvent),
     length(ListInvent,X).
@@ -55,7 +74,7 @@ delFromInventory(Toke):-
     retractall(milik(Toke,1)),
     asserta(milik(Toke,0)),!.
 
-delForeve(Toke):-
+delForever(Toke):-
     tokemon(Toke),
     retractall(milik(Toke,_)),
     asserta(milik(Toke,2)),!.
