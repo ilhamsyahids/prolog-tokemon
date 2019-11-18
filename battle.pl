@@ -318,7 +318,10 @@ checklose :-
     inventory(P),
     write(P)),
     !. 
-
+exit :-
+    \+battle(_),
+    write('You are not in the battle right now!'), 
+    !, fail.  
 exit :- 
     enemyTokemon(Toke),
     delForever(Toke),
