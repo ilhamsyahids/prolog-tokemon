@@ -112,6 +112,9 @@ pick(_) :-
     write('You dont have that Tokemon!'), !.
 
 attack :-
+    \+battle(_),
+    write('You are not in a battle right now!'),nl,!.
+attack :-
     \+picked,
     write('Pick your Tokemon first.'),nl,!.
 
