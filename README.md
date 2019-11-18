@@ -21,8 +21,8 @@
     </tr>
     <tr>
         <td>3.</td>
-        <td></td>
-        <td>135</td>
+        <td>Muhammad Rizki Fonna</td>
+        <td>13516001</td>
     </tr>
     <tr>
         <td>4.</td>
