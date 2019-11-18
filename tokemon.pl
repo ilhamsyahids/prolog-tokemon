@@ -163,7 +163,7 @@ spawn_health :-
 /* fire, water, leaves, ground, flying, ice*/
 /* flying lebih besar 50% damagenya melawan ground */
 /* fire lebih besar 50% damagenya melawan ice */
-/* ice lebih besar 40% damagenya melawan water */
+/* ice lebih besar 25% damagenya melawan water */
 /* ground lebih besar 40% damagenya melawan leaves*/
 
 spawn_type :-
