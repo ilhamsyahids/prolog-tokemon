@@ -58,6 +58,7 @@ fight :-
     write('Choose your Tokemon using pick/1 !\n\nAvailable Tokemons: '), 
     inventory(X),
     write(X),
+    retract(pilih(1)),
     nl, !.
 
     
@@ -78,6 +79,7 @@ berhasilrun :-
     retractall(battle(_)),
     retractall(enemyTokemon(_)),
     retractall(playerTokemonBattle(_)),
+    retract(pilih(1)),
     !, fail.
 
 gagalrun :-
@@ -245,7 +247,7 @@ capture :-
         ;
         tokeCounter(X),
         (X =:= 6 ->
-            write('You cannot capture another Tokemon! You have to drop one first.'), nl
+            write('You cannot capture another Tokemon! You have to drop one first using drop/1.'), nl
             ;
             capt(ET),
             retractall(picked(_)),

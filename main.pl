@@ -50,7 +50,7 @@ wronginput :-
 	write('Command yang dimasukkan salah, silakan masukan ulang'),nl.
 
 narasi:- 
-	write(''),nl,nl
+	write(''),nl,nl,
 	write('Di Desa Toke yang dingin hidup seorang anak bernama Kemon. Di suatu malam kemon tidak bisa tidur,'), nl,
 	write('akhirnya dia memutuskan untuk keluar rumah mencari angin segar. Di tengah perjalanannya,'), nl,
 	write('secara tidak sengaja Kemon melihat bola-bola yang melayangdan memancarkan cahaya biru.'), nl,
