@@ -5,6 +5,7 @@
 
 :- include('map.pl').
 
+:- discontiguous(heal/0).
 :- dynamic(healed/0).
 
 start:-
@@ -38,6 +39,9 @@ start:-
 	help,
 	mulai,
 	tokemon_init,
+	asserta(evolvedA),
+	asserta(evolvedB),
+	asserta(evolvedC),
 	asserta(playing(1)).
 
 wronginput :-
