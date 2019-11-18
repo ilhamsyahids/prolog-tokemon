@@ -57,7 +57,7 @@ remove :-
     retractall(sAttack(_)),
     retractall(battle(_)),
     retractall(enemyTokemon(_)),
-    retractall(playerTokemonBattle(_)).
+    retractall(playerTokemonBattle(_)),
     retractall(pilih(_)).
 
 
