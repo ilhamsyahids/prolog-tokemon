@@ -52,7 +52,7 @@ addToInventory(Toke):-
 delFromInventory(Toke):-
     tokemon(Toke),
     retractall(milik(Toke,1)),
-    assert(milik(Toke,0)),!.
+    assert(milik(Toke,0)).
 
 inventory(LInvent):-
     findall(B,isMilik(B),LInvent).
