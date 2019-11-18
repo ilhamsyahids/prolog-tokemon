@@ -17,10 +17,9 @@
 :- discontiguous(spawn_skill/0).
 :- discontiguous(spawn_type/0).
 :- discontiguous(spawn_id/0).
-:- discontiguous(spawnAll/0).
+:- discontiguous(spawnTokemon/0).
 
-
-spawnAll :-
+spawnTokemon :-
     spawn_damage,
     spawn_health,
     spawn_healthbase,

@@ -288,7 +288,7 @@ statPlayerEnemy :-
     stat(ET).
 
 losegame :-
-    write('Anda sudah kalah :((').
+    write('Sayang sekali nak, Anda kalah\nCoba lagi nanti ya..'), halt.
 
 wingame :-
-    write('Anda menang :))').
+    write('Selamat Anda mengalahkan semua legendary Tokemon.\nJangan bosan main ini ya'), halt.

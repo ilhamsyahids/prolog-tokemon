@@ -3,7 +3,6 @@
 :- dynamic(playing/1).
 :- dynamic(lebarpeta/1).
 :- dynamic(tinggipeta/1).
-:- dynamic(player/2).
 :- dynamic(gym/2).
 :- dynamic(tokemon/2).
 :- dynamic(penghalang/2).
@@ -13,7 +12,6 @@ lebarpeta(15).
 tinggipeta(17).
 
 mulai :-
-    asserta(player(7,9)),
 	asserta(gym(13,16)),
 	asserta(key(8,9)),
 	C is 6,

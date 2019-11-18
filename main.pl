@@ -11,7 +11,6 @@ start:-
 	playing(_),
 	write('You can only start the game once'),nl,!.
 start:-
-	spawnAll,
 	write('  /$$$$$$$$        /$$'), nl,
 	write(' |__  $$__/       | $$'), nl,
 	write('    | $$  /$$$$$$ | $$   /$$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$  /$$$$$$$'), nl,
@@ -37,6 +36,8 @@ start:-
 	narasi, 
 	help,
 	mulai,
+	spawnPlayer,
+	spawnTokemon,
 	tokemon_init,
 	asserta(playing(1)).
 
@@ -103,15 +104,6 @@ heal:-
 	write('All your tokemon has been healed.yey.'),nl,
 	!.
 
-healList([]).
-
-healList([H|T]) :- oneHeal(H), healList(T).
-
-oneHeal(Toke) :-
-	healthbase(Toke,X),
-	retractall(health(Toke,_)),
-	asserta(health(Toke, X)),!.
-
 heal:- 
 	tokemon(Toke),
 	milik(Toke, 1),
@@ -121,57 +113,11 @@ heal:-
 	write('Go to the gym to heal your tokemon!'),
 	nl,!.
 
-resetAll :-
-    retractall(player(_,_)),
-    retractall(tokemon(_)),
-    retractall(damage(_,_)),
-    retractall(health(_,_)),
-    retractall(healthbase(_,_)),
-    retractall(id(_,_)),
-    retractall(jenis(_,_)),
-    retractall(milik(_,_)),
-    retractall(skill(_,_)),
-    retractall(type(_,_)).
+healList([]).
+healList([H|T]) :- oneHeal(H), healList(T).
 
-save(FileAwal) :-
-    atom_concat('data/', FileAwal, Filename),
-	open(Filename, write, FinalFile),
-	facts(FinalFile),
-	close(FinalFile),
-	write('Saved to '),
-	write(Filename), nl.
+oneHeal(Toke) :-
+	healthbase(Toke,X),
+	retractall(health(Toke,_)),
+	asserta(health(Toke, X)),!.
 
-facts(FinalFile) :- save_data(FinalFile).
-facts(_) :- !.
-
-save_data(FinalFile) :-
-	tokemon(Toke), write(FinalFile, tokemon(Toke)), write(FinalFile, '.'), nl(FinalFile),
-	jenis(Toke, Jenis), write(FinalFile, jenis(Toke, Jenis)), write(FinalFile, '.'), nl(FinalFile),
-	healthbase(Toke, Healthbase), write(FinalFile, healthbase(Toke, Healthbase)), write(FinalFile, '.'), nl(FinalFile),
-	health(Toke, Health), write(FinalFile, health(Toke, Health)), write(FinalFile, '.'), nl(FinalFile),
-	type(Toke, Type), write(FinalFile, type(Toke, Type)), write(FinalFile, '.'), nl(FinalFile),
-	damage(Toke, Damage), write(FinalFile, damage(Toke, Damage)), write(FinalFile, '.'), nl(FinalFile),
-	skill(Toke, Skill), write(FinalFile, skill(Toke, Skill)), write(FinalFile, '.'), nl(FinalFile),
-	milik(Toke, Milik), write(FinalFile, milik(Toke, Milik)), write(FinalFile, '.'), nl(FinalFile),
-	id(Toke, Id), write(FinalFile, id(Toke, Id)), write(FinalFile, '.'), nl(FinalFile),
-	player(X, Y), write(FinalFile, player(X, Y)), write(FinalFile, '.'), nl(FinalFile),
-    fail.
-
-
-load(FileAwal):-
-	atom_concat('data/', FileAwal, Filename),
-	resetAll,
-	open(Filename, read, FinalFile),
-	repeat,
-		read(FinalFile, In),
-		asserta(In),
-	at_end_of_FinalFile(FinalFile),
-	close(FinalFile),
-	nl, write('Loaded form!'), 
-	write(FinalFile), nl, !.
-
-load(Filename):-
-	nl, write('File '), 
-	write(Filename), 
-	write(' no\'t found!'), 
-	nl, fail.
