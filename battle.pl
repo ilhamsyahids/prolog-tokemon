@@ -124,6 +124,9 @@ pick(_) :-
     write('You dont have that Tokemon!'), !.
 
 attack :-
+    \+battle(_),
+    write('You are not in a battle right now!'),nl,!.
+attack :-
     \+picked(1),
     write('Pick your Tokemon first.'),nl,!.
 
@@ -315,7 +318,10 @@ checklose :-
     inventory(P),
     write(P)),
     !. 
-
+exit :-
+    \+battle(_),
+    write('You are not in the battle right now!'), 
+    !, fail.  
 exit :- 
     enemyTokemon(Toke),
     delForever(Toke),
