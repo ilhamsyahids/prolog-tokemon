@@ -44,18 +44,20 @@ isLegend(Tokemon):-
     X == legend.
 
 isBukanLiar(Tokemon):-
+    isLegend(Tokemon),
     tokemon(Tokemon),
     milik(Tokemon,X),
     X =:= 1.
 
 isBukanLiar(Tokemon):-
+    isLegend(Tokemon),
     tokemon(Tokemon),
     milik(Tokemon,X),
     X =:= 2.
 
 /*tokemon dalam inventory*/
 tokeCountLegend(X) :-
-    findall(A,isLegend(A),isBukanLiar(A), ListInvent),
+    findall(A,isBukanLiar(A), ListInvent),
     length(ListInvent,X).
 
 tokeCounter(X):-
@@ -92,4 +94,4 @@ capt(Toke) :-
 	healthbase(Toke, X),
 	retract(health(Toke, 0)),
 	asserta(health(Toke, X)),
-    write(Toke),write(' is captured!'),!.
+    write(Toke),write(' is captured!'),nl,!.

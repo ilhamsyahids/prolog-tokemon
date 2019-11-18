@@ -95,7 +95,7 @@ healthbase(tokeham, 157).
 healthbase(tokenna, 145).
 
 /*health*/
-health(tokeyub, 97). 
+health(tokeyub, 10). 
 health(tokedon, 65).
 health(tokecha, 80).
 health(tokego, 78).
@@ -210,7 +210,7 @@ skill(tokenna, 97).
 
 /*kepemilikan*/
 milik(tokeyub, 0).
-milik(tokedon, 1).
+milik(tokedon, 0).
 milik(tokecha, 0).
 milik(tokego, 0).
 milik(tokedo, 0).
@@ -226,13 +226,13 @@ milik(tokeat, 0).
 milik(toketir, 0).
 milik(tokekha, 0).
 milik(tokedhil, 0).
-milik(tokema, 0).
-milik(tokevan, 0).
-milik(tokeli, 0).
+milik(tokema, 1).
+milik(tokevan, 1).
+milik(tokeli, 1).
 
-milik(tokegill, 0).
-milik(tokejan, 0).
-milik(tokeham, 0).
+milik(tokegill, 1).
+milik(tokejan, 1).
+milik(tokeham, 1).
 milik(tokenna, 0).
 milik(_, 0).
 
