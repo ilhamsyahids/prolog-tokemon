@@ -295,9 +295,9 @@ spawn_milik :-
 
 /*id tokemon*/
 spawn_id :-
-    asserta(id(tokeyub, 999)),
-    asserta(id(tokedon, 999)),
-    asserta(id(tokecha, 999)),
+    asserta(id(ayyub, 999)),
+    asserta(id(brandon, 999)),
+    asserta(id(chacha, 999)),
 
     asserta(id(tokeyub, 1)),
     asserta(id(tokedon, 2)),
