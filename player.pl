@@ -18,7 +18,9 @@ drop(Name) :-
         write('You have dropped '),
         write(Name), write('.')
         ;
-        write('You do not have '),write(Name),write(' in your inventory!'),nl,
+        write('You do not have '),
+        write(Name),
+        write(' in your inventory!'),nl
     ),
     !.
 
