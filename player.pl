@@ -63,7 +63,7 @@ select(PT) :-
 
 select(_) :- 
     \+selected,
-    write('hanya bisa memilih 3 tokemon di atas'), !.
+    write('You can only choose from those 3 Tokemon!'), !.
 
 ambil(PT) :-
     write(PT), 
@@ -74,7 +74,7 @@ ambil(PT) :-
 
 select(_) :- 
     selected,
-    write('Sudah ambil tokemon starter kan tadi? masa lupa').
+    write('Sudah ambil tokemon starter kan tadi? masa lupa...').
 
 /*cek kepemilikan*/
 isMilik(Tokemon):-
