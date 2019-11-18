@@ -22,7 +22,7 @@ start:-
 	narasi, 
 	help,
 	mulai,
-	%tokemon_init,
+	tokemon_init,
 	asserta(playing(1)).
 
 do(start) :-!, start.
@@ -79,15 +79,14 @@ status :-
 	tokemon(K),
 	milik(K, J),
 	J =:= 1,
-	stat(K), nl.
+	stat(K), nl,
 
-status :-
 	write('Your Enemy : '), nl,
 	forall(between(21,24,Val), 
 		(id(K, Val),
 		milik(K, 0) , jenis(K, legend),
 		stat(K), nl)
-	).
+	),!.
 
 %heal
 heal:- 
@@ -98,15 +97,11 @@ heal:-
 	healthbase(Toke,X),
 	retract(health(Toke, _)),
 	asserta(health(Toke, X)),!.
-heal:-
-	tokemon(Toke),
-	\+milik(Toke, 1),
-	write('Gagal, Anda tidak memiliki pokemon tersebut'),
-	nl,!.
 heal:- 
 	tokemon(Toke),
 	milik(Toke, 1),
 	player(I,J),
 	\+gym(I, J),
-	write('Gagal, Anda tidak sedang berada di gym'),
+	write('You can only use this command when you are in the gym.'),nl,
+	write('Go to the gym to heal your tokemon!'),
 	nl,!.
