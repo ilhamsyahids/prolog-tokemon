@@ -210,7 +210,6 @@ capture :-
         !, fail
         ;
         tokeCounter(X),
-        write(X),
         (X =:= 6 ->
             write('You cannot capture another Tokemon! You have to drop one first.'), nl
             ;
@@ -261,17 +260,19 @@ checkvictory :-
 
 checklose :-
     tokeCounter(X),
-    (X =:= 0 -> lose;
+    Q is X-1,
     playerTokemonBattle(ET),
     health(ET, HPE),
     HPE =< 0,
     write(ET),
-    write(' died! Choose your pokemon '),
+    write(' died!'),
     delForever(ET),
     retract(playerTokemonBattle(ET)),    
-    retractall(picked),    
-    inventory(X),
-    write(X)),
+    retractall(picked),
+    (Q =:= 0 -> losegame;
+    write('Choose your Tokemon : ')  
+    inventory(P),
+    write(P)),
     !. 
 
 exit :- 

@@ -95,7 +95,7 @@ healthbase(tokeham, 157).
 healthbase(tokenna, 145).
 
 /*health*/
-health(tokeyub, 97). 
+health(tokeyub, 10). 
 health(tokedon, 65).
 health(tokecha, 80).
 health(tokego, 78).
@@ -216,7 +216,7 @@ milik(tokego, 0).
 milik(tokedo, 0).
 milik(tokefab, 0).
 milik(tokegun, 0).
-milik(tokepan, 1).
+milik(tokepan, 0).
 milik(tokendra, 0).
 milik(tokejon, 0).
 milik(tokevin, 0).
