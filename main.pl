@@ -143,7 +143,7 @@ facts(_) :- !.
 
 save_data(FinalFile) :-
     (selected -> write(FinalFile, selected), write(FinalFile, '.'), nl(FinalFile)),
-    %(healed -> write(FinalFile, healed), write(FinalFile, '.'), nl(FinalFile)),
+    (healed -> write(FinalFile, healed), write(FinalFile, '.'), nl(FinalFile), !),
 	tokemon(Toke), write(FinalFile, tokemon(Toke)), write(FinalFile, '.'), nl(FinalFile),
 	jenis(Toke, Jenis), write(FinalFile, jenis(Toke, Jenis)), write(FinalFile, '.'), nl(FinalFile),
 	healthbase(Toke, Healthbase), write(FinalFile, healthbase(Toke, Healthbase)), write(FinalFile, '.'), nl(FinalFile),
