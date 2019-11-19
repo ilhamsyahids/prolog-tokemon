@@ -1,2 +1,35 @@
-jalankan main.pl
-lalu command pertama adalah "start."
+ /$$$$$$$$ /$$$$$$  /$$   /$$ /$$$$$$$$ /$$      /$$  /$$$$$$  /$$   /$$
+|__  $$__//$$__  $$| $$  /$$/| $$_____/| $$$    /$$$ /$$__  $$| $$$ | $$
+   | $$  | $$  \ $$| $$ /$$/ | $$      | $$$$  /$$$$| $$  \ $$| $$$$| $$
+   | $$  | $$  | $$| $$$$$/  | $$$$$   | $$ $$/$$ $$| $$  | $$| $$ $$ $$
+   | $$  | $$  | $$| $$  $$  | $$__/   | $$  $$$| $$| $$  | $$| $$  $$$$
+   | $$  | $$  | $$| $$\  $$ | $$      | $$\  $ | $$| $$  | $$| $$\  $$$
+   | $$  |  $$$$$$/| $$ \  $$| $$$$$$$$| $$ \/  | $$|  $$$$$$/| $$ \  $$
+   |__/   \______/ |__/  \__/|________/|__/     |__/ \______/ |__/  \__/
+                                                                        
+                                                                        
+                                                                        
+ /$$$$$$$$ /$$$$$$  /$$$$$$  /$$   /$$ /$$$$$$$$                        
+| $$_____/|_  $$_/ /$$__  $$| $$  | $$|__  $$__/                        
+| $$        | $$  | $$  \__/| $$  | $$   | $$                           
+| $$$$$     | $$  | $$ /$$$$| $$$$$$$$   | $$                           
+| $$__/     | $$  | $$|_  $$| $$__  $$   | $$                           
+| $$        | $$  | $$  \ $$| $$  | $$   | $$                           
+| $$       /$$$$$$|  $$$$$$/| $$  | $$   | $$                           
+|__/      |______/ \______/ |__/  |__/   |__/
+
+SELAMAT DATANG DI TOKEMON FIGHT PROLOG
+Program ini disusun oleh Kelompok 2 Kelas 01 yang terdiri atas:
+1. Muhammad Rizki Fonna - 13516001
+2. Ilham Syahid Syamsudin - 13518028
+3. Felicia Gillian Tekad Tuerah - 13518070
+4. Muhammad Fauzan Al-Ghifari - 13518112
+
+Silankan jalankan main.pl, lalu gunakan rule start/0 untuk memulai permainan
+Selanjutnya silakan ikuti instruksi dari program.
+
+Program ini telah teruji di lingkungan
+1. Windows 10
+2. MacOs
+
+Jika terjadi error silakan hubungi developer.

@@ -1,5 +1,25 @@
 # Tokemon
 
+ /$$$$$$$$ /$$$$$$  /$$   /$$ /$$$$$$$$ /$$      /$$  /$$$$$$  /$$   /$$
+|__  $$__//$$__  $$| $$  /$$/| $$_____/| $$$    /$$$ /$$__  $$| $$$ | $$
+   | $$  | $$  \ $$| $$ /$$/ | $$      | $$$$  /$$$$| $$  \ $$| $$$$| $$
+   | $$  | $$  | $$| $$$$$/  | $$$$$   | $$ $$/$$ $$| $$  | $$| $$ $$ $$
+   | $$  | $$  | $$| $$  $$  | $$__/   | $$  $$$| $$| $$  | $$| $$  $$$$
+   | $$  | $$  | $$| $$\  $$ | $$      | $$\  $ | $$| $$  | $$| $$\  $$$
+   | $$  |  $$$$$$/| $$ \  $$| $$$$$$$$| $$ \/  | $$|  $$$$$$/| $$ \  $$
+   |__/   \______/ |__/  \__/|________/|__/     |__/ \______/ |__/  \__/
+
+
+ /$$$$$$$$ /$$$$$$  /$$$$$$  /$$   /$$ /$$$$$$$$
+| $$_____/|_  $$_/ /$$__  $$| $$  | $$|__  $$__/
+| $$        | $$  | $$  \__/| $$  | $$   | $$
+| $$$$$     | $$  | $$ /$$$$| $$$$$$$$   | $$
+| $$__/     | $$  | $$|_  $$| $$__  $$   | $$
+| $$        | $$  | $$  \ $$| $$  | $$   | $$
+| $$       /$$$$$$|  $$$$$$/| $$  | $$   | $$
+|__/      |______/ \______/ |__/  |__/   |__/
+
+SELAMAT DATANG DI TOKEMON FIGHT PROLOG
 <table>
     <tr>
         <td colspan=3 align="center">Anggota Kelompok :</td>
@@ -26,7 +46,16 @@
     </tr>
     <tr>
         <td>4.</td>
-        <td></td>
-        <td>135</td>
+        <td>Muhammad Fauzan Al-Ghifari</td>
+        <td>13518112</td>
     </tr>
 </table>
+
+Silankan jalankan main.pl, lalu gunakan rule start/0 untuk memulai permainan
+Selanjutnya silakan ikuti instruksi dari program.
+
+Program ini telah teruji di lingkungan
+1. Windows 10
+2. MacOs
+
+Jika terjadi error silakan hubungi developer.
