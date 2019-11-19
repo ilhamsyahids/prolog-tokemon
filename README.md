@@ -1,23 +1,4 @@
-# Tokemon
-
- /$$$$$$$$ /$$$$$$  /$$   /$$ /$$$$$$$$ /$$      /$$  /$$$$$$  /$$   /$$
-|__  $$__//$$__  $$| $$  /$$/| $$_____/| $$$    /$$$ /$$__  $$| $$$ | $$
-   | $$  | $$  \ $$| $$ /$$/ | $$      | $$$$  /$$$$| $$  \ $$| $$$$| $$
-   | $$  | $$  | $$| $$$$$/  | $$$$$   | $$ $$/$$ $$| $$  | $$| $$ $$ $$
-   | $$  | $$  | $$| $$  $$  | $$__/   | $$  $$$| $$| $$  | $$| $$  $$$$
-   | $$  | $$  | $$| $$\  $$ | $$      | $$\  $ | $$| $$  | $$| $$\  $$$
-   | $$  |  $$$$$$/| $$ \  $$| $$$$$$$$| $$ \/  | $$|  $$$$$$/| $$ \  $$
-   |__/   \______/ |__/  \__/|________/|__/     |__/ \______/ |__/  \__/
-
-
- /$$$$$$$$ /$$$$$$  /$$$$$$  /$$   /$$ /$$$$$$$$
-| $$_____/|_  $$_/ /$$__  $$| $$  | $$|__  $$__/
-| $$        | $$  | $$  \__/| $$  | $$   | $$
-| $$$$$     | $$  | $$ /$$$$| $$$$$$$$   | $$
-| $$__/     | $$  | $$|_  $$| $$__  $$   | $$
-| $$        | $$  | $$  \ $$| $$  | $$   | $$
-| $$       /$$$$$$|  $$$$$$/| $$  | $$   | $$
-|__/      |______/ \______/ |__/  |__/   |__/
+# TOKEMON FIGHT!!!
 
 SELAMAT DATANG DI TOKEMON FIGHT PROLOG
 <table>
@@ -50,8 +31,9 @@ SELAMAT DATANG DI TOKEMON FIGHT PROLOG
         <td>13518112</td>
     </tr>
 </table>
+Program ini menggunakan GNU Prolog.
 
-Silankan jalankan main.pl, lalu gunakan rule start/0 untuk memulai permainan
+Silahkan jalankan main.pl, lalu gunakan rule start/0 untuk memulai permainan
 Selanjutnya silakan ikuti instruksi dari program.
 
 Program ini telah teruji di lingkungan
